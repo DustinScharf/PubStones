@@ -8,7 +8,7 @@ import org.example.pubstones.util.datatyp.historylist.OutOfTimelineException;
 public class StartMenuController extends BaseController {
     @FXML
     public void playButtonClicked(ActionEvent actionEvent) {
-        super.sceneManager.switchScene("/fxml/menu/Game.fxml");
+        super.sceneManager.switchScene("/gui/fxml/game/Game.fxml");
     }
 
     @FXML
