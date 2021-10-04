@@ -31,6 +31,22 @@ public class StoneLine {
         this.stones = new ArrayList<Stone>();
     }
     
+    /**
+     * Checks whether this stone line is empty
+     * @return
+     */
+    public boolean isEmpty() {
+        return this.stones.isEmpty();
+    }
+    
+    /**
+     * Checks whether this stone line is full
+     * @return
+     */
+    public boolean isFull() {
+        return this.stones.size() == this.maxLength;
+    }
+    
     public ArrayList<Stone> getStones() {
         return this.stones;
     }
