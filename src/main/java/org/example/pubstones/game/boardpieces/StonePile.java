@@ -36,8 +36,28 @@ public class StonePile {
      * @param symbol
      * @return
      */
-    public void takeStone(Stone stone) {
+    public Stone takeStone(Stone stone) {
         this.stones.remove(stone);
+        return stone;
+    }
+    
+    /**
+     * Takes a stone from this pile
+     * @param symbol
+     * @return
+     */
+    public Stone takeStone(Symbol symbol) {
+        return this.takeStone(this.getStone(symbol));
+    }
+    
+    public Stone getStone(Symbol symbol) {
+        for (Stone stone : this.stones) {
+            if (stone.getSymbol().equals(symbol)) {
+                return stone;
+            }
+        }
+        // TODO Error handling
+        return null;
     }
     
     public boolean contains(Symbol symbol) {
