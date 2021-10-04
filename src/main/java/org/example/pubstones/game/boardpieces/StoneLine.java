@@ -42,6 +42,7 @@ public class StoneLine {
                 return stones.get(i);
             }
         }
+        // TODO Exception handling
         return null;
     }
     
