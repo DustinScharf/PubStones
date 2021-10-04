@@ -68,6 +68,7 @@ public class StoneLine {
             return;
         }
         this.addStone(stone);
+        stone.placeOnBoard(index);
         for (Stone s : stones) {
             if (s.getIndex() >= index) {
                 s.moveRight();
