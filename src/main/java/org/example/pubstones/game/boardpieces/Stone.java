@@ -148,35 +148,6 @@ public class Stone {
         return "{" + this.symbol.toString() + "," + this.index + "}"; 
     }
     
-    /**
-     * Symbol indicator for stones
-     */
-    enum Symbol {
-        A, B, C, D, E, F, G;
-        
-        @Override
-        public String toString() {
-            switch (this) {
-                case A:
-                    return "A";
-                case B:
-                    return "B";
-                case C:
-                    return "C";
-                case D:
-                    return "D";
-                case E:
-                    return "E";
-                case F:
-                    return "F";
-                case G:
-                    return "G";
-                default:
-                    return "#";
-            }
-        }
-    }
-    
     private class StoneOffBoardException extends Exception {
         public StoneOffBoardException(Stone stone) {
             super("Stone off the board: " + stone.toString());
