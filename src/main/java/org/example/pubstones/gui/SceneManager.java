@@ -33,10 +33,6 @@ public class SceneManager {
         return stage;
     }
 
-    public HistoryList<Scene> getSceneHistoryList() {
-        return sceneHistoryList;
-    }
-
     public void switchScene(String fxmlFilePath) {
         Scene scene = this.scenes.computeIfAbsent(fxmlFilePath, fxmlFilePathTemp -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFilePathTemp));
