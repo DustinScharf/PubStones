@@ -1,4 +1,4 @@
-package org.example.pubstones.util;
+package org.example.pubstones.util.datatyp.historylist;
 
 /**
  * This class represents a history of objects.
@@ -50,9 +50,9 @@ public class HistoryList<DataType> {
      *
      * @return current (i.e. "present") data
      */
-    public DataType getCurrent() {
+    public DataType getCurrent() throws OutOfTimelineException {
         if (this.current == null) {
-            throw new NullPointerException("No current element because HistoryList is empty");
+            throw new OutOfTimelineException("No current element because HistoryList is empty");
         }
 
         return this.current.data;
@@ -80,11 +80,11 @@ public class HistoryList<DataType> {
      * Returns the next element in history if there is one
      *
      * @return the next element in history if there is one
-     * @throws NullPointerException if there is no next element in history
+     * @throws OutOfTimelineException if there is no next element in history
      */
-    public DataType getNext() throws NullPointerException {
+    public DataType getNext() throws OutOfTimelineException {
         if (!this.hasNext()) {
-            throw new NullPointerException("Next element to current is null in HistoryList");
+            throw new OutOfTimelineException("Next element to current is null in HistoryList");
         }
 
         return this.current.next.data;
@@ -94,11 +94,11 @@ public class HistoryList<DataType> {
      * Returns the previous element in history if there is one
      *
      * @return the previous element in history if there is one
-     * @throws NullPointerException if there is no previous element in history
+     * @throws OutOfTimelineException if there is no previous element in history
      */
-    public DataType getPrevious() throws NullPointerException {
+    public DataType getPrevious() throws OutOfTimelineException {
         if (!this.hasPrevious()) {
-            throw new NullPointerException("Previous element to current is null in HistoryList");
+            throw new OutOfTimelineException("Previous element to current is null in HistoryList");
         }
 
         return this.current.previous.data;
@@ -108,11 +108,11 @@ public class HistoryList<DataType> {
      * Moves the current pointer to the next element in history if there is one and returns it
      *
      * @return the next element in history if there is one
-     * @throws NullPointerException if there is no next element in history
+     * @throws OutOfTimelineException if there is no next element in history
      */
-    public DataType goNext() throws NullPointerException {
+    public DataType goNext() throws OutOfTimelineException {
         if (!this.hasNext()) {
-            throw new NullPointerException("Next element to current is null in HistoryList");
+            throw new OutOfTimelineException("Next element to current is null in HistoryList");
         }
 
         this.current = this.current.next;
@@ -123,11 +123,11 @@ public class HistoryList<DataType> {
      * Moves the current pointer to the previous element in history if there is one and returns it
      *
      * @return the previous element in history if there is one
-     * @throws NullPointerException if there is no previous element in history
+     * @throws OutOfTimelineException if there is no previous element in history
      */
-    public DataType goPrevious() throws NullPointerException {
+    public DataType goPrevious() throws OutOfTimelineException {
         if (!this.hasPrevious()) {
-            throw new NullPointerException("Previous element to current is null in HistoryList");
+            throw new OutOfTimelineException("Previous element to current is null in HistoryList");
         }
 
         this.current = this.current.previous;
