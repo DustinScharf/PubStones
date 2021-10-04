@@ -117,6 +117,32 @@ public class Stone {
         s2.index = i;
     }
     
+    /**
+     * Creates a new stone with a given symbol index
+     * @param index
+     * @return
+     */
+    public static Stone getNew(int indexSymbol){
+        switch (indexSymbol) {
+                case 0:
+                    return new Stone(Symbol.A);
+                case 1:
+                    return new Stone(Symbol.B);
+                case 2:
+                    return new Stone(Symbol.C);
+                case 3:
+                    return new Stone(Symbol.D);
+                case 4:
+                    return new Stone(Symbol.E);
+                case 5:
+                    return new Stone(Symbol.F);
+                case 6:
+                    return new Stone(Symbol.G);
+                default:
+                    return new Stone(Symbol.A);
+            }
+    }
+    
     @Override
     public String toString() {
         return "{" + this.symbol.toString() + "," + this.index + "}"; 
