@@ -28,10 +28,7 @@ public class StonePile {
      * Initializes the pile of stones
      */
     private void initializeStones() {
-        this.stones = new ArrayList<Stone>();
-        for (int i = 0; i < startStones; i++) {
-            this.stones.add(Stone.getNew(i));
-        }
+        this.stones = Stone.getAll();
     }
     
     /**
@@ -39,14 +36,20 @@ public class StonePile {
      * @param symbol
      * @return
      */
-    public Stone takeStone(Stone.Symbol symbol) {
-        for (int i = 0; i < stones.size(); i++) {
-            if (stones.get(i).getSymbol().equals(symbol)) {
-                return this.stones.remove(i);
+    public void takeStone(Stone stone) {
+        this.stones.remove(stone);
+    }
+    
+    public boolean contains(Symbol symbol) {
+        if (this.isEmpty()) {
+            return false;
+        }
+        for (Stone stone : stones) {
+            if (stone.getSymbol().equals(symbol)) {
+                return true;
             }
         }
-        // TODO Exception handling
-        return null;
+        return false;
     }
     
     /**
