@@ -3,7 +3,7 @@ package org.example.pubstones.gui.controller.game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import org.example.pubstones.gui.controller.BaseController;
-import org.example.pubstones.util.datatyp.historylist.OutOfTimelineException;
+import org.example.pubstones.util.datatype.historylist.OutOfTimelineException;
 
 public class GameController extends BaseController {
     @FXML

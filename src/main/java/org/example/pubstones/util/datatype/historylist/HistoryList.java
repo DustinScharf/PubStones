@@ -1,4 +1,4 @@
-package org.example.pubstones.util.datatyp.historylist;
+package org.example.pubstones.util.datatype.historylist;
 
 /**
  * This class represents a history of objects.
