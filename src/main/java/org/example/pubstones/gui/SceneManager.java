@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.example.pubstones.gui.controller.BaseController;
 import org.example.pubstones.util.datatype.historylist.HistoryList;
-import org.example.pubstones.util.datatype.historylist.OutOfTimelineException;
+import org.example.pubstones.util.exception.OutOfTimelineException;
 
 import java.io.IOException;
 import java.util.HashMap;

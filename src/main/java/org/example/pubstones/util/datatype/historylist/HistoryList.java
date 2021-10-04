@@ -1,5 +1,7 @@
 package org.example.pubstones.util.datatype.historylist;
 
+import org.example.pubstones.util.exception.OutOfTimelineException;
+
 /**
  * This class represents a history of objects.
  * The history is a list, that can append instances of DataType.
