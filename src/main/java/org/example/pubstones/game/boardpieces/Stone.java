@@ -32,6 +32,26 @@ public class Stone {
     }
     
     /**
+     * This stone's index
+     * @return
+     */
+    public int getIndex() {
+        return this.index;
+    }
+    
+    public void moveRight() {
+        this.index++;
+    }
+    
+    public void moveLeft() {
+        this.index--;
+        if (index < 0) {
+            this.index = 0;
+            
+        }
+    }
+    
+    /**
      * This stone's turn state
      * @return
      */
