@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.example.pubstones.gui.controller.BaseController;
+import org.example.pubstones.util.datatyp.historylist.HistoryList;
+import org.example.pubstones.util.datatyp.historylist.OutOfTimelineException;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,6 +17,8 @@ public class SceneManager {
 
     private final Map<String, Scene> scenes;
 
+    private final HistoryList<Scene> sceneHistoryList;
+
     public SceneManager(Stage stage) {
         if (stage == null) {
             throw new IllegalArgumentException("Stage stage can not be null");
@@ -22,6 +26,7 @@ public class SceneManager {
 
         this.stage = stage;
         this.scenes = new HashMap<>();
+        this.sceneHistoryList = new HistoryList<>();
     }
 
     public Stage getStage() {
@@ -40,6 +45,15 @@ public class SceneManager {
                 throw new RuntimeException(ioException);
             }
         });
+        this.sceneHistoryList.append(scene);
         this.stage.setScene(scene);
+    }
+
+    public void switchToNextScene() throws OutOfTimelineException {
+        this.stage.setScene(this.sceneHistoryList.goNext());
+    }
+
+    public void switchToPreviousScene() throws OutOfTimelineException {
+        this.stage.setScene(this.sceneHistoryList.goPrevious());
     }
 }
