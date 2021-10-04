@@ -44,11 +44,11 @@ public class Stone {
         this.index++;
     }
     
-    public void moveLeft() {
+    public void moveLeft() throws StoneOffBoardException{
         this.index--;
         if (index < 0) {
             this.index = 0;
-            
+            throw new StoneOffBoardException(this);
         }
     }
     
