@@ -1,7 +1,7 @@
-package org.example.pubstones;
+package org.example.pubstones.util.datatype.historylist;
 
-import org.example.pubstones.util.datatyp.historylist.HistoryList;
-import org.example.pubstones.util.datatyp.historylist.OutOfTimelineException;
+import org.example.pubstones.util.datatype.historylist.HistoryList;
+import org.example.pubstones.util.datatype.historylist.OutOfTimelineException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
