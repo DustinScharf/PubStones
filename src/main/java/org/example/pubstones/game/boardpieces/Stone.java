@@ -151,7 +151,7 @@ public class Stone {
     /**
      * Symbol indicator for stones
      */
-    private enum Symbol {
+    enum Symbol {
         A, B, C, D, E, F, G;
         
         @Override
