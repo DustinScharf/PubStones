@@ -1,5 +1,7 @@
 package org.example.pubstones.game.boardpieces;
 
+import java.util.ArrayList;
+
 public class Stone {
     
     private Symbol symbol;
@@ -118,29 +120,25 @@ public class Stone {
     }
     
     /**
+     * Creates a list of all stones
+     * @return
+     */
+    public static ArrayList<Stone> getAll() {
+        ArrayList<Stone> stones = new ArrayList<Stone>();
+        Symbol[] symbols = Symbol.values();
+        for (int i = 0; i < symbols.length; i++) {
+            stones.add(new Stone(symbols[i]));
+        }
+        return stones;
+    }
+    
+    /**
      * Creates a new stone with a given symbol index
      * @param index
      * @return
      */
     public static Stone getNew(int indexSymbol){
-        switch (indexSymbol) {
-                case 0:
-                    return new Stone(Symbol.A);
-                case 1:
-                    return new Stone(Symbol.B);
-                case 2:
-                    return new Stone(Symbol.C);
-                case 3:
-                    return new Stone(Symbol.D);
-                case 4:
-                    return new Stone(Symbol.E);
-                case 5:
-                    return new Stone(Symbol.F);
-                case 6:
-                    return new Stone(Symbol.G);
-                default:
-                    return new Stone(Symbol.A);
-            }
+        return new Stone(Symbol.values()[indexSymbol]);
     }
     
     @Override
