@@ -7,6 +7,7 @@ public class Stone {
     private boolean onBoard = false;
     
     private int index;
+    
     /**
      * Creates a new stone with the given symbol
      * @param symbol the stone's symbol
@@ -90,10 +91,44 @@ public class Stone {
         this.onBoard = true;
     }
     
+    @Override
+    public String toString() {
+        return "{" + this.symbol.toString() + "," + this.index + "}"; 
+    }
+    
     /**
      * Symbol indicator for stones
      */
     private enum Symbol {
         A, B, C, D, E, F, G;
+        
+        @Override
+        public String toString() {
+            switch (this) {
+                case A:
+                    return "A";
+                case B:
+                    return "B";
+                case C:
+                    return "C";
+                case D:
+                    return "D";
+                case E:
+                    return "E";
+                case F:
+                    return "F";
+                case G:
+                    return "G";
+                default:
+                    return "#";
+            }
+        }
     }
+    
+    private class StoneOffBoardException extends Exception {
+        public StoneOffBoardException(Stone stone) {
+            super("Stone off the board: " + stone.toString());
+        }
+    }
+    
 }
