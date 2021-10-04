@@ -6,6 +6,7 @@ public class Stone {
     private boolean turned = false;
     private boolean onBoard = false;
     
+    private int index;
     /**
      * Creates a new stone with the given symbol
      * @param symbol the stone's symbol
@@ -64,7 +65,8 @@ public class Stone {
     /**
      * Places this stone on the board
      */
-    public void placeOnBoard() {
+    public void placeOnBoard(int index) {
+        this.index = index;
         this.onBoard = true;
     }
     
