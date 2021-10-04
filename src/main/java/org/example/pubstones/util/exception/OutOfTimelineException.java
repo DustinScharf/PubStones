@@ -1,4 +1,4 @@
-package org.example.pubstones.util.datatype.historylist;
+package org.example.pubstones.util.exception;
 
 public class OutOfTimelineException extends Exception {
     public OutOfTimelineException(String message) {
