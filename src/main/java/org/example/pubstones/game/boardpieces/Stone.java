@@ -40,10 +40,17 @@ public class Stone {
         return this.index;
     }
     
+    /**
+     * Moves this stone to the right
+     */
     public void moveRight() {
         this.index++;
     }
     
+    /**
+     * Moves this stone to the left
+     * @throws StoneOffBoardException
+     */
     public void moveLeft() throws StoneOffBoardException{
         this.index--;
         if (index < 0) {
