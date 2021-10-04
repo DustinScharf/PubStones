@@ -98,6 +98,25 @@ public class Stone {
         this.onBoard = true;
     }
     
+    /**
+     * Swaps this stone's index with the given stone's index
+     * @param s target stone
+     */
+    public void swap(Stone s) {
+        Stone.swap(this, s);
+    }
+    
+    /**
+     * Swaps the given stone's indexes
+     * @param s1 stone 1
+     * @param s2 stone 2
+     */
+    public static void swap(Stone s1, Stone s2) {
+        int i = s1.index;
+        s1.index = s2.index;
+        s2.index = i;
+    }
+    
     @Override
     public String toString() {
         return "{" + this.symbol.toString() + "," + this.index + "}"; 
