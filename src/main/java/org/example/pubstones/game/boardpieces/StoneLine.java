@@ -31,6 +31,10 @@ public class StoneLine {
         this.stones = new ArrayList<Stone>();
     }
     
+    public ArrayList<Stone> getStones() {
+        return this.stones;
+    }
+    
     /**
      * Searches the stone with the given index in this stone line
      * @param index
