@@ -53,4 +53,8 @@ public class Queue<T> {
         this.list.remove(object);
     }
     
+    public T first() {
+        return this.list.getFirst();
+    }
+    
 }
