@@ -1,4 +1,6 @@
-package org.example.pubstones.game.gamehandling;
+package org.example.pubstones.game.gamehandling.gamemoves;
+
+import org.example.pubstones.game.gamehandling.GameMove;
 
 public class SwapMove extends GameMove {
 

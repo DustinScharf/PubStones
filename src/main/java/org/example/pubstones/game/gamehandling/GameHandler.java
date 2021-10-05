@@ -3,6 +3,8 @@ package org.example.pubstones.game.gamehandling;
 import java.util.ArrayList;
 
 import org.example.pubstones.game.boardpieces.GameField;
+import org.example.pubstones.game.gamehandling.gamemoves.PlaceMove;
+import org.example.pubstones.game.gamehandling.gamemoves.SwapMove;
 
 public class GameHandler {
     
