@@ -2,6 +2,7 @@ package org.example.pubstones.game.gamehandling.gamemoves;
 
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
+import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.MoveKind;
 
@@ -15,7 +16,7 @@ public class TurnMove extends GameMove {
     }
     
     @Override
-    public void applyMove(GameField gameField) {
+    public void applyMove(GameField gameField) throws StoneNotFoundException {
         gameField.tryTurnStones(this.stone);
     }
     

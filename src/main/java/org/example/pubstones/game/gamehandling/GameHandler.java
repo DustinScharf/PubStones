@@ -3,6 +3,9 @@ package org.example.pubstones.game.gamehandling;
 import java.util.ArrayList;
 
 import org.example.pubstones.game.boardpieces.GameField;
+import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
+import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
+import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
 import org.example.pubstones.game.gamehandling.gamemoves.*;
 import org.example.pubstones.util.datatype.Queue;
 
@@ -34,7 +37,7 @@ public class GameHandler {
         return this.gameField;
     }
     
-    public void receiveGameMove(GameMove gameMove) {
+    public void receiveGameMove(GameMove gameMove) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
         gameMove.applyMove(this.gameField);
         moveHistory.add(gameMove);
     }

@@ -1,6 +1,9 @@
 package org.example.pubstones.game.gamehandling;
 
 import org.example.pubstones.game.boardpieces.GameField;
+import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
+import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
+import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
 
 public abstract class GameMove {
     
@@ -24,6 +27,6 @@ public abstract class GameMove {
         return this.moveKind.equals(moveKind);
     }
     
-    public abstract void applyMove(GameField gameField);
+    public abstract void applyMove(GameField gameField) throws StoneLineFullException, StoneNotFoundException, StonesEqualException;
     
 }
