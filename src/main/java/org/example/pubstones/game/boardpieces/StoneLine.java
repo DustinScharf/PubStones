@@ -126,4 +126,46 @@ public class StoneLine {
         this.getStone(index).turn();
     }
     
+    /**
+     * This symbol's stone in the line
+     * @param symbol
+     * @return
+     */
+    public Stone getStone(Symbol symbol) {
+        for (int i = 0; i < this.stones.size(); i++) {
+            if (this.stones.get(i).getSymbol().equals(symbol)) {
+                return this.stones.get(i);
+            }
+        }
+        // TODO Error handling
+        return null;
+    }
+    
+    /**
+     * This symbol's index in the line
+     * @param symbol
+     * @return
+     */
+    public int getIndex(Symbol symbol) {
+        Stone stone = this.getStone(symbol);
+        if (stone != null) {
+            return stone.getIndex();
+        }
+        return -1;
+    }
+    
+    /**
+     * Removes the stone at the given symbol
+     * @param symbol
+     * @return
+     */
+    public boolean removeStone(Symbol symbol) {
+        Stone stone = this.getStone(symbol);
+        if (stone != null) {
+            this.stones.remove(stone);
+            return true;
+        }
+        return false;
+    }
+    
 }

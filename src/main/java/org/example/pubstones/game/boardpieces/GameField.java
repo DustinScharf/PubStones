@@ -35,4 +35,27 @@ public class GameField {
         return stoneLine.swapStones(index1, index2);
     }
     
+    /**
+     * Tries to undo the placement of the given symbol
+     * @param symbol
+     * @return true, if successfull
+     */
+    public boolean tryUndoPlace(Symbol symbol) {
+        if (this.stoneLine.removeStone(symbol)) {
+            this.stonePile.reAdd(symbol);
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Tries to undo the swap of the given indexes
+     * @param index1
+     * @param index2
+     * @return true, if successfull
+     */
+    public boolean tryUndoSwap(int index1, int index2) {
+        return this.stoneLine.swapStones(index1, index2);
+    }
+    
 }

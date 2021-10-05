@@ -98,4 +98,12 @@ public class StonePile {
         return this.stones;
     }
     
+    /**
+     * Re-adds a stone with the given symbol
+     * @param symbol
+     */
+    public void reAdd(Symbol symbol) {
+        this.stones.add(new Stone(symbol));
+    }
+    
 }
