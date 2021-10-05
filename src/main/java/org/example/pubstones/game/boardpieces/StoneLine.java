@@ -82,11 +82,10 @@ public class StoneLine {
      * Places a given stone on the line at the given index
      * @param stone
      * @param index
-     * @return true, if successfull
      */
-    public boolean placeStone(Stone stone, int index) {
+    public void placeStone(Stone stone, int index) {
         if (this.stones.size() >= this.maxLength) {
-            return false;
+            return;
         }
         this.addStone(stone);
         stone.placeOnBoard(index);
@@ -95,77 +94,26 @@ public class StoneLine {
                 s.moveRight();
             }
         }
-        return true;
     }
     
     /**
      * Swaps the stones at given indexes
-     * @param index1
-     * @param index2
-     * @return true, if successfull
+     * @param stone1
+     * @param stone2
      */
-    public boolean swapStones(int index1, int index2) {
-        if (index1 < 0 && index1 >= this.stones.size()) {
-            return false;
+    public void swapStones(Stone stone1, Stone stone2) {
+        if (stone1.equals(stone2)) {
+            return;
         }
-        if (index2 < 0 && index2 >= this.stones.size()) {
-            return false;
-        }
-        if (index1 == index2) {
-            return false;
-        }
-        Stone.swap(this.getStone(index1), this.getStone(index2));
-        return true;
+        Stone.swap(stone1, stone2);
     }
     
     /**
      * Turns the stone at the given index
      * @param index
      */
-    public void turnStone(int index) {
-        this.getStone(index).turn();
-    }
-    
-    /**
-     * This symbol's stone in the line
-     * @param symbol
-     * @return
-     */
-    public Stone getStone(Symbol symbol) {
-        for (int i = 0; i < this.stones.size(); i++) {
-            if (this.stones.get(i).getSymbol().equals(symbol)) {
-                return this.stones.get(i);
-            }
-        }
-        // TODO Error handling
-        return null;
-    }
-    
-    /**
-     * This symbol's index in the line
-     * @param symbol
-     * @return
-     */
-    public int getIndex(Symbol symbol) {
-        Stone stone = this.getStone(symbol);
-        if (stone != null) {
-            return stone.getIndex();
-        }
-        return -1;
-    }
-    
-    /**
-     * Removes the stone at the given symbol
-     * @param symbol
-     * @return
-     */
-    public boolean removeStone(Symbol symbol) {
-        Stone stone = this.getStone(symbol);
-        if (stone != null) {
-            this.stones.remove(stone);
-            return true;
-        }
-        return false;
+    public void turnStone(Stone stone) {
+        stone.turn();
     }
     
 }

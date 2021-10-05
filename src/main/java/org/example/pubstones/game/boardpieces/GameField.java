@@ -6,56 +6,38 @@ public class GameField {
     private StonePile stonePile;
     
     public GameField() {
-
     }
     
     /**
-     * Tries to place a stone from the pile with the given symbol on the given index
+     * Tries to place a stone from the pile on the given index
      * @param symbol
      * @param index
-     * @return true, if successfull
      */
-    public boolean tryPlaceStone(Symbol symbol, int index) {
-        if (!this.stonePile.contains(symbol)) {
-            return false;
+    public void tryPlaceStone(Stone stone, int index) {
+        if (!this.stonePile.contains(stone)) {
+            return;
         }
         if (this.stoneLine.isFull()) {
-            return false;
+            return;
         }
-        return stoneLine.placeStone(stonePile.takeStone(symbol), index);
+        stoneLine.placeStone(stonePile.takeStone(stone), index);
     }
     
     /**
-     * Tries to swap the stones at the given indexes 
+     * Tries to swap the given stones 
      * @param index1
      * @param index2
-     * @return true, if successfull
      */
-    public boolean trySwapStones(int index1, int index2) {
-        return stoneLine.swapStones(index1, index2);
+    public void trySwapStones(Stone stone1, Stone stone2) {
+        this.stoneLine.swapStones(stone1, stone2);
     }
     
     /**
-     * Tries to undo the placement of the given symbol
-     * @param symbol
-     * @return true, if successfull
+     * Tries to turn the given stone
+     * @param stone
      */
-    public boolean tryUndoPlace(Symbol symbol) {
-        if (this.stoneLine.removeStone(symbol)) {
-            this.stonePile.reAdd(symbol);
-            return true;
-        }
-        return false;
-    }
-    
-    /**
-     * Tries to undo the swap of the given indexes
-     * @param index1
-     * @param index2
-     * @return true, if successfull
-     */
-    public boolean tryUndoSwap(int index1, int index2) {
-        return this.stoneLine.swapStones(index1, index2);
+    public void tryTurnStones(Stone stone) {
+        this.stoneLine.turnStone(stone);
     }
     
 }

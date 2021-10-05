@@ -1,12 +1,14 @@
 package org.example.pubstones.game.gamehandling.gamemoves;
 
+import org.example.pubstones.game.boardpieces.GameField;
+import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.MoveKind;
 
 public class PlaceMove extends GameMove {
 
-    private Symbol symbol;
+    private Stone stone;
     private int targetIndex;
     
     /**
@@ -15,18 +17,23 @@ public class PlaceMove extends GameMove {
      * @param index
      * @param number
      */
-    public PlaceMove(Symbol symbol, int index, int number) {
+    public PlaceMove(Stone stone, int index, int number) {
         super(MoveKind.Place, number);
-        this.symbol = symbol;
+        this.stone = stone;
         this.targetIndex = index;
     }
     
+    @Override
+    public void applyMove(GameField gameField) {
+        gameField.tryPlaceStone(this.stone, this.targetIndex);
+    }
+    
     /**
-     * This move's symbol
+     * This move's stone
      * @return
      */
-    public Symbol getSymbol() {
-        return this.symbol;
+    public Stone getStone() {
+        return this.stone;
     }
     
     /**

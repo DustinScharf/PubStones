@@ -42,44 +42,15 @@ public class StonePile {
     }
     
     /**
-     * Takes a stone from this pile
-     * @param symbol
-     * @return
-     */
-    public Stone takeStone(Symbol symbol) {
-        return this.takeStone(this.getStone(symbol));
-    }
-    
-    /**
-     * The stone with the given symbol on the pile
-     * @param symbol
-     * @return
-     */
-    public Stone getStone(Symbol symbol) {
-        for (Stone stone : this.stones) {
-            if (stone.getSymbol().equals(symbol)) {
-                return stone;
-            }
-        }
-        // TODO Error handling
-        return null;
-    }
-    
-    /**
      * Checks whether the stone with the given symbol is still on the pile
      * @param symbol
      * @return
      */
-    public boolean contains(Symbol symbol) {
+    public boolean contains(Stone stone) {
         if (this.isEmpty()) {
             return false;
         }
-        for (Stone stone : stones) {
-            if (stone.getSymbol().equals(symbol)) {
-                return true;
-            }
-        }
-        return false;
+        return this.stones.contains(stone);
     }
     
     /**
@@ -96,14 +67,6 @@ public class StonePile {
      */
     public ArrayList<Stone> getStones() {
         return this.stones;
-    }
-    
-    /**
-     * Re-adds a stone with the given symbol
-     * @param symbol
-     */
-    public void reAdd(Symbol symbol) {
-        this.stones.add(new Stone(symbol));
     }
     
 }

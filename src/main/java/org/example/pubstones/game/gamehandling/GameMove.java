@@ -1,5 +1,7 @@
 package org.example.pubstones.game.gamehandling;
 
+import org.example.pubstones.game.boardpieces.GameField;
+
 public abstract class GameMove {
     
     private int number;
@@ -21,5 +23,7 @@ public abstract class GameMove {
     public boolean isMoveKind(MoveKind moveKind) {
         return this.moveKind.equals(moveKind);
     }
+    
+    public abstract void applyMove(GameField gameField);
     
 }

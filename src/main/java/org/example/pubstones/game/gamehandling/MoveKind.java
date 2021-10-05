@@ -2,7 +2,7 @@ package org.example.pubstones.game.gamehandling;
 
 public enum MoveKind {
     
-    Place("Place"), Swap("Swap");
+    Place("Place"), Swap("Swap"), Turn("Turn");
     
     private String name;
     

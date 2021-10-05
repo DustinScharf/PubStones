@@ -30,14 +30,6 @@ public class MoveHistory {
     }
     
     /**
-     * Deletes the last move and returns it
-     * @return
-     */
-    public GameMove undo() {
-        return this.moves.remove(this.moves.size() - 1);
-    }
-    
-    /**
      * The last move in this history
      * @return
      */
