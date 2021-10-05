@@ -10,8 +10,17 @@ public enum MoveKind {
         this.name = name;
     }
     
+    /**
+     * This move kind's name
+     * @return
+     */
     public String getName() {
         return this.name;
+    }
+    
+    @Override
+    public String toString() {
+        return this.getName();
     }
     
 }
