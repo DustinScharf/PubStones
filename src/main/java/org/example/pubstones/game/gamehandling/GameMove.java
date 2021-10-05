@@ -1,20 +1,13 @@
 package org.example.pubstones.game.gamehandling;
 
-import org.example.pubstones.game.boardpieces.Symbol;
-
-public class GameMove {
+public abstract class GameMove {
     
     private int number;
     private MoveKind moveKind;
     
-    public GameMove(Symbol symbol, int number) {
+    public GameMove(int number) {
         this.number = number;
         this.moveKind = MoveKind.Place;
-    }
-    
-    public GameMove(int index1, int index2, int number) {
-        this.number = number;
-        this.moveKind = MoveKind.Swap;
     }
     
     public int getNumber() {
