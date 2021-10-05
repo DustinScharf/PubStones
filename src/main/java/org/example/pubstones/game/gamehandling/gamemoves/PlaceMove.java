@@ -2,6 +2,7 @@ package org.example.pubstones.game.gamehandling.gamemoves;
 
 import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.gamehandling.GameMove;
+import org.example.pubstones.game.gamehandling.MoveKind;
 
 public class PlaceMove extends GameMove {
 
@@ -15,7 +16,7 @@ public class PlaceMove extends GameMove {
      * @param number
      */
     public PlaceMove(Symbol symbol, int index, int number) {
-        super(number);
+        super(MoveKind.Place, number);
         this.symbol = symbol;
         this.targetIndex = index;
     }

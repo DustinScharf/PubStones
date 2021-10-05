@@ -1,6 +1,7 @@
 package org.example.pubstones.game.gamehandling.gamemoves;
 
 import org.example.pubstones.game.gamehandling.GameMove;
+import org.example.pubstones.game.gamehandling.MoveKind;
 
 public class SwapMove extends GameMove {
 
@@ -14,7 +15,7 @@ public class SwapMove extends GameMove {
      * @param number
      */
     public SwapMove(int index1, int index2, int number) {
-        super(number);
+        super(MoveKind.Swap, number);
         this.index1 = index1;
         this.index2 = index2;
     }

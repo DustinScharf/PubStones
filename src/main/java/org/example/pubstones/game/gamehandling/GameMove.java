@@ -5,9 +5,9 @@ public abstract class GameMove {
     private int number;
     private MoveKind moveKind;
     
-    public GameMove(int number) {
+    public GameMove(MoveKind moveKind, int number) {
         this.number = number;
-        this.moveKind = MoveKind.Place;
+        this.moveKind = moveKind;
     }
     
     public int getNumber() {
