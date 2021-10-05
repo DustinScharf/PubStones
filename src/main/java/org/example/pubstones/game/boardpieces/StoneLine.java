@@ -2,6 +2,10 @@ package org.example.pubstones.game.boardpieces;
 
 import java.util.ArrayList;
 
+import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
+import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
+import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
+
 public class StoneLine {
     private final int STANDARD_LENGTH = 7;
     
@@ -60,14 +64,13 @@ public class StoneLine {
      * @param index
      * @return
      */
-    private Stone getStone(int index) {
+    private Stone getStone(int index) throws StoneNotFoundException {
         for (int i = 0; i < stones.size(); i++) {
             if (stones.get(i).getIndex() == index) {
                 return stones.get(i);
             }
         }
-        // TODO Exception handling
-        return null;
+        throw new StoneNotFoundException(this.getClass(), index);
     }
     
     /**
@@ -82,10 +85,14 @@ public class StoneLine {
      * Places a given stone on the line at the given index
      * @param stone
      * @param index
+     * @throws StoneNotFoundException
      */
-    public void placeStone(Stone stone, int index) {
+    public void placeStone(Stone stone, int index) throws StoneLineFullException, StoneNotFoundException {
+        if (!this.stones.contains(stone)) {
+            throw new StoneNotFoundException(this.getClass(), stone.toString());
+        }
         if (this.stones.size() >= this.maxLength) {
-            return;
+            throw new StoneLineFullException(this.getClass());
         }
         this.addStone(stone);
         stone.placeOnBoard(index);
@@ -101,9 +108,15 @@ public class StoneLine {
      * @param stone1
      * @param stone2
      */
-    public void swapStones(Stone stone1, Stone stone2) {
+    public void swapStones(Stone stone1, Stone stone2) throws StoneNotFoundException, StonesEqualException {
+        if (!this.stones.contains(stone1)) {
+            throw new StoneNotFoundException(this.getClass(), stone1.getSymbol() + " at index " + stone1.getIndex());
+        }
+        if (!this.stones.contains(stone1)) {
+            throw new StoneNotFoundException(this.getClass(), stone1.getSymbol() + " at index " + stone1.getIndex());
+        }
         if (stone1.equals(stone2)) {
-            return;
+            throw new StonesEqualException(this.getClass(), stone1, stone2);
         }
         Stone.swap(stone1, stone2);
     }
@@ -111,8 +124,12 @@ public class StoneLine {
     /**
      * Turns the stone at the given index
      * @param index
+     * @throws StoneNotFoundException
      */
-    public void turnStone(Stone stone) {
+    public void turnStone(Stone stone) throws StoneNotFoundException {
+        if (!this.stones.contains(stone)) {
+            throw new StoneNotFoundException(this.getClass(), stone.toString());
+        }
         stone.turn();
     }
     

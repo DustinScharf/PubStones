@@ -2,6 +2,8 @@ package org.example.pubstones.game.boardpieces;
 
 import java.util.ArrayList;
 
+import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
+
 public class StonePile {
     private final int STANDARD_STARTSTONES = 7;
     
@@ -36,7 +38,10 @@ public class StonePile {
      * @param symbol
      * @return
      */
-    public Stone takeStone(Stone stone) {
+    public Stone takeStone(Stone stone) throws StoneNotFoundException {
+        if (!this.stones.contains(stone)) {
+            throw new StoneNotFoundException(this.getClass(), stone.toString());
+        }
         this.stones.remove(stone);
         return stone;
     }
