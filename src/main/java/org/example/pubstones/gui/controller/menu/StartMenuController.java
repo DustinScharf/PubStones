@@ -1,0 +1,17 @@
+package org.example.pubstones.gui.controller.menu;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import org.example.pubstones.gui.controller.BaseController;
+
+public class StartMenuController extends BaseController {
+    @FXML
+    public void playButtonClicked(ActionEvent actionEvent) {
+        super.sceneManager.switchScene("/gui/fxml/game/Game.fxml");
+    }
+
+    @FXML
+    public void exitButtonClicked(ActionEvent actionEvent) {
+        super.sceneManager.getStage().close();
+    }
+}
