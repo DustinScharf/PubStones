@@ -7,7 +7,7 @@ import org.example.pubstones.game.gamehandling.gamemoves.*;
 
 public class GameHandler {
     
-    private ArrayList<Player> players;
+    private ArrayList<GamePlayer> players;
     private MoveHistory moveHistory;
     
     private GameField gameField;

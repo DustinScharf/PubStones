@@ -1,6 +1,6 @@
 package org.example.pubstones.game.gamehandling;
 
-public class Player {
+public class GamePlayer {
     
     private String name;
     private long id = 0;
@@ -11,7 +11,7 @@ public class Player {
      * Creates a new player with the given name
      * @param name
      */
-    public Player(String name) {
+    public GamePlayer(String name) {
         this.name = name;
         // TODO randomize id
     }
@@ -71,10 +71,10 @@ public class Player {
     
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Player)) {
+        if (!(obj instanceof GamePlayer)) {
             return false;
         }
-        return this.id == ((Player)obj).getID();
+        return this.id == ((GamePlayer)obj).getID();
     }
     
 }
