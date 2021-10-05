@@ -10,6 +10,7 @@ import org.example.pubstones.game.gamehandling.gamemoves.*;
 import org.example.pubstones.util.datatype.Queue;
 
 public class GameHandler {
+    private final int WINNING_SCORE = 3;
     
     private ArrayList<GamePlayer> players;
     private MoveHistory moveHistory;
@@ -35,6 +36,29 @@ public class GameHandler {
     
     public GameField getCurrentState() {
         return this.gameField;
+    }
+    
+    public boolean isGameOver() {
+        for (GamePlayer player : players) {
+            if (player.reachedScore(WINNING_SCORE)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public GamePlayer getLeadingPlayer() {
+        if (players.size() <= 0) {
+            // TODO Exception
+            return null;
+        }
+        GamePlayer lead = players.get(0);
+        for (GamePlayer player : players) {
+            if (lead.getScore() < player.getScore()) {
+                lead = player;
+            }
+        }
+        return lead;
     }
     
     public void receiveGameMove(GameMove gameMove) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {

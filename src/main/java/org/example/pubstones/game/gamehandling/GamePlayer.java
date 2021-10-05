@@ -43,6 +43,14 @@ public class GamePlayer {
     }
     
     /**
+     * This player's score
+     * @return
+     */
+    public int getScore() {
+        return this.score;
+    }
+    
+    /**
      * Checks whether this player reached the given targetScore
      * @param targetScore
      * @return
