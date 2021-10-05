@@ -50,6 +50,11 @@ public class StonePile {
         return this.takeStone(this.getStone(symbol));
     }
     
+    /**
+     * The stone with the given symbol on the pile
+     * @param symbol
+     * @return
+     */
     public Stone getStone(Symbol symbol) {
         for (Stone stone : this.stones) {
             if (stone.getSymbol().equals(symbol)) {
@@ -60,6 +65,11 @@ public class StonePile {
         return null;
     }
     
+    /**
+     * Checks whether the stone with the given symbol is still on the pile
+     * @param symbol
+     * @return
+     */
     public boolean contains(Symbol symbol) {
         if (this.isEmpty()) {
             return false;

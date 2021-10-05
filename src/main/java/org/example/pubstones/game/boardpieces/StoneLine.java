@@ -47,6 +47,10 @@ public class StoneLine {
         return this.stones.size() == this.maxLength;
     }
     
+    /**
+     * This stone line's stones
+     * @return
+     */
     public ArrayList<Stone> getStones() {
         return this.stones;
     }
