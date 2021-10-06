@@ -16,6 +16,10 @@ public class GameField {
         return stoneLine;
     }
 
+    public StonePile getStonePile() {
+        return stonePile;
+    }
+
     /**
      * Tries to place a stone from the pile on the given index
      * @param symbol
