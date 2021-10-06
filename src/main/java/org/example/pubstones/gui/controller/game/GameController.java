@@ -3,6 +3,7 @@ package org.example.pubstones.gui.controller.game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -40,6 +41,11 @@ public class GameController extends BaseController implements Initializable {
         this.gameHandler = new GameHandler();
         this.gameHandler.addPlayer(new GamePlayer("Player 1"));
         this.gameHandler.addPlayer(new GamePlayer("Player 2"));
+
+        int stonePileSize = this.gameHandler.getCurrentState().getStonePile().getStones().size();
+        for (int i = 0; i < stonePileSize; ++i) {
+            this.stonePileHBox.getChildren().add(new Button("b" + i));
+        }
     }
 
     @FXML
