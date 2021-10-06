@@ -18,8 +18,8 @@ public class SwapMove extends GameMove {
      * @param index2
      * @param number
      */
-    public SwapMove(Stone stone1, Stone stone2, int number) {
-        super(MoveKind.Swap, number);
+    public SwapMove(Stone stone1, Stone stone2) {
+        super(MoveKind.Swap);
         this.stone1 = stone1;
         this.stone2 = stone2;
     }

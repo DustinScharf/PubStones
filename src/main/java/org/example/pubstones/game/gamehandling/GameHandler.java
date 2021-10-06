@@ -25,6 +25,7 @@ public class GameHandler {
     public GameHandler() {
         this.players = new ArrayList<GamePlayer>();
         this.playerQueue = new Queue<GamePlayer>();
+        this.moveHistory = new MoveHistory();
     }
     
     public void addPlayer(GamePlayer gamePlayer) {
@@ -72,10 +73,6 @@ public class GameHandler {
         moveHistory.add(gameMove);
     }
     
-    public GameMove getGameMove(MoveKind moveKind, Object... args) throws IllegalArgumentException {
-        return GameMove.getMove(moveKind, this.moveHistory.getMoveCount(), args);
-    }
-    
     public GamePlayer nextPlayer() {
         GamePlayer currentLastPlayer = this.playerQueue.dequeue();
         this.playerQueue.enqueue(currentLastPlayer);
@@ -84,6 +81,10 @@ public class GameHandler {
     
     public GamePlayer getCurrentPlayer() {
         return this.playerQueue.first();
+    }
+    
+    public static GameMove getGameMove(MoveKind moveKind, Object... args) throws IllegalArgumentException {
+        return GameMove.getMove(moveKind, args);
     }
     
 }

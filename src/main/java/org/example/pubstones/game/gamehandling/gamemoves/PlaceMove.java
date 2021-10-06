@@ -19,8 +19,8 @@ public class PlaceMove extends GameMove {
      * @param index
      * @param number
      */
-    public PlaceMove(Stone stone, int index, int number) {
-        super(MoveKind.Place, number);
+    public PlaceMove(Stone stone, int index) {
+        super(MoveKind.Place);
         this.stone = stone;
         this.targetIndex = index;
     }
@@ -44,5 +44,6 @@ public class PlaceMove extends GameMove {
     public int getTargetIndex() {
         return this.targetIndex;
     }
+    
     
 }

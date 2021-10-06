@@ -11,16 +11,10 @@ import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
 
 public abstract class GameMove {
     
-    private int number;
     private MoveKind moveKind;
     
-    public GameMove(MoveKind moveKind, int number) {
-        this.number = number;
+    public GameMove(MoveKind moveKind) {
         this.moveKind = moveKind;
-    }
-    
-    public int getNumber() {
-        return this.number;
     }
     
     public MoveKind getMoveKind() {
@@ -33,7 +27,7 @@ public abstract class GameMove {
     
     public abstract void applyMove(GameField gameField) throws StoneLineFullException, StoneNotFoundException, StonesEqualException;
     
-    public static GameMove getMove(MoveKind moveKind, int number, Object[] args) {
+    public static GameMove getMove(MoveKind moveKind, Object[] args) {
         Constructor<?> constructor = null;
         try {
             constructor = moveKind.getMoveClass().getConstructor(moveKind.getArgs());

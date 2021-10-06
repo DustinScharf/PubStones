@@ -10,8 +10,8 @@ public class TurnMove extends GameMove {
 
     private Stone stone;
     
-    public TurnMove(Stone stone, int number) {
-        super(MoveKind.Turn, number);
+    public TurnMove(Stone stone) {
+        super(MoveKind.Turn);
         this.stone = stone;
     }
     

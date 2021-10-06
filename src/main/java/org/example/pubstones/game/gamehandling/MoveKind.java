@@ -12,13 +12,13 @@ public enum MoveKind {
     Turn("Turn", TurnMove.class);
     
     private String name;
-    private Class moveClass;
-    private Class[] args;
+    private Class<?> moveClass;
+    private Class<?>[] args;
     
-    private MoveKind(String name, Class moveClass, Class... args) {
+    private MoveKind(String name, Class<?> moveClass) {
         this.name = name;
         this.moveClass = moveClass;
-        this.args = args;
+        this.args = moveClass.getConstructors()[0].getParameterTypes();
     }
     
     /**
@@ -34,7 +34,7 @@ public enum MoveKind {
         return this.getName();
     }
     
-    public Class getMoveClass() {
+    public Class<?> getMoveClass() {
         return this.moveClass;
     }
     
