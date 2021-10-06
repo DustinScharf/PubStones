@@ -8,11 +8,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchorPane" stylesheets="@../../css/base-style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pubstones.gui.controller.game.GameController">
    <children>
-      <VBox>
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <HBox fx:id="stoneLineHBox" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox fx:id="symbolsHBox" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
                   <HBox fx:id="scoresHBox" layoutX="10.0" layoutY="35.0" prefHeight="100.0" prefWidth="200.0" />
                   <HBox fx:id="stonePileHBox" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
                   <HBox fx:id="playerActionsHBox" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0" />
