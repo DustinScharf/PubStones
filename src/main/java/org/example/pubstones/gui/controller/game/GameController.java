@@ -69,6 +69,12 @@ public class GameController extends BaseController implements Initializable {
             Label playerScoreLabel = new Label(currentPlayer.getName() + " : " + currentPlayer.getScore());
             this.scoresVBox.getChildren().add(playerScoreLabel);
         }
+
+        this.currentPlayerLabel.setText("Current Player: " + this.gameHandler.getCurrentPlayer().getName());
+
+        this.winnerLabel.setText(
+                "Winner: " + (this.gameHandler.isGameOver() ? this.gameHandler.getLeadingPlayer().getName() : "none")
+        );
     }
 
     @FXML
