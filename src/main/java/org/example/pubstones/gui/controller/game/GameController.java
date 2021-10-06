@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.gamehandling.GameHandler;
 import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.gui.controller.BaseController;
@@ -18,6 +19,9 @@ import java.util.ResourceBundle;
 public class GameController extends BaseController implements Initializable {
     @FXML
     public HBox stoneLineHBox;
+
+    @FXML
+    public HBox symbolsHBox;
 
     @FXML
     public HBox scoresHBox;
@@ -42,9 +46,20 @@ public class GameController extends BaseController implements Initializable {
         this.gameHandler.addPlayer(new GamePlayer("Player 1"));
         this.gameHandler.addPlayer(new GamePlayer("Player 2"));
 
+        int symbolsSize = Symbol.values().length;
+        for (int i = 0; i < symbolsSize; ++i) {
+            Button symbolButton = new Button(
+                    "" + Symbol.values()[i]
+            );
+            this.symbolsHBox.getChildren().add(symbolButton);
+        }
+
         int stonePileSize = this.gameHandler.getCurrentState().getStonePile().getStones().size();
         for (int i = 0; i < stonePileSize; ++i) {
-            this.stonePileHBox.getChildren().add(new Button("b" + i));
+            Button stonePileButton = new Button(
+                    "" + this.gameHandler.getCurrentState().getStonePile().getStones().get(i)
+            );
+            this.stonePileHBox.getChildren().add(stonePileButton);
         }
     }
 
