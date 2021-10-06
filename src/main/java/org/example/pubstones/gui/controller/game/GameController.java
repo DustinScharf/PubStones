@@ -78,6 +78,12 @@ public class GameController extends BaseController implements Initializable {
         this.winnerLabel.setText(
                 "Winner: " + (this.gameHandler.isGameOver() ? this.gameHandler.getLeadingPlayer().getName() : "none")
         );
+
+        int playerActionsCount = this.gameHandler.getCurrentPlayer().getPossibleMoves().length;
+        for (int i = 0; i < playerActionsCount; ++i) {
+            Button playerActionButton = new Button("" + this.gameHandler.getCurrentPlayer().getPossibleMoves()[i]);
+            this.playerActionsHBox.getChildren().add(playerActionButton);
+        }
     }
 
     @FXML
