@@ -2,15 +2,25 @@ package org.example.pubstones.game.gamehandling.gamemoves;
 
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
+import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
+import org.example.pubstones.game.gamehandling.GameHandler;
 import org.example.pubstones.game.gamehandling.GameMove;
+import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
+import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class SwapMove extends GameMove {
 
     private Stone stone1;
     private Stone stone2;
+    
+    private boolean firstStone = true;
+    
+    public SwapMove() {
+        super(MoveKind.Swap);
+    }
     
     /**
      * Creates a new swap move with the given target indexes and move number
@@ -25,8 +35,8 @@ public class SwapMove extends GameMove {
     }
     
     @Override
-    public void applyMove(GameField gameField) throws StoneNotFoundException, StonesEqualException {
-        gameField.trySwapStones(this.stone1, this.stone2);
+    public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
+        gameHandler.getCurrentState().trySwapStones(this.stone1, this.stone2);
     }
     
     /**
@@ -43,6 +53,38 @@ public class SwapMove extends GameMove {
      */
     public Stone getStone2() {
         return this.stone2;
+    }
+
+    @Override
+    public boolean isInitialized() {
+        if (this.stone1 == null) {
+            return false;
+        }
+        if (this.stone2 == null) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
+    public GameMove stone(Stone stone) throws IllegalMoveArgumentException {
+        if (firstStone) {
+            this.stone1 = stone;
+        } else {
+            this.stone2 = stone;
+        }
+        firstStone = !firstStone;
+        return this;
+    }
+
+    @Override
+    public GameMove index(int index) throws IllegalMoveArgumentException {
+        throw new IllegalMoveArgumentException(Integer.class);
+    }
+
+    @Override
+    public GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException {
+        throw new IllegalMoveArgumentException(Integer.class);
     }
     
 }

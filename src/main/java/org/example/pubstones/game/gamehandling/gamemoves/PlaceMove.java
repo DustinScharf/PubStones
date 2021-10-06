@@ -2,16 +2,24 @@ package org.example.pubstones.game.gamehandling.gamemoves;
 
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
-import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
+import org.example.pubstones.game.gamehandling.GameHandler;
 import org.example.pubstones.game.gamehandling.GameMove;
+import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
+import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class PlaceMove extends GameMove {
 
-    private Stone stone;
-    private int targetIndex;
+    private Stone stone = null;
+    private Integer targetIndex = null;
+    
+    private boolean indexSet = false;
+    
+    public PlaceMove() {
+        super(MoveKind.Place);
+    }
     
     /**
      * Creates a new place move with the given symbol, target index and move number
@@ -26,8 +34,8 @@ public class PlaceMove extends GameMove {
     }
     
     @Override
-    public void applyMove(GameField gameField) throws StoneLineFullException, StoneNotFoundException {
-        gameField.tryPlaceStone(this.stone, this.targetIndex);
+    public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException {
+        gameHandler.getCurrentState().tryPlaceStone(this.stone, this.targetIndex);
     }
     
     /**
@@ -41,9 +49,38 @@ public class PlaceMove extends GameMove {
     /**
      * This move's target index
      */
-    public int getTargetIndex() {
+    public Integer getTargetIndex() {
         return this.targetIndex;
     }
+
+    @Override
+    public boolean isInitialized() {
+        if (this.stone == null) {
+            return false;
+        }
+        System.out.println("IndexSet: " + this.indexSet);
+        if (!this.indexSet) {
+            return false;
+        }
+        return true;
+    }
     
+    @Override
+    public GameMove stone(Stone stone) throws IllegalMoveArgumentException {
+        this.stone = stone;
+        return this;
+    }
+    
+    @Override
+    public GameMove index(int index) throws IllegalMoveArgumentException {
+        this.targetIndex = index;
+        this.indexSet = true;
+        return this;
+    }
+    
+    @Override
+    public GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException {
+        throw new IllegalMoveArgumentException(GamePlayer.class);
+    }
     
 }

@@ -18,7 +18,10 @@ public enum MoveKind {
     private MoveKind(String name, Class<?> moveClass) {
         this.name = name;
         this.moveClass = moveClass;
-        this.args = moveClass.getConstructors()[0].getParameterTypes();
+        for (int i = 0; i < moveClass.getConstructors().length; i++) {
+            
+        }
+        this.args = moveClass.getConstructors()[1].getParameterTypes();
     }
     
     /**
