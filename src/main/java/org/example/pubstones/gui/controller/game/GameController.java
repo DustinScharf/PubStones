@@ -22,7 +22,7 @@ public class GameController extends BaseController implements Initializable {
     public HBox scoresHBox;
 
     @FXML
-    public GridPane stonePileGridPane;
+    public HBox stonePileHBox;
 
     @FXML
     public HBox playerActionsHBox;
