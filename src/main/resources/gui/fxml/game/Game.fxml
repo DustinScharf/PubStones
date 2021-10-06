@@ -14,7 +14,7 @@
                <children>
                   <HBox fx:id="stoneLineHBox" prefHeight="100.0" prefWidth="200.0" />
                   <HBox fx:id="symbolsHBox" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
-                  <HBox fx:id="scoresHBox" layoutX="10.0" layoutY="35.0" prefHeight="100.0" prefWidth="200.0" />
+                  <VBox fx:id="scoresVBox" prefHeight="200.0" prefWidth="100.0" />
                   <HBox fx:id="stonePileHBox" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
                   <HBox fx:id="playerActionsHBox" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0" />
                   <Label fx:id="currentPlayerLabel" text="Current Player" />
