@@ -8,25 +8,121 @@ import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
+import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public abstract class GameMove {
     
     private MoveKind moveKind;
     
-    public GameMove(MoveKind moveKind) {
+    /**
+     * Creates a new game move with the given move kind 
+     * @param moveKind
+     */
+    protected GameMove(MoveKind moveKind) {
         this.moveKind = moveKind;
     }
     
+    /**
+     * This move's move kind
+     * @return
+     */
     public MoveKind getMoveKind() {
         return this.moveKind;
     }
     
+    /**
+     * Checks whether this move is an instance of the given move kind
+     * @param moveKind
+     * @return
+     */
     public boolean isMoveKind(MoveKind moveKind) {
         return this.moveKind.equals(moveKind);
     }
     
-    public abstract void applyMove(GameField gameField) throws StoneLineFullException, StoneNotFoundException, StonesEqualException;
+    /**
+     * This move's move kind's argument classes 
+     * Same as MoveKind.getArgs();
+     * @return
+     */
+    public Class<?>[] getArgumentClasses() {
+        return this.moveKind.getArgs();
+    }
     
+    /**
+     * Applies this move onto the given game handler
+     * @param gameField
+     * @throws StoneLineFullException
+     * @throws StoneNotFoundException
+     * @throws StonesEqualException
+     */
+    public abstract void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException;
+
+    /**
+     * Checks whether this game move is fully initialized
+     * @return
+     */
+    public abstract boolean isInitialized();
+    
+    /**
+     * Sets a new stone for this game move (exact function may vary in different move kinds)
+     * @param stone
+     * @return
+     * @throws IllegalMoveArgumentException
+     */
+    public abstract GameMove stone(Stone stone) throws IllegalMoveArgumentException;
+
+    /**
+     * Sets a new index for this game move (exact function may vary in different move kinds)
+     * @param index
+     * @return
+     * @throws IllegalMoveArgumentException
+     */
+    public abstract GameMove index(int index) throws IllegalMoveArgumentException;
+
+    /**
+     * Sets a new game player for this game move (exact function may vary in different move kinds)
+     * @param gamePlayer
+     * @return
+     * @throws IllegalMoveArgumentException
+     */
+    public abstract GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException;
+    
+    /**
+     * Creates an empty game move with the given move kind
+     * @param moveKind
+     * @return
+     */
+    public static GameMove getMove(MoveKind moveKind) {
+        Constructor<?> constructor = null;
+        try {
+            constructor = moveKind.getMoveClass().getConstructor();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        try {
+            return (GameMove) constructor.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return null;
+    }
+    
+    @Deprecated
     public static GameMove getMove(MoveKind moveKind, Object[] args) {
         Constructor<?> constructor = null;
         try {
@@ -56,4 +152,5 @@ public abstract class GameMove {
         }
         return null;
     }
+    
 }

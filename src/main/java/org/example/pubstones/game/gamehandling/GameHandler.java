@@ -70,7 +70,7 @@ public class GameHandler {
         if (gameMove == null) {
             throw new IllegalArgumentException("Stage stage can not be null");
         }
-        gameMove.applyMove(this.gameField);
+        gameMove.applyMove(this);
         moveHistory.add(gameMove);
     }
     
@@ -84,6 +84,7 @@ public class GameHandler {
         return this.playerQueue.first();
     }
     
+    @Deprecated
     public static GameMove getGameMove(MoveKind moveKind, Object... args) throws IllegalArgumentException {
         return GameMove.getMove(moveKind, args);
     }
