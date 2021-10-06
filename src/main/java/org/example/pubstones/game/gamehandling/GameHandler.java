@@ -84,6 +84,18 @@ public class GameHandler {
         return this.playerQueue.first();
     }
     
+    public void tryChallenge(Symbol symbol, Stone stone, GamePlayer targetPlayer, GamePlayer challengerPlayer) {  
+        if (stone.getSymbol().equals(symbol)) {
+            targetPlayer.increaseScore();
+        } else {
+            challengerPlayer.increaseScore();
+        }
+    }
+    
+    public void tryBoast(Symbol[] symbols, GamePlayer gamePlayer) {
+        
+    }
+    
     public static GameMove getGameMove(MoveKind moveKind, Object... args) throws IllegalArgumentException {
         return GameMove.getMove(moveKind, args);
     }
