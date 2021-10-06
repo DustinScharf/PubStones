@@ -28,7 +28,11 @@ public class GameHandler {
         this.playerQueue = new Queue<GamePlayer>();
         this.moveHistory = new MoveHistory();
     }
-    
+
+    public ArrayList<GamePlayer> getPlayers() {
+        return players;
+    }
+
     public void addPlayer(GamePlayer gamePlayer) {
         this.players.add(gamePlayer);
         this.playerQueue.enqueue(gamePlayer);
