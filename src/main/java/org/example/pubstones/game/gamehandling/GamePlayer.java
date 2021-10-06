@@ -110,7 +110,9 @@ public class GamePlayer {
                 moves.add(move);
             }
         }
-        return (MoveKind[]) moves.toArray();
+        MoveKind[] moveOutput = new MoveKind[moves.size()];
+        moveOutput = moves.toArray(moveOutput);
+        return moveOutput;
     }
     
     public static boolean[] getDefaultAllowedGamePlayerMoveStates() {
