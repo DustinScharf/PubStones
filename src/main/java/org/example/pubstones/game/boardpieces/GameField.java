@@ -10,6 +10,8 @@ public class GameField {
     private StonePile stonePile;
     
     public GameField() {
+        this.stoneLine = new StoneLine();
+        this.stonePile = new StonePile();
     }
 
     public StoneLine getStoneLine() {

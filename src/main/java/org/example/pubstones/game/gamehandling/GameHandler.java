@@ -23,6 +23,7 @@ public class GameHandler {
     private GameField gameField;
     
     public GameHandler() {
+        this.gameField = new GameField();
         this.players = new ArrayList<GamePlayer>();
         this.playerQueue = new Queue<GamePlayer>();
         this.moveHistory = new MoveHistory();
