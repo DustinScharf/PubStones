@@ -1,4 +1,4 @@
-package org.example.pubstones.util.datatype.historylist;
+package org.example.pubstones.util.datatype;
 
 import org.example.pubstones.util.exception.OutOfTimelineException;
 
