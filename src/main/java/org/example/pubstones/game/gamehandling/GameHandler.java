@@ -1,8 +1,11 @@
 package org.example.pubstones.game.gamehandling;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import org.example.pubstones.game.boardpieces.GameField;
+import org.example.pubstones.game.boardpieces.Stone;
+import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
@@ -61,9 +64,16 @@ public class GameHandler {
         return lead;
     }
     
-    public void receiveGameMove(GameMove gameMove) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
+    public void receiveGameMove(GameMove gameMove) throws IllegalArgumentException, StoneLineFullException, StoneNotFoundException, StonesEqualException {
+        if (gameMove == null) {
+            throw new IllegalArgumentException("Stage stage can not be null");
+        }
         gameMove.applyMove(this.gameField);
         moveHistory.add(gameMove);
+    }
+    
+    public GameMove getGameMove(MoveKind moveKind, Object... args) throws IllegalArgumentException {
+        return GameMove.getMove(moveKind, this.moveHistory.getMoveCount(), args);
     }
     
     public GamePlayer nextPlayer() {

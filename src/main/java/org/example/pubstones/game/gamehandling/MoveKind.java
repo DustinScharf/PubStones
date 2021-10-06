@@ -1,13 +1,24 @@
 package org.example.pubstones.game.gamehandling;
 
+import org.example.pubstones.game.boardpieces.Stone;
+import org.example.pubstones.game.gamehandling.gamemoves.PlaceMove;
+import org.example.pubstones.game.gamehandling.gamemoves.SwapMove;
+import org.example.pubstones.game.gamehandling.gamemoves.TurnMove;
+
 public enum MoveKind {
     
-    Place("Place"), Swap("Swap"), Turn("Turn");
+    Place("Place", PlaceMove.class),
+    Swap("Swap", SwapMove.class), 
+    Turn("Turn", TurnMove.class);
     
     private String name;
+    private Class moveClass;
+    private Class[] args;
     
-    private MoveKind(String name) {
+    private MoveKind(String name, Class moveClass, Class... args) {
         this.name = name;
+        this.moveClass = moveClass;
+        this.args = args;
     }
     
     /**
@@ -21,6 +32,14 @@ public enum MoveKind {
     @Override
     public String toString() {
         return this.getName();
+    }
+    
+    public Class getMoveClass() {
+        return this.moveClass;
+    }
+    
+    public Class[] getArgs() {
+        return this.args;
     }
     
 }

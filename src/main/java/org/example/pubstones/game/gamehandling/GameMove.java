@@ -1,6 +1,10 @@
 package org.example.pubstones.game.gamehandling;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import org.example.pubstones.game.boardpieces.GameField;
+import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
@@ -29,4 +33,33 @@ public abstract class GameMove {
     
     public abstract void applyMove(GameField gameField) throws StoneLineFullException, StoneNotFoundException, StonesEqualException;
     
+    public static GameMove getMove(MoveKind moveKind, int number, Object[] args) {
+        Constructor<?> constructor = null;
+        try {
+            constructor = moveKind.getMoveClass().getConstructor(moveKind.getArgs());
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        
+        try {
+            return (GameMove) constructor.newInstance(args);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return null;
+    }
 }
