@@ -84,6 +84,10 @@ public class GameHandler {
         return this.playerQueue.first();
     }
     
+    public static GameMove getGameMove(MoveKind moveKind) {
+        return GameMove.getMove(moveKind);
+    }
+    
     @Deprecated
     public static GameMove getGameMove(MoveKind moveKind, Object... args) throws IllegalArgumentException {
         return GameMove.getMove(moveKind, args);
