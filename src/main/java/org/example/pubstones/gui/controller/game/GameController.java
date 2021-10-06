@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.gamehandling.GameHandler;
 import org.example.pubstones.game.gamehandling.GameMove;
@@ -27,7 +28,7 @@ public class GameController extends BaseController implements Initializable {
     public HBox symbolsHBox;
 
     @FXML
-    public HBox scoresHBox;
+    public VBox scoresVBox;
 
     @FXML
     public HBox stonePileHBox;
@@ -64,6 +65,19 @@ public class GameController extends BaseController implements Initializable {
             );
             this.stonePileHBox.getChildren().add(stonePileButton);
         }
+
+        int playerCount = this.gameHandler.getPlayers().size();
+        for (int i = 0; i < playerCount; ++i) {
+            GamePlayer currentPlayer = this.gameHandler.getPlayers().get(i);
+            Label playerScoreLabel = new Label(currentPlayer.getName() + " : " + currentPlayer.getScore());
+            this.scoresVBox.getChildren().add(playerScoreLabel);
+        }
+
+        this.currentPlayerLabel.setText("Current Player: " + this.gameHandler.getCurrentPlayer().getName());
+
+        this.winnerLabel.setText(
+                "Winner: " + (this.gameHandler.isGameOver() ? this.gameHandler.getLeadingPlayer().getName() : "none")
+        );
     }
 
     @FXML
