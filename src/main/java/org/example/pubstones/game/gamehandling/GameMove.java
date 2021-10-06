@@ -11,6 +11,7 @@ import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public abstract class GameMove {
+    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
     
     private MoveKind moveKind;
     
@@ -134,7 +135,7 @@ public abstract class GameMove {
             e.printStackTrace();
             System.exit(1);
         }
-        
+
         try {
             return (GameMove) constructor.newInstance(args);
         } catch (InstantiationException e) {
@@ -151,6 +152,14 @@ public abstract class GameMove {
             System.exit(1);
         }
         return null;
+    }
+    
+    /**
+     * Default allowed game player move stats (all false)
+     * @return
+     */
+    public static boolean[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
     }
     
 }

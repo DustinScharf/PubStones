@@ -11,6 +11,7 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class TurnMove extends GameMove {
+    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
 
     private Stone stone;
     
@@ -61,5 +62,9 @@ public class TurnMove extends GameMove {
     }
     
     
+    
+    public static boolean[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
+    }
     
 }
