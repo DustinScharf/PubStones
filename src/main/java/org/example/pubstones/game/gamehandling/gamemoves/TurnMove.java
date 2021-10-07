@@ -3,10 +3,12 @@ package org.example.pubstones.game.gamehandling.gamemoves;
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
+import org.example.pubstones.game.gamehandling.GameHandler;
 import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.MoveKind;
 
 public class TurnMove extends GameMove {
+    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
 
     private Stone stone;
     
@@ -16,8 +18,8 @@ public class TurnMove extends GameMove {
     }
     
     @Override
-    public void applyMove(GameField gameField) throws StoneNotFoundException {
-        gameField.tryTurnStones(this.stone);
+    public void applyMove(GameHandler gameHandler) throws StoneNotFoundException {
+        gameHandler.getCurrentState().tryTurnStones(this.stone);
     }
     
     /**
@@ -26,6 +28,10 @@ public class TurnMove extends GameMove {
      */
     public Stone getStone() {
         return this.stone;
+    }
+    
+    public static boolean[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
     }
     
 }

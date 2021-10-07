@@ -16,18 +16,20 @@ public class ChallengeMove extends GameMove {
     
     private Symbol symbol;
     private Stone stone;
-    private GamePlayer gamePlayer;
+    private GamePlayer targetPlayer;
+    private GamePlayer challengerPlayer;
     
-    public ChallengeMove(Symbol symbol, Stone stone, GamePlayer gamePlayer) {
+    public ChallengeMove(Symbol symbol, Stone stone, GamePlayer targetPlayer, GamePlayer challengerPlayer) {
         super(MoveKind.Challenge);
         this.symbol = symbol;
         this.stone = stone;
-        this.gamePlayer = gamePlayer;
+        this.targetPlayer = targetPlayer;
+        this.challengerPlayer = challengerPlayer;
     }
 
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
-        gameHandler.getCurrentState().tryChallenge(this.symbol, this.stone, this.gamePlayer);
+        gameHandler.tryChallenge(this.symbol, this.stone, this.targetPlayer, this.challengerPlayer);
     }
     
     /**
@@ -47,11 +49,19 @@ public class ChallengeMove extends GameMove {
     }
     
     /**
-     * This move's game player
+     * This move's target game player
      * @return
      */
-    public GamePlayer getPlayer() {
-        return this.gamePlayer;
+    public GamePlayer getTargetPlayer() {
+        return this.targetPlayer;
+    }
+    
+    /**
+     * This move's challenger game player
+     * @return
+     */
+    public GamePlayer getChallengerPlayer() {
+        return this.challengerPlayer;
     }
     
     public static boolean[] getAllowedGamePlayerMoveStates() {

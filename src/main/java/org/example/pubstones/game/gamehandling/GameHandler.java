@@ -70,7 +70,7 @@ public class GameHandler {
         if (gameMove == null) {
             throw new IllegalArgumentException("Stage stage can not be null");
         }
-        gameMove.applyMove(this.gameField);
+        gameMove.applyMove(this);
         moveHistory.add(gameMove);
     }
     

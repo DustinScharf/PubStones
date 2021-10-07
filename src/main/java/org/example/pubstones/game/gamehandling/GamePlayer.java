@@ -1,11 +1,16 @@
 package org.example.pubstones.game.gamehandling;
 
+import java.util.ArrayList;
+
 public class GamePlayer {
     
     private String name;
     private long id = 0;
     private int score;
+    
     private boolean current = false;
+    private boolean challenged = false;
+    private boolean boastRequestTarget = false;
     
     /**
      * Creates a new player with the given name
@@ -82,7 +87,34 @@ public class GamePlayer {
         if (!(obj instanceof GamePlayer)) {
             return false;
         }
-        return this.id == ((GamePlayer)obj).getID();
+        return this.id == ((GamePlayer) obj).getID();
+    }
+    
+    public boolean isChallenged() {
+        return this.challenged;
+    }
+    
+    public boolean isBoastRequestTarget() {
+        return this.boastRequestTarget;
+    }
+    
+    private boolean[] getMoveStates() {
+        return new boolean[] {this.current, this.challenged, this.boastRequestTarget};
+    }
+    
+    public MoveKind[] getPossibleMoves() {
+        ArrayList<MoveKind> moves = new ArrayList<MoveKind>();
+        MoveKind[] allMoves = MoveKind.values();
+        for (MoveKind move : allMoves) {
+            if (move.isPossible(this.getMoveStates())) {
+                moves.add(move);
+            }
+        }
+        return (MoveKind[]) moves.toArray();
+    }
+    
+    public static boolean[] getDefaultAllowedGamePlayerMoveStates() {
+        return new boolean[] {false, false, false};
     }
     
 }

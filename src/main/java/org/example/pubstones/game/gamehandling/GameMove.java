@@ -10,6 +10,7 @@ import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
 
 public abstract class GameMove {
+    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
     
     private MoveKind moveKind;
     
@@ -25,7 +26,7 @@ public abstract class GameMove {
         return this.moveKind.equals(moveKind);
     }
     
-    public abstract void applyMove(GameField gameField) throws StoneLineFullException, StoneNotFoundException, StonesEqualException;
+    public abstract void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException;
     
     public static GameMove getMove(MoveKind moveKind, Object[] args) {
         Constructor<?> constructor = null;
@@ -38,7 +39,7 @@ public abstract class GameMove {
             e.printStackTrace();
             System.exit(1);
         }
-        
+
         try {
             return (GameMove) constructor.newInstance(args);
         } catch (InstantiationException e) {
@@ -56,4 +57,13 @@ public abstract class GameMove {
         }
         return null;
     }
+    
+    /**
+     * Default allowed game player move stats (all false)
+     * @return
+     */
+    public static boolean[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
+    }
+    
 }

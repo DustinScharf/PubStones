@@ -5,11 +5,13 @@ import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
+import org.example.pubstones.game.gamehandling.GameHandler;
 import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.MoveKind;
 
 public class PlaceMove extends GameMove {
-
+    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
+    
     private Stone stone;
     private int targetIndex;
     
@@ -26,8 +28,8 @@ public class PlaceMove extends GameMove {
     }
     
     @Override
-    public void applyMove(GameField gameField) throws StoneLineFullException, StoneNotFoundException {
-        gameField.tryPlaceStone(this.stone, this.targetIndex);
+    public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException {
+        gameHandler.getCurrentState().tryPlaceStone(this.stone, this.targetIndex);
     }
     
     /**
@@ -45,5 +47,8 @@ public class PlaceMove extends GameMove {
         return this.targetIndex;
     }
     
+    public static boolean[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
+    }
     
 }

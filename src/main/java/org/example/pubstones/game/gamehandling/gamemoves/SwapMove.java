@@ -4,10 +4,12 @@ import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
+import org.example.pubstones.game.gamehandling.GameHandler;
 import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.MoveKind;
 
 public class SwapMove extends GameMove {
+    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
 
     private Stone stone1;
     private Stone stone2;
@@ -25,8 +27,8 @@ public class SwapMove extends GameMove {
     }
     
     @Override
-    public void applyMove(GameField gameField) throws StoneNotFoundException, StonesEqualException {
-        gameField.trySwapStones(this.stone1, this.stone2);
+    public void applyMove(GameHandler gameHandler) throws StoneNotFoundException, StonesEqualException {
+        gameHandler.getCurrentState().trySwapStones(this.stone1, this.stone2);
     }
     
     /**
@@ -43,6 +45,10 @@ public class SwapMove extends GameMove {
      */
     public Stone getStone2() {
         return this.stone2;
+    }
+    
+    public static boolean[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
     }
     
 }
