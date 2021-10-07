@@ -64,7 +64,7 @@ public class StoneLine {
      * @param index
      * @return
      */
-    private Stone getStone(int index) throws StoneNotFoundException {
+    public Stone getStone(int index) throws StoneNotFoundException {
         for (int i = 0; i < stones.size(); i++) {
             if (stones.get(i).getIndex() == index) {
                 return stones.get(i);
