@@ -140,7 +140,11 @@ public class GameController extends BaseController implements Initializable {
         //
         int playerActionsCount = this.gameHandler.getCurrentPlayer().getPossibleMoves().length;
         for (int i = 0; i < playerActionsCount; ++i) {
-            Button playerActionButton = new Button("" + this.gameHandler.getCurrentPlayer().getPossibleMoves()[i]);
+            MoveKind currentMoveKind = this.gameHandler.getCurrentPlayer().getPossibleMoves()[i];
+            Button playerActionButton = new Button("" + currentMoveKind);
+            playerActionButton.setOnAction(clickEvent -> {
+                this.currentlyBuildingGameMove = GameMove.getMove(currentMoveKind);
+            });
             this.playerActionsHBox.getChildren().add(playerActionButton);
         }
 
