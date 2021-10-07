@@ -28,25 +28,25 @@ import java.util.ResourceBundle;
 
 public class GameController extends BaseController implements Initializable {
     @FXML
-    public HBox stoneLineHBox;
+    private HBox stoneLineHBox;
 
     @FXML
-    public HBox symbolsHBox;
+    private HBox symbolsHBox;
 
     @FXML
-    public VBox scoresVBox;
+    private VBox scoresVBox;
 
     @FXML
-    public HBox stonePileHBox;
+    private HBox stonePileHBox;
 
     @FXML
-    public HBox playerActionsHBox;
+    private HBox playerActionsHBox;
 
     @FXML
-    public Label currentPlayerLabel;
+    private Label currentPlayerLabel;
 
     @FXML
-    public Label winnerLabel;
+    private Label winnerLabel;
 
     private GameHandler gameHandler;
 
