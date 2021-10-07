@@ -169,7 +169,6 @@ public class GameController extends BaseController implements Initializable {
         this.winnerLabel.setText("Winner: " + winnerInfo);
     }
 
-    // TODO
     @FXML
     public void placeLeftButtonClicked(ActionEvent actionEvent) {
         try {
@@ -177,6 +176,14 @@ public class GameController extends BaseController implements Initializable {
         } catch (IllegalMoveArgumentException e) {
             e.printStackTrace(); // TODO
         }
+
+        try {
+            this.gameHandler.receiveGameMove(this.currentlyBuildingGameMove);
+        } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException e) {
+            e.printStackTrace(); // TODO
+        }
+
+        this.updateGuiToCurrentGameState();
     }
 
     @FXML
