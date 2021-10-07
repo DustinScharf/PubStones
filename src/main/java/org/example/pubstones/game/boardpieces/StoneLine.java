@@ -88,9 +88,10 @@ public class StoneLine {
      * @throws StoneNotFoundException
      */
     public void placeStone(Stone stone, int index) throws StoneLineFullException, StoneNotFoundException {
-        if (!this.stones.contains(stone)) {
-            throw new StoneNotFoundException(this.getClass(), stone.toString());
-        }
+        // TODO re-logic: it checks if the stone to place is already in the stone line
+//        if (!this.stones.contains(stone)) {
+//            throw new StoneNotFoundException(this.getClass(), stone.toString());
+//        }
         if (this.stones.size() >= this.maxLength) {
             throw new StoneLineFullException(this.getClass());
         }
