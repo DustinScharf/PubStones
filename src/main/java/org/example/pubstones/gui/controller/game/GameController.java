@@ -33,6 +33,12 @@ public class GameController extends BaseController implements Initializable {
     private HBox stoneLineHBox;
 
     @FXML
+    private Button placeLeftButton;
+
+    @FXML
+    private Button placeRightButton;
+
+    @FXML
     private HBox symbolsHBox;
 
     @FXML
