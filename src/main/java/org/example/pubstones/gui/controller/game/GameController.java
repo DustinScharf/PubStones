@@ -1,6 +1,7 @@
 package org.example.pubstones.gui.controller.game;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,6 +23,7 @@ import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentExc
 import org.example.pubstones.gui.controller.BaseController;
 import org.example.pubstones.util.exception.OutOfTimelineException;
 
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -119,9 +121,17 @@ public class GameController extends BaseController implements Initializable {
         //
         int stonePileSize = this.gameHandler.getCurrentState().getStonePile().getStones().size();
         for (int i = 0; i < stonePileSize; ++i) {
+            Stone currentStone = this.gameHandler.getCurrentState().getStonePile().getStones().get(i);
             Button stonePileButton = new Button(
-                    "" + this.gameHandler.getCurrentState().getStonePile().getStones().get(i)
+                    "" + currentStone
             );
+            stonePileButton.setOnAction(clickEvent -> {
+                try {
+                    this.currentlyBuildingGameMove.stone(currentStone);
+                } catch (IllegalMoveArgumentException e) {
+                    e.printStackTrace(); // TODO
+                }
+            });
             this.stonePileHBox.getChildren().add(stonePileButton);
         }
 
