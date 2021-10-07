@@ -107,10 +107,22 @@ public class GameController extends BaseController implements Initializable {
         this.stoneLineHBox.getChildren().clear();
         int stoneLineSize = this.gameHandler.getCurrentState().getStoneLine().getStones().size();
         for (int i = 0; i < stoneLineSize; ++i) {
+            // TODO would be better
             Button stoneLineButton = new Button(
                     "" + this.gameHandler.getCurrentState().getStoneLine().getStones().get(i)
             );
+            stoneLineButton.setOnAction(clickEvent -> {
+//                this.currentlyBuildingGameMove.stone() // TODO how to add 2 stones?
+            });
             this.stoneLineHBox.getChildren().add(stoneLineButton);
+
+//            try {
+//                Stone currentStone = this.gameHandler.getCurrentState().getStoneLine().getStone(i + 1);
+//                Button stoneLineButton = new Button("" + currentStone);
+//                this.stoneLineHBox.getChildren().add(stoneLineButton);
+//            } catch (StoneNotFoundException e) {
+//                e.printStackTrace(); // TODO
+//            }
         }
 
         //
@@ -152,8 +164,14 @@ public class GameController extends BaseController implements Initializable {
         for (int i = 0; i < playerActionsCount; ++i) {
             MoveKind currentMoveKind = this.gameHandler.getCurrentPlayer().getPossibleMoves()[i];
             Button playerActionButton = new Button("" + currentMoveKind);
-            playerActionButton.setOnAction(clickEvent ->
-                    this.currentlyBuildingGameMove = GameMove.getMove(currentMoveKind));
+            playerActionButton.setOnAction(clickEvent -> {
+                this.currentlyBuildingGameMove = GameMove.getMove(currentMoveKind);
+                try {
+                    this.currentlyBuildingGameMove.player(this.gameHandler.getCurrentPlayer());
+                } catch (IllegalMoveArgumentException e) {
+                    e.printStackTrace(); // TODO
+                }
+            });
             this.playerActionsHBox.getChildren().add(playerActionButton);
         }
 
