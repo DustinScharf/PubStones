@@ -50,6 +50,8 @@ public class GameController extends BaseController implements Initializable {
 
     private GameHandler gameHandler;
 
+    private GameMove currentlyBuildingGameMove;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.initNewGame();
@@ -60,6 +62,9 @@ public class GameController extends BaseController implements Initializable {
         this.gameHandler.addPlayer(new GamePlayer("Player 1"));
         this.gameHandler.addPlayer(new GamePlayer("Player 2"));
 
+        //
+        // Creates the buttons for the symbols
+        //
         int symbolsSize = Symbol.values().length;
         for (int i = 0; i < symbolsSize; ++i) {
             Button symbolButton = new Button(
@@ -68,34 +73,8 @@ public class GameController extends BaseController implements Initializable {
             this.symbolsHBox.getChildren().add(symbolButton);
         }
 
-//        int stonePileSize = this.gameHandler.getCurrentState().getStonePile().getStones().size();
-//        for (int i = 0; i < stonePileSize; ++i) {
-//            Button stonePileButton = new Button(
-//                    "" + this.gameHandler.getCurrentState().getStonePile().getStones().get(i)
-//            );
-//            this.stonePileHBox.getChildren().add(stonePileButton);
-//        }
-
-//        int playerCount = this.gameHandler.getPlayers().size();
-//        for (int i = 0; i < playerCount; ++i) {
-//            GamePlayer currentPlayer = this.gameHandler.getPlayers().get(i);
-//            Label playerScoreLabel = new Label(currentPlayer.getName() + " : " + currentPlayer.getScore());
-//            this.scoresVBox.getChildren().add(playerScoreLabel);
-//        }
-
-//        this.currentPlayerLabel.setText("Current Player: " + this.gameHandler.getCurrentPlayer().getName());
-
-//        this.winnerLabel.setText(
-//                "Winner: " + (this.gameHandler.isGameOver() ? this.gameHandler.getLeadingPlayer().getName() : "none")
-//        );
-
-//        int playerActionsCount = this.gameHandler.getCurrentPlayer().getPossibleMoves().length;
-//        for (int i = 0; i < playerActionsCount; ++i) {
-//            Button playerActionButton = new Button("" + this.gameHandler.getCurrentPlayer().getPossibleMoves()[i]);
-//            this.playerActionsHBox.getChildren().add(playerActionButton);
-//        }
-
         // TODO extract to game logic
+        // Sets a random stone into the stone line
         try {
             int stonePileSize = this.gameHandler.getCurrentState().getStonePile().getStones().size();
             StonePile stonePile = this.gameHandler.getCurrentState().getStonePile();
