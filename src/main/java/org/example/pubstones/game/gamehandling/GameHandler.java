@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
-import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
-import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
-import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
+import org.example.pubstones.game.boardpieces.exceptions.*;
 import org.example.pubstones.game.gamehandling.gamemoves.*;
 import org.example.pubstones.util.datatype.Queue;
 
@@ -70,7 +68,7 @@ public class GameHandler {
         return lead;
     }
     
-    public void receiveGameMove(GameMove gameMove) throws IllegalArgumentException, StoneLineFullException, StoneNotFoundException, StonesEqualException {
+    public void receiveGameMove(GameMove gameMove) throws IllegalArgumentException, StoneLineFullException, StoneNotFoundException, StonesEqualException, StoneAlreadyContainedException {
         if (gameMove == null) {
             throw new IllegalArgumentException("Stage stage can not be null");
         }

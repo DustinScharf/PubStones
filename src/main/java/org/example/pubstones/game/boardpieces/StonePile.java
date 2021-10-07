@@ -40,7 +40,7 @@ public class StonePile {
      */
     public Stone takeStone(Stone stone) throws StoneNotFoundException {
         if (!this.stones.contains(stone)) {
-            throw new StoneNotFoundException(this.getClass(), stone.toString());
+            throw new StoneNotFoundException();
         }
         this.stones.remove(stone);
         return stone;

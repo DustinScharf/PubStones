@@ -1,5 +1,6 @@
 package org.example.pubstones.game.boardpieces;
 
+import org.example.pubstones.game.boardpieces.exceptions.StoneAlreadyContainedException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
@@ -28,8 +29,9 @@ public class GameField {
      * @param index
      * @throws StoneNotFoundException
      * @throws StoneLineFullException
+     * @throws StoneAlreadyContainedException
      */
-    public void tryPlaceStone(Stone stone, int index) throws StoneLineFullException, StoneNotFoundException {
+    public void tryPlaceStone(Stone stone, int index) throws StoneLineFullException, StoneNotFoundException, StoneAlreadyContainedException {
         stoneLine.placeStone(stonePile.takeStone(stone), index);
     }
     

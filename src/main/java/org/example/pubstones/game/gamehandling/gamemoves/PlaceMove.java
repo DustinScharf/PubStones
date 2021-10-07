@@ -2,6 +2,7 @@ package org.example.pubstones.game.gamehandling.gamemoves;
 
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
+import org.example.pubstones.game.boardpieces.exceptions.StoneAlreadyContainedException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.gamehandling.GameHandler;
@@ -35,7 +36,7 @@ public class PlaceMove extends GameMove {
     }
     
     @Override
-    public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException {
+    public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StoneAlreadyContainedException {
         gameHandler.getCurrentState().tryPlaceStone(this.stone, this.targetIndex);
     }
     

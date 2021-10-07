@@ -8,8 +8,6 @@ public class Stone {
     private boolean turned = false;
     private boolean onBoard = false;
     
-    private int index;
-    
     /**
      * Creates a new stone with the given symbol
      * @param symbol the stone's symbol
@@ -32,33 +30,6 @@ public class Stone {
      */
     public void setSymbol(Symbol symbol) {
         this.symbol = symbol;
-    }
-    
-    /**
-     * This stone's index
-     * @return
-     */
-    public int getIndex() {
-        return this.index;
-    }
-    
-    /**
-     * Moves this stone to the right
-     */
-    public void moveRight() {
-        this.index++;
-    }
-    
-    /**
-     * Moves this stone to the left
-     * @throws StoneOffBoardException
-     */
-    public void moveLeft() throws StoneOffBoardException{
-        this.index--;
-        if (index < 0) {
-            this.index = 0;
-            throw new StoneOffBoardException(this);
-        }
     }
     
     /**
@@ -95,28 +66,8 @@ public class Stone {
     /**
      * Places this stone on the board
      */
-    public void placeOnBoard(int index) {
-        this.index = index;
+    public void placeOnBoard() {
         this.onBoard = true;
-    }
-    
-    /**
-     * Swaps this stone's index with the given stone's index
-     * @param s target stone
-     */
-    public void swap(Stone s) {
-        Stone.swap(this, s);
-    }
-    
-    /**
-     * Swaps the given stone's indexes
-     * @param s1 stone 1
-     * @param s2 stone 2
-     */
-    public static void swap(Stone s1, Stone s2) {
-        int i = s1.index;
-        s1.index = s2.index;
-        s2.index = i;
     }
     
     /**
@@ -143,7 +94,7 @@ public class Stone {
     
     @Override
     public String toString() {
-        return "{" + this.symbol.toString() + "," + this.index + "}"; 
+        return "{" + this.symbol.toString() + "}"; 
     }
     
     private class StoneOffBoardException extends Exception {
