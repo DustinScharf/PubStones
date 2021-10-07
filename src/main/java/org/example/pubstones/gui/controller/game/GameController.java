@@ -104,6 +104,7 @@ public class GameController extends BaseController implements Initializable {
         //
         // Update the stone line display
         //
+        this.stoneLineHBox.getChildren().clear();
         int stoneLineSize = this.gameHandler.getCurrentState().getStoneLine().getStones().size();
         for (int i = 0; i < stoneLineSize; ++i) {
             Button stoneLineButton = new Button(
@@ -115,6 +116,7 @@ public class GameController extends BaseController implements Initializable {
         //
         // Update the score display of all players
         //
+        this.scoresVBox.getChildren().clear();
         int playerCount = this.gameHandler.getPlayers().size();
         for (int i = 0; i < playerCount; ++i) {
             GamePlayer currentPlayer = this.gameHandler.getPlayers().get(i);
@@ -125,6 +127,7 @@ public class GameController extends BaseController implements Initializable {
         //
         // Updates the stone pile display
         //
+        this.stonePileHBox.getChildren().clear();
         int stonePileSize = this.gameHandler.getCurrentState().getStonePile().getStones().size();
         for (int i = 0; i < stonePileSize; ++i) {
             Stone currentStone = this.gameHandler.getCurrentState().getStonePile().getStones().get(i);
@@ -144,6 +147,7 @@ public class GameController extends BaseController implements Initializable {
         //
         // Updates the possible player actions display
         //
+        this.playerActionsHBox.getChildren().clear();
         int playerActionsCount = this.gameHandler.getCurrentPlayer().getPossibleMoves().length;
         for (int i = 0; i < playerActionsCount; ++i) {
             MoveKind currentMoveKind = this.gameHandler.getCurrentPlayer().getPossibleMoves()[i];
