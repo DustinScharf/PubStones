@@ -46,6 +46,10 @@ public class GameController extends BaseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.initNewGame();
+    }
+
+    private void initNewGame() {
         this.gameHandler = new GameHandler();
         this.gameHandler.addPlayer(new GamePlayer("Player 1"));
         this.gameHandler.addPlayer(new GamePlayer("Player 2"));
