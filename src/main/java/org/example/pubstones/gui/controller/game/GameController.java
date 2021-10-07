@@ -166,6 +166,16 @@ public class GameController extends BaseController implements Initializable {
     }
 
     @FXML
+    public void placeLeftButtonClicked(ActionEvent actionEvent) {
+
+    }
+
+    @FXML
+    public void placeRightButtonClicked(ActionEvent actionEvent) {
+
+    }
+
+    @FXML
     public void backButtonClicked(ActionEvent actionEvent) {
         try {
             super.sceneManager.switchToPreviousScene();
@@ -173,4 +183,6 @@ public class GameController extends BaseController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
 }
