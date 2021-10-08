@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,7 +24,6 @@ import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentExc
 import org.example.pubstones.gui.controller.BaseController;
 import org.example.pubstones.util.exception.OutOfTimelineException;
 
-import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -111,9 +111,19 @@ public class GameController extends BaseController implements Initializable {
             Button stoneLineButton = new Button(
                     "" + this.gameHandler.getCurrentState().getStoneLine().getStones().get(i)
             );
-            stoneLineButton.setOnAction(clickEvent -> {
-//                this.currentlyBuildingGameMove.stone() // TODO how to add 2 stones?
+
+            stoneLineButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println(event.getX());
+                    System.out.println(((Button) (event.getPickResult().getIntersectedNode())).getWidth());
+                    boolean clickedLeft = event.getX() <= (((Button) (event.getPickResult().getIntersectedNode())).getWidth() / 2);
+                    System.out.println("Clicked side: " + (clickedLeft ? "left" : "right"));
+
+//                    this.currentlyBuildingGameMove.stone() // TODO how to add 2 stones?
+                }
             });
+
             this.stoneLineHBox.getChildren().add(stoneLineButton);
 
 //            try {
