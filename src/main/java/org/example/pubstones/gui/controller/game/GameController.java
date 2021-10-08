@@ -108,7 +108,6 @@ public class GameController extends BaseController implements Initializable {
         this.stoneLineHBox.getChildren().clear();
         int stoneLineSize = this.gameHandler.getCurrentState().getStoneLine().getStones().size();
         for (int i = 0; i < stoneLineSize; ++i) {
-            // TODO would be better
             Button stoneLineButton = new Button(
                     "" + this.gameHandler.getCurrentState().getStoneLine().getStones().get(i)
             );
@@ -126,8 +125,6 @@ public class GameController extends BaseController implements Initializable {
                             clickedNode = clickedNode.getParent(); // TODO check for error
                         }
                     } while (clickedButton == null);
-                    System.out.println(clickedButton.getWidth());
-                    System.out.println(event.getX());
 
 
                     boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
