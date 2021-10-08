@@ -1,5 +1,8 @@
 package org.example.pubstones.game.gamehandling.gamemoves;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
@@ -12,71 +15,56 @@ import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
-public class SwapMove extends GameMove {
+public class BoastMove extends GameMove {
     private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
-
-    private Stone stone1;
-    private Stone stone2;
     
-    private boolean firstStone = true;
-    
-    public SwapMove() {
-        super(MoveKind.Swap);
-    }
+    private ArrayList<Symbol> symbols;
+    private GamePlayer gamePlayer;
     
     /**
-     * Creates a new swap move with the given target indexes and move number
-     * @param index1
-     * @param index2
-     * @param number
+     * Creates a new boast move
+     * @param moveKind
      */
-    public SwapMove(Stone stone1, Stone stone2) {
-        super(MoveKind.Swap);
-        this.stone1 = stone1;
-        this.stone2 = stone2;
+    public BoastMove(ArrayList<Symbol> symbols, GamePlayer gamePlayer) {
+        super(MoveKind.Boast);
+        this.symbols = symbols;
+        this.gamePlayer = gamePlayer;
     }
-    
+
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
-        gameHandler.getCurrentState().trySwapStones(this.stone1, this.stone2);
+        gameHandler.tryBoast(this.symbols, this.gamePlayer);
     }
     
-    /**
-     * This move's stone1
-     * @return
-     */
-    public Stone getStone1() {
-        return this.stone1;
+    public ArrayList<Symbol> getSymbol() {
+        return this.symbols;
     }
     
-    /**
-     * This move's stone2
-     * @return
-     */
-    public Stone getStone2() {
-        return this.stone2;
+    public GamePlayer getPlayer() {
+        return this.gamePlayer;
+    }
+    
+    public static boolean[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
     }
 
     @Override
     public boolean isInitialized() {
-        if (this.stone1 == null) {
+        if (this.symbols == null) {
             return false;
         }
-        if (this.stone2 == null) {
+        if (this.symbols.size() == 0) {
+            return false;
+        }
+        if (this.gamePlayer == null) {
             return false;
         }
         return true;
     }
-    
+
     @Override
     public GameMove stone(Stone stone) throws IllegalMoveArgumentException {
-        if (firstStone) {
-            this.stone1 = stone;
-        } else {
-            this.stone2 = stone;
-        }
-        firstStone = !firstStone;
-        return this;
+        throw new IllegalMoveArgumentException(Stone.class);
     }
 
     @Override
@@ -86,16 +74,14 @@ public class SwapMove extends GameMove {
 
     @Override
     public GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException {
-        throw new IllegalMoveArgumentException(Integer.class);
+        this.gamePlayer = gamePlayer;
+        return this;
     }
     
     @Override
     public GameMove symbol(Symbol symbol) throws IllegalMoveArgumentException {
-        throw new IllegalMoveArgumentException(Symbol.class);
-    }
-    
-    public static boolean[] getAllowedGamePlayerMoveStates() {
-        return allowedGamePlayerMoveStates;
+        this.symbols.add(symbol);
+        return this;
     }
     
 }

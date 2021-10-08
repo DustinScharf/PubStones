@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
-import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
-import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
-import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
+import org.example.pubstones.game.boardpieces.exceptions.*;
 import org.example.pubstones.game.gamehandling.gamemoves.*;
 import org.example.pubstones.util.datatype.Queue;
 
@@ -70,7 +68,7 @@ public class GameHandler {
         return lead;
     }
     
-    public void receiveGameMove(GameMove gameMove) throws IllegalArgumentException, StoneLineFullException, StoneNotFoundException, StonesEqualException {
+    public void receiveGameMove(GameMove gameMove) throws IllegalArgumentException, StoneLineFullException, StoneNotFoundException, StonesEqualException, StoneAlreadyContainedException {
         if (gameMove == null) {
             throw new IllegalArgumentException("Stage stage can not be null");
         }
@@ -79,9 +77,7 @@ public class GameHandler {
     }
     
     public GamePlayer nextPlayer() {
-        GamePlayer currentLastPlayer = this.playerQueue.dequeue();
-        this.playerQueue.enqueue(currentLastPlayer);
-        return this.playerQueue.first();
+        return this.playerQueue.second();
     }
     
     public GamePlayer getCurrentPlayer() {
@@ -90,6 +86,33 @@ public class GameHandler {
     
     public static GameMove getGameMove(MoveKind moveKind) {
         return GameMove.getMove(moveKind);
+    }
+    
+    public void tryChallenge(Symbol symbol, Stone stone, GamePlayer targetPlayer, GamePlayer challengerPlayer) {  
+        if (stone.getSymbol().equals(symbol)) {
+            targetPlayer.increaseScore();
+        } else {
+            challengerPlayer.increaseScore();
+        }
+    }
+    
+    public void tryBoast(ArrayList<Symbol> symbols, GamePlayer gamePlayer) {
+        boolean correct = true;
+        for (int i = 0; i < symbols.size(); i++) {
+            if (!this.gameField.getStoneLine().getStone(i).getSymbol().equals(symbols.get(i))) {
+                correct = false;
+            }
+        }
+        if (correct) {
+            for (int p = 0; p < WINNING_SCORE; p++) {
+                gamePlayer.increaseScore();
+            }
+        } else {
+            // TODO insert team
+            for (int p = 0; p < WINNING_SCORE; p++) {
+                this.nextPlayer().increaseScore();
+            }
+        }
     }
     
     @Deprecated

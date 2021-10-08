@@ -10,7 +10,9 @@ public enum MoveKind {
     
     Place("Place", PlaceMove.class, PlaceMove.getAllowedGamePlayerMoveStates()),
     Swap("Swap", SwapMove.class, SwapMove.getAllowedGamePlayerMoveStates()), 
-    Turn("Turn", TurnMove.class, TurnMove.getAllowedGamePlayerMoveStates());
+    Turn("Turn", TurnMove.class, TurnMove.getAllowedGamePlayerMoveStates()),
+    Challenge("Challenge", ChallengeMove.class, ChallengeMove.getAllowedGamePlayerMoveStates()),
+    Boast("Boast", BoastMove.class, BoastMove.getAllowedGamePlayerMoveStates());
     
     private String name;
     private Class<?> moveClass;

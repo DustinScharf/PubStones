@@ -5,9 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
-import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
-import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
-import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
+import org.example.pubstones.game.boardpieces.Symbol;
+import org.example.pubstones.game.boardpieces.exceptions.*;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public abstract class GameMove {
@@ -56,7 +55,7 @@ public abstract class GameMove {
      * @throws StoneNotFoundException
      * @throws StonesEqualException
      */
-    public abstract void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException;
+    public abstract void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException, StoneAlreadyContainedException;
 
     /**
      * Checks whether this game move is fully initialized
@@ -87,6 +86,14 @@ public abstract class GameMove {
      * @throws IllegalMoveArgumentException
      */
     public abstract GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException;
+    
+    /**
+     * Sets a new symbol for this game move (exact function may vary in different move kinds)
+     * @param symbol
+     * @return
+     * @throws IllegalMoveArgumentException
+     */
+    public abstract GameMove symbol(Symbol symbol) throws IllegalMoveArgumentException;
     
     /**
      * Creates an empty game move with the given move kind
