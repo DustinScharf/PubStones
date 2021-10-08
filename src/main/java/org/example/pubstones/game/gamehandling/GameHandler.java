@@ -88,7 +88,6 @@ public class GameHandler {
         return GameMove.getMove(moveKind);
     }
     
-    @Deprecated
     public void tryChallenge(Symbol symbol, Stone stone, GamePlayer targetPlayer, GamePlayer challengerPlayer) {  
         if (stone.getSymbol().equals(symbol)) {
             targetPlayer.increaseScore();
@@ -116,6 +115,7 @@ public class GameHandler {
         }
     }
     
+    @Deprecated
     public static GameMove getGameMove(MoveKind moveKind, Object... args) throws IllegalArgumentException {
         return GameMove.getMove(moveKind, args);
     }
