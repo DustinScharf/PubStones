@@ -10,6 +10,7 @@ import org.example.pubstones.game.gamehandling.GameHandler;
 import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
+import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class ChallengeMove extends GameMove {
     private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
@@ -18,6 +19,8 @@ public class ChallengeMove extends GameMove {
     private Stone stone;
     private GamePlayer targetPlayer;
     private GamePlayer challengerPlayer;
+    
+    private boolean firstPlayer = true;
     
     public ChallengeMove(Symbol symbol, Stone stone, GamePlayer targetPlayer, GamePlayer challengerPlayer) {
         super(MoveKind.Challenge);
@@ -66,6 +69,45 @@ public class ChallengeMove extends GameMove {
     
     public static boolean[] getAllowedGamePlayerMoveStates() {
         return allowedGamePlayerMoveStates;
+    }
+
+    @Override
+    public boolean isInitialized() {
+        if (this.symbol == null) {
+            return false;
+        }
+        if (this.stone == null) {
+            return false;
+        }
+        if (this.challengerPlayer == null) {
+            return false;
+        }
+        if (this.targetPlayer == null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public GameMove stone(Stone stone) throws IllegalMoveArgumentException {
+        this.stone = stone;
+        return this;
+    }
+
+    @Override
+    public GameMove index(int index) throws IllegalMoveArgumentException {
+        throw new IllegalMoveArgumentException(Integer.class);
+    }
+
+    @Override
+    public GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException {
+        if(this.firstPlayer){
+            this.challengerPlayer = gamePlayer;
+        } else {
+            this.targetPlayer = gamePlayer;
+        }
+        this.firstPlayer = !this.firstPlayer;
+        return this;
     }
     
 }

@@ -10,6 +10,7 @@ import org.example.pubstones.game.gamehandling.GameHandler;
 import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
+import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class BoastMove extends GameMove {
     private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
@@ -42,6 +43,36 @@ public class BoastMove extends GameMove {
     
     public static boolean[] getAllowedGamePlayerMoveStates() {
         return allowedGamePlayerMoveStates;
+    }
+
+    @Override
+    public boolean isInitialized() {
+        if (this.symbols == null) {
+            return false;
+        }
+        if (this.symbols.length == 0) {
+            return false;
+        }
+        if (this.gamePlayer == null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public GameMove stone(Stone stone) throws IllegalMoveArgumentException {
+        throw new IllegalMoveArgumentException(Stone.class);
+    }
+
+    @Override
+    public GameMove index(int index) throws IllegalMoveArgumentException {
+        throw new IllegalMoveArgumentException(Integer.class);
+    }
+
+    @Override
+    public GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException {
+        this.gamePlayer = gamePlayer;
+        return this;
     }
     
 }
