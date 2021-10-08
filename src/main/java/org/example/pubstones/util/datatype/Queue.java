@@ -2,6 +2,8 @@ package org.example.pubstones.util.datatype;
 
 import java.util.LinkedList;
 
+import org.example.pubstones.game.gamehandling.GamePlayer;
+
 public class Queue<T> {
     
     private LinkedList<T> list;
@@ -55,6 +57,13 @@ public class Queue<T> {
     
     public T first() {
         return this.list.getFirst();
+    }
+
+    public T second() {
+        if (this.list.size() <= 1) {
+            return null;
+        }
+        return this.list.get(1);
     }
     
 }
