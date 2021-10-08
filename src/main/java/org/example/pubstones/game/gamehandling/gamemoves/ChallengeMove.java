@@ -101,12 +101,18 @@ public class ChallengeMove extends GameMove {
 
     @Override
     public GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException {
-        if(this.firstPlayer){
+        if (this.firstPlayer) {
             this.challengerPlayer = gamePlayer;
         } else {
             this.targetPlayer = gamePlayer;
         }
         this.firstPlayer = !this.firstPlayer;
+        return this;
+    }
+    
+    @Override
+    public GameMove symbol(Symbol symbol) throws IllegalMoveArgumentException {
+        this.symbol = symbol;
         return this;
     }
     

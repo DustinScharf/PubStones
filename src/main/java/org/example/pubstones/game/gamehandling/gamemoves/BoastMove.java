@@ -1,5 +1,8 @@
 package org.example.pubstones.game.gamehandling.gamemoves;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
@@ -15,14 +18,14 @@ import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentExc
 public class BoastMove extends GameMove {
     private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
     
-    private Symbol[] symbols;
+    private ArrayList<Symbol> symbols;
     private GamePlayer gamePlayer;
     
     /**
      * Creates a new boast move
      * @param moveKind
      */
-    public BoastMove(Symbol[] symbols, GamePlayer gamePlayer) {
+    public BoastMove(ArrayList<Symbol> symbols, GamePlayer gamePlayer) {
         super(MoveKind.Boast);
         this.symbols = symbols;
         this.gamePlayer = gamePlayer;
@@ -33,7 +36,7 @@ public class BoastMove extends GameMove {
         gameHandler.tryBoast(this.symbols, this.gamePlayer);
     }
     
-    public Symbol[] getSymbol() {
+    public ArrayList<Symbol> getSymbol() {
         return this.symbols;
     }
     
@@ -50,7 +53,7 @@ public class BoastMove extends GameMove {
         if (this.symbols == null) {
             return false;
         }
-        if (this.symbols.length == 0) {
+        if (this.symbols.size() == 0) {
             return false;
         }
         if (this.gamePlayer == null) {
@@ -72,6 +75,12 @@ public class BoastMove extends GameMove {
     @Override
     public GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException {
         this.gamePlayer = gamePlayer;
+        return this;
+    }
+    
+    @Override
+    public GameMove symbol(Symbol symbol) throws IllegalMoveArgumentException {
+        this.symbols.add(symbol);
         return this;
     }
     

@@ -2,6 +2,7 @@ package org.example.pubstones.game.gamehandling.gamemoves;
 
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
+import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
@@ -86,6 +87,11 @@ public class SwapMove extends GameMove {
     @Override
     public GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException {
         throw new IllegalMoveArgumentException(Integer.class);
+    }
+    
+    @Override
+    public GameMove symbol(Symbol symbol) throws IllegalMoveArgumentException {
+        throw new IllegalMoveArgumentException(Symbol.class);
     }
     
     public static boolean[] getAllowedGamePlayerMoveStates() {

@@ -77,9 +77,7 @@ public class GameHandler {
     }
     
     public GamePlayer nextPlayer() {
-        GamePlayer currentLastPlayer = this.playerQueue.dequeue();
-        this.playerQueue.enqueue(currentLastPlayer);
-        return this.playerQueue.first();
+        return this.playerQueue.second();
     }
     
     public GamePlayer getCurrentPlayer() {
@@ -99,19 +97,22 @@ public class GameHandler {
         }
     }
     
-    public void tryBoast(Symbol[] symbols, GamePlayer gamePlayer) {
+    public void tryBoast(ArrayList<Symbol> symbols, GamePlayer gamePlayer) {
         boolean correct = true;
-        for (int i = 0; i < symbols.length; i++) {
-            if (!this.gameField.getStoneLine().getStone(i).getSymbol().equals(symbols[i])) {
+        for (int i = 0; i < symbols.size(); i++) {
+            if (!this.gameField.getStoneLine().getStone(i).getSymbol().equals(symbols.get(i))) {
                 correct = false;
             }
         }
         if (correct) {
-            for (int p = 0; p < 3; p++) {
+            for (int p = 0; p < WINNING_SCORE; p++) {
                 gamePlayer.increaseScore();
             }
         } else {
-            
+            // TODO insert team
+            for (int p = 0; p < WINNING_SCORE; p++) {
+                this.nextPlayer().increaseScore();
+            }
         }
     }
     
