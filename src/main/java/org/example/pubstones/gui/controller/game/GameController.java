@@ -133,14 +133,6 @@ public class GameController extends BaseController implements Initializable {
             });
 
             this.stoneLineHBox.getChildren().add(stoneLineButton);
-
-//            try {
-//                Stone currentStone = this.gameHandler.getCurrentState().getStoneLine().getStone(i + 1);
-//                Button stoneLineButton = new Button("" + currentStone);
-//                this.stoneLineHBox.getChildren().add(stoneLineButton);
-//            } catch (StoneNotFoundException e) {
-//                e.printStackTrace(); // TODO
-//            }
         }
 
         //
