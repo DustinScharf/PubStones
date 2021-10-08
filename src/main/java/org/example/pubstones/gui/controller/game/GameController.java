@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.StonePile;
 import org.example.pubstones.game.boardpieces.Symbol;
+import org.example.pubstones.game.boardpieces.exceptions.StoneAlreadyContainedException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
@@ -91,10 +92,8 @@ public class GameController extends BaseController implements Initializable {
 
             GameMove gameMove = GameMove.getMove(MoveKind.Place).index(0).stone(stoneToPlace);
             this.gameHandler.receiveGameMove(gameMove);
-        } catch (IllegalMoveArgumentException |
-                StonesEqualException |
-                StoneLineFullException |
-                StoneNotFoundException e) {
+        } catch (IllegalMoveArgumentException | StonesEqualException | StoneLineFullException |
+                StoneNotFoundException | StoneAlreadyContainedException e) {
             e.printStackTrace();
         }
 
@@ -207,7 +206,8 @@ public class GameController extends BaseController implements Initializable {
 
         try {
             this.gameHandler.receiveGameMove(this.currentlyBuildingGameMove);
-        } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException e) {
+        } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException |
+                StoneAlreadyContainedException e) {
             e.printStackTrace(); // TODO
         }
 
@@ -224,7 +224,8 @@ public class GameController extends BaseController implements Initializable {
 
         try {
             this.gameHandler.receiveGameMove(this.currentlyBuildingGameMove);
-        } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException e) {
+        } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException |
+                StoneAlreadyContainedException e) {
             e.printStackTrace(); // TODO
         }
 
