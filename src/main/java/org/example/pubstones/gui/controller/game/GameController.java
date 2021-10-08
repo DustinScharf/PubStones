@@ -115,7 +115,6 @@ public class GameController extends BaseController implements Initializable {
             stoneLineButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    // TODO a click on the middle is a click on a label (the text on the button) and can not be casted
                     Node clickedNode = event.getPickResult().getIntersectedNode();
                     Button clickedButton = null;
                     do {
@@ -125,7 +124,6 @@ public class GameController extends BaseController implements Initializable {
                             clickedNode = clickedNode.getParent(); // TODO check for error
                         }
                     } while (clickedButton == null);
-
 
                     boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
                     System.out.println("Clicked side: " + (clickedLeft ? "left" : "right"));
