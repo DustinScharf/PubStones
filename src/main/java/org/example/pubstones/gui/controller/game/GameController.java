@@ -116,10 +116,16 @@ public class GameController extends BaseController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println(event.getX());
+
+
+                    // TODO a click on the middle is a click on a label (the text on the button) and can not be casted
                     System.out.println(((Button) (event.getPickResult().getIntersectedNode())).getWidth());
-                    boolean clickedLeft =
-                            event.getX() <= (((Button) (event.getPickResult().getIntersectedNode())).getWidth() / 2);
-                    System.out.println("Clicked side: " + (clickedLeft ? "left" : "right"));
+
+
+
+//                    boolean clickedLeft =
+//                            event.getX() <= (((Button) (event.getPickResult().getIntersectedNode())).getWidth() / 2);
+//                    System.out.println("Clicked side: " + (clickedLeft ? "left" : "right"));
 
 //                    this.currentlyBuildingGameMove.stone() // TODO how to add 2 stones?
                 }
