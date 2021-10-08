@@ -61,8 +61,6 @@ public class TurnMove extends GameMove {
         throw new IllegalMoveArgumentException(GamePlayer.class);
     }
     
-    
-    
     public static boolean[] getAllowedGamePlayerMoveStates() {
         return allowedGamePlayerMoveStates;
     }
