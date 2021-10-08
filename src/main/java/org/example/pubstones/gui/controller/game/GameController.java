@@ -117,7 +117,8 @@ public class GameController extends BaseController implements Initializable {
                 public void handle(MouseEvent event) {
                     System.out.println(event.getX());
                     System.out.println(((Button) (event.getPickResult().getIntersectedNode())).getWidth());
-                    boolean clickedLeft = event.getX() <= (((Button) (event.getPickResult().getIntersectedNode())).getWidth() / 2);
+                    boolean clickedLeft =
+                            event.getX() <= (((Button) (event.getPickResult().getIntersectedNode())).getWidth() / 2);
                     System.out.println("Clicked side: " + (clickedLeft ? "left" : "right"));
 
 //                    this.currentlyBuildingGameMove.stone() // TODO how to add 2 stones?
