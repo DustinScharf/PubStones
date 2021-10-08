@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -115,17 +116,22 @@ public class GameController extends BaseController implements Initializable {
             stoneLineButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
+                    // TODO a click on the middle is a click on a label (the text on the button) and can not be casted
+                    Node clickedNode = event.getPickResult().getIntersectedNode();
+                    Button clickedButton = null;
+                    do {
+                        try {
+                            clickedButton = (Button) clickedNode;
+                        } catch (ClassCastException e) {
+                            clickedNode = clickedNode.getParent(); // TODO check for error
+                        }
+                    } while (clickedButton == null);
+                    System.out.println(clickedButton.getWidth());
                     System.out.println(event.getX());
 
 
-                    // TODO a click on the middle is a click on a label (the text on the button) and can not be casted
-                    System.out.println(((Button) (event.getPickResult().getIntersectedNode())).getWidth());
-
-
-
-//                    boolean clickedLeft =
-//                            event.getX() <= (((Button) (event.getPickResult().getIntersectedNode())).getWidth() / 2);
-//                    System.out.println("Clicked side: " + (clickedLeft ? "left" : "right"));
+                    boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
+                    System.out.println("Clicked side: " + (clickedLeft ? "left" : "right"));
 
 //                    this.currentlyBuildingGameMove.stone() // TODO how to add 2 stones?
                 }
