@@ -121,7 +121,7 @@ public class GameController extends BaseController implements Initializable {
                         try {
                             clickedButton = (Button) clickedNode;
                         } catch (ClassCastException e) {
-                            clickedNode = clickedNode.getParent(); // TODO check for error
+                            clickedNode = clickedNode.getParent();
                         }
                     } while (clickedButton == null);
 
