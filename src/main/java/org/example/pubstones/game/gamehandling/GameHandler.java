@@ -100,7 +100,19 @@ public class GameHandler {
     }
     
     public void tryBoast(Symbol[] symbols, GamePlayer gamePlayer) {
-        
+        boolean correct = true;
+        for (int i = 0; i < symbols.length; i++) {
+            if (!this.gameField.getStoneLine().getStone(i).getSymbol().equals(symbols[i])) {
+                correct = false;
+            }
+        }
+        if (correct) {
+            for (int p = 0; p < 3; p++) {
+                gamePlayer.increaseScore();
+            }
+        } else {
+            
+        }
     }
     
     public static GameMove getGameMove(MoveKind moveKind, Object... args) throws IllegalArgumentException {
