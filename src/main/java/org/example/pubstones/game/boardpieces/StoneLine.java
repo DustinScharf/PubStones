@@ -88,7 +88,7 @@ public class StoneLine {
      * @throws StoneAlreadyContainedException
      */
     public void placeStone(Stone stone, int index) throws StoneLineFullException, StoneAlreadyContainedException {
-        if (!this.stones.contains(stone)) {
+        if (this.stones.contains(stone)) {
             throw new StoneAlreadyContainedException();
         }
         if (this.stones.size() >= this.maxLength) {
