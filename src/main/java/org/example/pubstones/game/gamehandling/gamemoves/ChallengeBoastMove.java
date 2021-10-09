@@ -28,8 +28,8 @@ public class ChallengeBoastMove extends GameMove {
 
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException, StoneAlreadyContainedException {
-        this.disableFirstPlayer();
         this.targetPlayer.setChallengedBoast(true);
+        this.disableFirstPlayer();
     }
 
     public GamePlayer getTargetPlayer() {

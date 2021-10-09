@@ -8,6 +8,7 @@ import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.boardpieces.exceptions.*;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
+import org.example.pubstones.game.gamehandling.exceptions.MissingMoveArgumentException;
 
 public abstract class GameMove {
     private static int[] allowedGamePlayerMoveStates = new int[] { 0, 0, 0, 0, 0 };
@@ -71,8 +72,9 @@ public abstract class GameMove {
      * @throws StoneLineFullException
      * @throws StoneNotFoundException
      * @throws StonesEqualException
+     * @throws MissingMoveArgumentException
      */
-    public abstract void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException, StoneAlreadyContainedException;
+    public abstract void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException, StoneAlreadyContainedException, MissingMoveArgumentException;
 
     /**
      * Checks whether this game move is fully initialized

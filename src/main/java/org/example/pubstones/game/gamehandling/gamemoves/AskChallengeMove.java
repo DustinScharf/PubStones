@@ -11,11 +11,13 @@ import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
+import org.example.pubstones.game.gamehandling.exceptions.MissingMoveArgumentException;
 
 public class AskChallengeMove extends GameMove {
     private static int[] allowedGamePlayerMoveStates = new int[] { 0, 1, -1, -1, -1 };
     
     private GamePlayer targetPlayer;
+    private Stone stone;
     
     public AskChallengeMove() {
         super(MoveKind.AskChallenge);
@@ -27,8 +29,18 @@ public class AskChallengeMove extends GameMove {
     }
 
     @Override
-    public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException, StoneAlreadyContainedException {
-        this.targetPlayer.setChallenged(true);
+    public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException,
+            StonesEqualException, StoneAlreadyContainedException, MissingMoveArgumentException {
+        if(this.stone == null)
+        {
+            throw new MissingMoveArgumentException(Stone.class);
+        }
+        this.targetPlayer.setChallenged(this.stone);
+        this.disableFirstPlayer();
+    }
+
+    public Stone getStone() {
+        return this.stone;
     }
 
     public GamePlayer getTargetPlayer() {

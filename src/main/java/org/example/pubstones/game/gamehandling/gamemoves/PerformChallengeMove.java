@@ -16,34 +16,28 @@ public class PerformChallengeMove extends GameMove {
     private static int[] allowedGamePlayerMoveStates = new int[] { 0, 1, 1, -1, -1 };
     
     private Symbol symbol;
-    private Stone stone;
-    private GamePlayer targetPlayer;
     private GamePlayer challengerPlayer;
-
-    private boolean firstPlayer = true;
 
     public PerformChallengeMove() {
         super(MoveKind.PerformChallenge);
     }
 
-    public PerformChallengeMove(Symbol symbol, Stone stone, GamePlayer targetPlayer, GamePlayer challengerPlayer) {
+    public PerformChallengeMove(Symbol symbol, GamePlayer targetPlayer, GamePlayer challengerPlayer) {
         super(MoveKind.PerformChallenge);
         this.symbol = symbol;
-        this.stone = stone;
-        this.targetPlayer = targetPlayer;
         this.challengerPlayer = challengerPlayer;
     }
 
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
         this.disableFirstPlayer();
-        boolean result = gameHandler.checkChallenge(this.symbol, this.stone);
+        boolean result = gameHandler.checkChallenge(this.symbol, this.senderPlayer.getChallengedStone());
         if (result) {
             this.senderPlayer.increaseScore();
         } else {
             this.challengerPlayer.increaseScore();
         }
-        this.senderPlayer.setChallenged(false);
+        this.senderPlayer.setChallenged(null);
     }
 
     /**
@@ -59,7 +53,7 @@ public class PerformChallengeMove extends GameMove {
      * @return
      */
     public Stone getStone() {
-        return this.stone;
+        return this.senderPlayer.getChallengedStone();
     }
 
     /**
@@ -67,7 +61,7 @@ public class PerformChallengeMove extends GameMove {
      * @return
      */
     public GamePlayer getTargetPlayer() {
-        return this.targetPlayer;
+        return this.senderPlayer;
     }
 
     /**
@@ -87,13 +81,13 @@ public class PerformChallengeMove extends GameMove {
         if (this.symbol == null) {
             return false;
         }
-        if (this.stone == null) {
-            return false;
-        }
         if (this.challengerPlayer == null) {
             return false;
         }
-        if (this.targetPlayer == null) {
+        if (this.senderPlayer == null) {
+            return false;
+        }
+        if (this.senderPlayer.getChallengedStone() == null) {
             return false;
         }
         return true;
@@ -101,8 +95,7 @@ public class PerformChallengeMove extends GameMove {
 
     @Override
     public GameMove stone(Stone stone) throws IllegalMoveArgumentException {
-        this.stone = stone;
-        return this;
+        throw new IllegalMoveArgumentException(Stone.class);
     }
 
     @Override
@@ -112,12 +105,7 @@ public class PerformChallengeMove extends GameMove {
 
     @Override
     public GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException {
-        if (this.firstPlayer) {
-            this.challengerPlayer = gamePlayer;
-        } else {
-            this.targetPlayer = gamePlayer;
-        }
-        this.firstPlayer = !this.firstPlayer;
+        this.challengerPlayer = gamePlayer;
         return this;
     }
 

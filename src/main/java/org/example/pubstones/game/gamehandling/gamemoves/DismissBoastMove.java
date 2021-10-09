@@ -30,7 +30,7 @@ public class DismissBoastMove extends GameMove {
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException,
             StonesEqualException, StoneAlreadyContainedException {
         this.challengerPlayer.setDismissedBoastOn(true);
-        this.senderPlayer.setChallenged(false);
+        this.senderPlayer.setChallengedBoast(false);
         this.disableFirstPlayer();
     }
 
