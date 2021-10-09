@@ -12,7 +12,7 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class TurnMove extends GameMove {
-    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
+    private static int[] allowedGamePlayerMoveStates = new int[] { 0, 1, -1, -1, -1 };
 
     private Stone stone;
     
@@ -28,6 +28,7 @@ public class TurnMove extends GameMove {
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException {
         gameHandler.getCurrentState().tryTurnStones(this.stone);
+        this.disableFirstPlayer();
     }
     
     /**
@@ -38,6 +39,10 @@ public class TurnMove extends GameMove {
         return this.stone;
     }
 
+    public static int[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
+    }
+    
     @Override
     public boolean isInitialized() {
         if (this.stone == null) {
@@ -66,9 +71,4 @@ public class TurnMove extends GameMove {
     public GameMove symbol(Symbol symbol) throws IllegalMoveArgumentException {
         throw new IllegalMoveArgumentException(Symbol.class);
     }
-    
-    public static boolean[] getAllowedGamePlayerMoveStates() {
-        return allowedGamePlayerMoveStates;
-    }
-    
 }

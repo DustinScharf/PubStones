@@ -8,9 +8,14 @@ public class GamePlayer {
     private long id = 0;
     private int score;
     
+    private boolean firstPlayer = false;
+    
     private boolean current = false;
     private boolean challenged = false;
-    private boolean boastRequestTarget = false;
+    
+    private boolean challengedBoast = false;
+    private boolean dismissedBoastOn = false;
+    
     
     /**
      * Creates a new player with the given name
@@ -82,24 +87,46 @@ public class GamePlayer {
         return this.current;
     }
     
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof GamePlayer)) {
-            return false;
-        }
-        return this.id == ((GamePlayer) obj).getID();
+    public boolean isFirstPlayer() {
+        return this.firstPlayer;
+    }
+    
+    public void setFirstPlayer(boolean firstPlayer) {
+        this.firstPlayer = firstPlayer;
     }
     
     public boolean isChallenged() {
         return this.challenged;
     }
     
-    public boolean isBoastRequestTarget() {
-        return this.boastRequestTarget;
+    public void setChallenged(boolean challenged) {
+        this.challenged = challenged;
+    }
+    
+    public boolean isChallengedBoast() {
+        return this.challengedBoast;
+    }
+    
+    public void setChallengedBoast(boolean challengedBoast) {
+        this.challengedBoast = challengedBoast;
+    }
+    
+    public boolean isDismissedBoastOn() {
+        return this.dismissedBoastOn;
+    }
+    
+    public void setDismissedBoastOn(boolean dismissedBoastOn) {
+        this.dismissedBoastOn = dismissedBoastOn;
     }
     
     private boolean[] getMoveStates() {
-        return new boolean[] {this.current, this.challenged, this.boastRequestTarget};
+        return new boolean[] {
+                this.firstPlayer, 
+                this.current, 
+                this.challenged, 
+                this.challengedBoast,
+                this.dismissedBoastOn
+            };
     }
     
     public MoveKind[] getPossibleMoves() {
@@ -114,9 +141,17 @@ public class GamePlayer {
         moveOutput = moves.toArray(moveOutput);
         return moveOutput;
     }
-    
+        
     public static boolean[] getDefaultAllowedGamePlayerMoveStates() {
-        return new boolean[] {false, false, false};
+        return new boolean[] { false, false, false };
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof GamePlayer)) {
+            return false;
+        }
+        return this.id == ((GamePlayer) obj).getID();
     }
     
 }

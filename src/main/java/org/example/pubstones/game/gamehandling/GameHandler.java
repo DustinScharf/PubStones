@@ -2,16 +2,18 @@ package org.example.pubstones.game.gamehandling;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.boardpieces.exceptions.*;
+import org.example.pubstones.game.gamehandling.exceptions.MissingMoveArgumentException;
 import org.example.pubstones.game.gamehandling.gamemoves.*;
 import org.example.pubstones.util.datatype.Queue;
 
 public class GameHandler {
-    private final int WINNING_SCORE = 3;
+    public static final int WINNING_SCORE = 3;
     
     private ArrayList<GamePlayer> players;
     private MoveHistory moveHistory;
@@ -21,17 +23,30 @@ public class GameHandler {
     private GameField gameField;
     
     public GameHandler() {
+        this.init();
+    }
+
+    private void init() {
         this.gameField = new GameField();
         this.players = new ArrayList<GamePlayer>();
         this.playerQueue = new Queue<GamePlayer>();
         this.moveHistory = new MoveHistory();
+        try {
+            this.gameField.tryPlaceStone(this.gameField.getStonePile().getStones().get(0), 0);
+        } catch (StoneLineFullException | StoneNotFoundException | StoneAlreadyContainedException e) {
+            e.printStackTrace();
+        }
     }
-
+    
     public ArrayList<GamePlayer> getPlayers() {
         return players;
     }
 
     public void addPlayer(GamePlayer gamePlayer) {
+        if (this.players.isEmpty()) {
+            gamePlayer.setFirstPlayer(true);
+            gamePlayer.setCurrent(true);
+        }
         this.players.add(gamePlayer);
         this.playerQueue.enqueue(gamePlayer);
     }
@@ -68,13 +83,18 @@ public class GameHandler {
         return lead;
     }
     
-    public void receiveGameMove(GameMove gameMove) throws IllegalArgumentException, StoneLineFullException, StoneNotFoundException, StonesEqualException, StoneAlreadyContainedException {
+    public void receiveGameMove(GameMove gameMove) throws IllegalArgumentException, StoneLineFullException, StoneNotFoundException, StonesEqualException, StoneAlreadyContainedException, MissingMoveArgumentException {
         if (gameMove == null) {
             throw new IllegalArgumentException("GameMove gameMove can not be null");
         }
+        if (!gameMove.isInitialized()) {
+            throw new MissingMoveArgumentException(gameMove.getArgumentClasses());
+        }
         gameMove.applyMove(this);
+        gameMove.getSenderPlayer().setCurrent(false);
         moveHistory.add(gameMove);
         this.playerQueue.enqueue(this.playerQueue.dequeue());
+        this.playerQueue.first().setCurrent(true);
     }
     
     public GamePlayer getNextPlayer() {
@@ -89,31 +109,17 @@ public class GameHandler {
         return GameMove.getMove(moveKind);
     }
     
-    public void tryChallenge(Symbol symbol, Stone stone, GamePlayer targetPlayer, GamePlayer challengerPlayer) {  
-        if (stone.getSymbol().equals(symbol)) {
-            targetPlayer.increaseScore();
-        } else {
-            challengerPlayer.increaseScore();
-        }
+    public boolean checkChallenge(Symbol symbol, Stone stone) {  
+        return stone.getSymbol().equals(symbol);
     }
     
-    public void tryBoast(ArrayList<Symbol> symbols, GamePlayer gamePlayer) {
-        boolean correct = true;
+    public boolean checkBoast(ArrayList<Symbol> symbols) {
         for (int i = 0; i < symbols.size(); i++) {
             if (!this.gameField.getStoneLine().getStone(i).getSymbol().equals(symbols.get(i))) {
-                correct = false;
+                return false;
             }
         }
-        if (correct) {
-            for (int p = 0; p < WINNING_SCORE; p++) {
-                gamePlayer.increaseScore();
-            }
-        } else {
-            // TODO insert team
-            for (int p = 0; p < WINNING_SCORE; p++) {
-                this.getNextPlayer().increaseScore();
-            }
-        }
+        return true;
     }
     
     @Deprecated
