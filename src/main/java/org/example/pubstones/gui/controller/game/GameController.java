@@ -77,6 +77,7 @@ public class GameController extends BaseController {
         //
         // Creates the buttons for the symbols
         //
+        this.symbolsHBox.getChildren().clear();
         int symbolsSize = Symbol.values().length;
         for (int i = 0; i < symbolsSize; ++i) {
             Symbol currentSymbol = Symbol.values()[i];
