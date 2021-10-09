@@ -24,12 +24,14 @@ public class StartMenuController extends BaseController implements Initializable
         this.mediaPlayer = new MediaPlayer(media);
 
         // TODO restart after scene reload
-        this.mediaPlayer.setVolume(0);
-        this.mediaPlayer.play();
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(3),
-                        new KeyValue(this.mediaPlayer.volumeProperty(), 1)));
-        timeline.play();
+//        this.mediaPlayer.setVolume(0);
+//        this.mediaPlayer.play();
+//        Timeline timeline = new Timeline(
+//                new KeyFrame(Duration.seconds(3),
+//                        new KeyValue(this.mediaPlayer.volumeProperty(), 1)));
+//        timeline.play();
+        this.musicManager.setMusic("/music/menu/1.mp3");
+        this.musicManager.playMusic(3);
     }
 
     @FXML
