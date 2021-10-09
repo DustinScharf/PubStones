@@ -91,12 +91,15 @@ public class Stone {
     public static Stone getNew(int indexSymbol){
         return new Stone(Symbol.values()[indexSymbol]);
     }
-    
+
     @Override
     public String toString() {
-        return "{" + this.symbol.toString() + "}"; 
+        return "Stone{" +
+                "symbol=" + symbol +
+                ", turned=" + turned +
+                '}';
     }
-    
+
     private class StoneOffBoardException extends Exception {
         public StoneOffBoardException(Stone stone) {
             super("Stone off the board: " + stone.toString());
