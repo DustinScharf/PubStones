@@ -206,24 +206,6 @@ public class GameController extends BaseController implements Initializable {
     }
 
     @FXML
-    public void placeLeftButtonClicked(ActionEvent actionEvent) {
-        try {
-            this.currentlyBuildingGameMove.index(0);
-        } catch (IllegalMoveArgumentException e) {
-            e.printStackTrace(); // TODO
-        }
-    }
-
-    @FXML
-    public void placeRightButtonClicked(ActionEvent actionEvent) {
-        try {
-            this.currentlyBuildingGameMove.index(this.gameHandler.getCurrentState().getStoneLine().getStones().size());
-        } catch (IllegalMoveArgumentException e) {
-            e.printStackTrace(); // TODO
-        }
-    }
-
-    @FXML
     public void fireButtonClicked(ActionEvent actionEvent) {
         try {
             this.gameHandler.receiveGameMove(this.currentlyBuildingGameMove);
