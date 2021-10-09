@@ -126,24 +126,29 @@ public class GameController extends BaseController implements Initializable {
                         }
                     } while (clickedButton == null);
 
-                    boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
-                    try {
-                        if (clickedLeft) {
-                            currentlyBuildingGameMove.index(finalI);
-                        } else {
-                            currentlyBuildingGameMove.index(finalI + 1);
+                    if (currentlyBuildingGameMove.isMoveKind(MoveKind.Place)) {
+                        boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
+                        try {
+                            if (clickedLeft) {
+                                currentlyBuildingGameMove.index(finalI);
+                            } else {
+                                currentlyBuildingGameMove.index(finalI + 1);
+                            }
+                        } catch (IllegalMoveArgumentException e) {
+                            e.printStackTrace(); // TODO
                         }
-                    } catch (IllegalMoveArgumentException e) {
-                        System.out.println("!!! ERROR REPLACER !!!");
-//                        e.printStackTrace(); // TODO
                     }
 
-                    try {
-                        currentlyBuildingGameMove.stone(currentStone);
-                    } catch (IllegalMoveArgumentException e) {
-                        System.out.println("!!! ERROR REPLACER !!!");
-//                        e.printStackTrace(); // TODO
+                    if (currentlyBuildingGameMove.isMoveKind(MoveKind.Swap) ||
+                            currentlyBuildingGameMove.isMoveKind(MoveKind.Turn)) {
+                        try {
+                            currentlyBuildingGameMove.stone(currentStone);
+                        } catch (IllegalMoveArgumentException e) {
+                            e.printStackTrace(); // TODO
+                        }
                     }
+
+
                 }
             });
 
