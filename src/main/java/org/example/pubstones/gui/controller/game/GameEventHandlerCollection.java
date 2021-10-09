@@ -7,14 +7,14 @@ import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentExc
 
 public class GameEventHandlerCollection {
     public void symbolClicked(GameController gameController, Symbol symbol) {
-        GameMove currentlyBuildingGameMove = gameController.getCurrentlyBuildingGameMove();
-        if (currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge) ||
-                currentlyBuildingGameMove.isMoveKind(MoveKind.Boast)) {
-            try {
-                currentlyBuildingGameMove.symbol(symbol);
-            } catch (IllegalMoveArgumentException e) {
-                e.printStackTrace(); // TODO
-            }
-        }
+//        GameMove currentlyBuildingGameMove = gameController.getCurrentlyBuildingGameMove();
+//        if (currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge) ||
+//                currentlyBuildingGameMove.isMoveKind(MoveKind.Boast)) {
+//            try {
+//                currentlyBuildingGameMove.symbol(symbol);
+//            } catch (IllegalMoveArgumentException e) {
+//                e.printStackTrace(); // TODO
+//            }
+//        }
     }
 }

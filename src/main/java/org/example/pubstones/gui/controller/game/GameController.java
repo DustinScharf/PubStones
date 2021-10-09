@@ -71,21 +71,22 @@ public class GameController extends BaseController {
     @Override
     public void init() {
         KeyCombination controlMKeyCombination = new KeyCodeCombination(KeyCode.M, KeyCodeCombination.CONTROL_DOWN);
-        super.sceneManager.getStage().getScene().addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
-            if(controlMKeyCombination.match(event)){
-                if (super.musicManager.isMuted()) {
-                    super.musicManager.unMuteMusic(3);
-                } else {
-                    super.musicManager.muteMusic(1);
-                }
-            }
-            event.consume();
-        });
+        super.getManager().getSceneManager().getStage().getScene().addEventFilter(
+                KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+                    if (controlMKeyCombination.match(event)) {
+                        if (super.getManager().getMusicManager().isMuted()) {
+                            super.getManager().getMusicManager().unMuteMusic(3);
+                        } else {
+                            super.getManager().getMusicManager().muteMusic(1);
+                        }
+                    }
+                    event.consume();
+                });
 
         this.initNewGame();
 
-        super.musicManager.setMusic("/music/game/1.mp3");
-        super.musicManager.playMusic(3);
+        super.getManager().getMusicManager().setMusic("/music/game/1.mp3");
+        super.getManager().getMusicManager().playMusic(3);
     }
 
     private void initNewGame() {
@@ -112,7 +113,7 @@ public class GameController extends BaseController {
 
         this.updateGuiToCurrentGameState();
     }
-    
+
     private void updateGuiToCurrentGameState() {
         //
         // Update the stone line display
@@ -148,15 +149,15 @@ public class GameController extends BaseController {
                     }
                 }
 
-                if (currentlyBuildingGameMove.isMoveKind(MoveKind.Swap) ||
-                        currentlyBuildingGameMove.isMoveKind(MoveKind.Turn) ||
-                        currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge)) {
-                    try {
-                        currentlyBuildingGameMove.stone(currentStone);
-                    } catch (IllegalMoveArgumentException e) {
-                        e.printStackTrace(); // TODO
-                    }
-                }
+//                if (currentlyBuildingGameMove.isMoveKind(MoveKind.Swap) ||
+//                        currentlyBuildingGameMove.isMoveKind(MoveKind.Turn) ||
+//                        currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge)) {
+//                    try {
+//                        currentlyBuildingGameMove.stone(currentStone);
+//                    } catch (IllegalMoveArgumentException e) {
+//                        e.printStackTrace(); // TODO
+//                    }
+//                }
 
 
             });
@@ -244,8 +245,8 @@ public class GameController extends BaseController {
     @FXML
     public void backButtonClicked(ActionEvent actionEvent) {
         try {
-            super.musicManager.stopMusic(1);
-            super.sceneManager.switchToPreviousScene();
+            super.getManager().getMusicManager().stopMusic(0);
+            super.getManager().getSceneManager().switchToPreviousScene();
         } catch (OutOfTimelineException e) {
             e.printStackTrace(); // TODO
         }

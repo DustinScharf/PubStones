@@ -22,30 +22,30 @@ public class StartMenuController extends BaseController {
     @Override
     public void init() {
         KeyCombination controlMKeyCombination = new KeyCodeCombination(KeyCode.M, KeyCodeCombination.CONTROL_DOWN);
-        super.sceneManager.getStage().getScene().addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+        super.getManager().getSceneManager().getStage().getScene().addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
             if(controlMKeyCombination.match(event)){
-                if (super.musicManager.isMuted()) {
-                    super.musicManager.unMuteMusic(3);
+                if (super.getManager().getMusicManager().isMuted()) {
+                    super.getManager().getMusicManager().unMuteMusic(3);
                 } else {
-                    super.musicManager.muteMusic(1);
+                    super.getManager().getMusicManager().muteMusic(1);
                 }
             }
             event.consume();
         });
 
-        super.musicManager.setMusic("/music/menu/1.mp3");
-        super.musicManager.playMusic(3);
+        super.getManager().getMusicManager().setMusic("/music/menu/1.mp3");
+        super.getManager().getMusicManager().playMusic(3);
     }
 
     @FXML
     public void playButtonClicked(ActionEvent actionEvent) {
-        super.musicManager.stopMusic(1);
-        super.sceneManager.switchScene("/gui/fxml/game/Game.fxml");
+        super.getManager().getMusicManager().stopMusic(1);
+        super.getManager().getSceneManager().switchScene("/gui/fxml/game/Game.fxml");
     }
 
     @FXML
     public void exitButtonClicked(ActionEvent actionEvent) {
-        super.musicManager.stopMusic(0);
-        super.sceneManager.getStage().close();
+        super.getManager().getMusicManager().stopMusic(0);
+        super.getManager().getSceneManager().getStage().close();
     }
 }

@@ -1,19 +1,21 @@
 package org.example.pubstones.gui.controller;
 
+import org.example.pubstones.gui.manager.Manager;
 import org.example.pubstones.gui.manager.MusicManager;
 import org.example.pubstones.gui.manager.SceneManager;
 
 public abstract class BaseController {
-    protected SceneManager sceneManager;
-
-    protected MusicManager musicManager;
+    protected Manager manager;
 
     public BaseController() {
-        this.musicManager = new MusicManager();
     }
 
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
 
     public void init() {

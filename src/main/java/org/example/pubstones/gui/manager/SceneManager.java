@@ -14,16 +14,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SceneManager {
+    private Manager manager;
+
     private final Stage stage;
 
     private final Map<String, ControlledScene> scenes;
 
     private final HistoryList<ControlledScene> sceneHistoryList;
 
-    public SceneManager(Stage stage) {
-        if (stage == null) {
-            throw new IllegalArgumentException("Stage stage can not be null");
+    public SceneManager(Manager manager, Stage stage) {
+        if (manager == null || stage == null) {
+            throw new IllegalArgumentException("Manager manager or Stage stage can not be null");
         }
+
+        this.manager = manager;
 
         this.stage = stage;
         this.scenes = new HashMap<>();
@@ -40,7 +44,7 @@ public class SceneManager {
             try {
                 Pane pane = loader.load();
                 BaseController controller = loader.getController();
-                controller.setSceneManager(this);
+                controller.setManager(this.manager);
                 return new ControlledScene(pane, controller);
             } catch (IOException ioException) {
                 throw new RuntimeException(ioException);

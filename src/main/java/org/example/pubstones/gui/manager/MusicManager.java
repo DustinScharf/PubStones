@@ -53,10 +53,6 @@ public class MusicManager {
     }
 
     public void playMusic(int fadeInSeconds) {
-        if (this.isPlaying) {
-            return;
-        }
-
         if (fadeInSeconds > 0 && !this.isMuted) {
             this.mediaPlayer.setVolume(0);
             this.mediaPlayer.play();
@@ -69,11 +65,8 @@ public class MusicManager {
     }
 
     public void stopMusic(int fadeOutSeconds) {
-        if (!this.isPlaying) {
-            return;
-        }
-
-        DelayRunner.startSleeper(fadeOutSeconds).setOnSucceeded(event -> this.mediaPlayer.stop());
+        // TODO actually stop the music
+//        DelayRunner.startSleeper(fadeOutSeconds).setOnSucceeded(event -> this.mediaPlayer.stop());
 
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(fadeOutSeconds),
