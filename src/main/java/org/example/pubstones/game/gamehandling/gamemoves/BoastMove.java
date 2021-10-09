@@ -16,10 +16,10 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class BoastMove extends GameMove {
-    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
-    
+    private static int[] allowedGamePlayerMoveStates = new int[] { 0, 1, -1, 1, 1 };
+
     private ArrayList<Symbol> symbols;
-    private GamePlayer gamePlayer;
+    private GamePlayer challengerPlayer;
 
     public BoastMove() {
         super(MoveKind.Boast);
@@ -29,26 +29,37 @@ public class BoastMove extends GameMove {
      * Creates a new boast move
      * @param moveKind
      */
-    public BoastMove(ArrayList<Symbol> symbols, GamePlayer gamePlayer) {
+    public BoastMove(ArrayList<Symbol> symbols, GamePlayer challengerPlayer) {
         super(MoveKind.Boast);
         this.symbols = symbols;
-        this.gamePlayer = gamePlayer;
+        this.challengerPlayer = challengerPlayer;
     }
 
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
-        gameHandler.tryBoast(this.symbols, this.gamePlayer);
+        this.disableFirstPlayer();
+        boolean result = gameHandler.checkBoast(this.symbols);
+        if (result) {
+            for (int i = 0; i < GameHandler.WINNING_SCORE; i++){
+                this.senderPlayer.increaseScore();
+            }
+        } else {
+            for (int i = 0; i < GameHandler.WINNING_SCORE; i++) {
+                this.challengerPlayer.increaseScore();
+            }
+        }
+        this.senderPlayer.setChallengedBoast(false);
     }
     
-    public ArrayList<Symbol> getSymbol() {
+    public ArrayList<Symbol> getSymbols() {
         return this.symbols;
     }
     
-    public GamePlayer getPlayer() {
-        return this.gamePlayer;
+    public GamePlayer getChallengerPlayer() {
+        return this.challengerPlayer;
     }
     
-    public static boolean[] getAllowedGamePlayerMoveStates() {
+    public static int[] getAllowedGamePlayerMoveStates() {
         return allowedGamePlayerMoveStates;
     }
 
@@ -60,7 +71,7 @@ public class BoastMove extends GameMove {
         if (this.symbols.size() == 0) {
             return false;
         }
-        if (this.gamePlayer == null) {
+        if (this.challengerPlayer == null) {
             return false;
         }
         return true;
@@ -78,7 +89,7 @@ public class BoastMove extends GameMove {
 
     @Override
     public GameMove player(GamePlayer gamePlayer) throws IllegalMoveArgumentException {
-        this.gamePlayer = gamePlayer;
+        this.challengerPlayer = gamePlayer;
         return this;
     }
     

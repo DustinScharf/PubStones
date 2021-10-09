@@ -11,15 +11,19 @@ public enum MoveKind {
     Place("Place", PlaceMove.class, PlaceMove.getAllowedGamePlayerMoveStates()),
     Swap("Swap", SwapMove.class, SwapMove.getAllowedGamePlayerMoveStates()), 
     Turn("Turn", TurnMove.class, TurnMove.getAllowedGamePlayerMoveStates()),
-    Challenge("Challenge", ChallengeMove.class, ChallengeMove.getAllowedGamePlayerMoveStates()),
-    Boast("Boast", BoastMove.class, BoastMove.getAllowedGamePlayerMoveStates());
+    PerformChallenge("PerformChallenge", PerformChallengeMove.class, PerformChallengeMove.getAllowedGamePlayerMoveStates()),
+    AskChallenge("Challenge", AskChallengeMove.class, AskChallengeMove.getAllowedGamePlayerMoveStates()),
+    Boast("Boast", BoastMove.class, BoastMove.getAllowedGamePlayerMoveStates()),
+    ChallengeBoast("ChallengeBoast", ChallengeBoastMove.class, ChallengeBoastMove.getAllowedGamePlayerMoveStates()),
+    ConsentBoast("ConsentBoast", ConsentBoastMove.class, ConsentBoastMove.getAllowedGamePlayerMoveStates()),
+    DismissBoast("DismissBoast", DismissBoastMove.class, DismissBoastMove.getAllowedGamePlayerMoveStates());
     
     private String name;
     private Class<?> moveClass;
     private Class<?>[] args;
-    private boolean[] allowedGamePlayerMoveStates;
+    private int[] allowedGamePlayerMoveStates;
     
-    private MoveKind(String name, Class<?> moveClass, boolean[] allowedGamePlayerMoveStates) {
+    private MoveKind(String name, Class<?> moveClass, int[] allowedGamePlayerMoveStates) {
         this.name = name;
         this.moveClass = moveClass;
         this.args = moveClass.getConstructors()[0].getParameterTypes();
@@ -66,8 +70,10 @@ public enum MoveKind {
             throw new IllegalArgumentException();
         }
         for (int i = 0; i < gamePlayerMoveStates.length; i++) {
-            if (gamePlayerMoveStates[i] != allowedGamePlayerMoveStates[i]) {
-                return false;
+            if (allowedGamePlayerMoveStates[i] != 0) {
+                if ((allowedGamePlayerMoveStates[i] == -1 && gamePlayerMoveStates[i]) || (allowedGamePlayerMoveStates[i] == 1 && !gamePlayerMoveStates[i])) {
+                    return false;
+                }
             }
         }
         return true;
