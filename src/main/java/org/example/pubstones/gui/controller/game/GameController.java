@@ -77,9 +77,20 @@ public class GameController extends BaseController implements Initializable {
         //
         int symbolsSize = Symbol.values().length;
         for (int i = 0; i < symbolsSize; ++i) {
+            Symbol currentSymbol = Symbol.values()[i];
             Button symbolButton = new Button(
-                    "" + Symbol.values()[i]
+                    "" + currentSymbol
             );
+            symbolButton.setOnAction(clickEvent -> {
+                if (this.currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge) ||
+                        this.currentlyBuildingGameMove.isMoveKind(MoveKind.Boast)) {
+                    try {
+                        this.currentlyBuildingGameMove.symbol(currentSymbol);
+                    } catch (IllegalMoveArgumentException e) {
+                        e.printStackTrace(); // TODO
+                    }
+                }
+            });
             this.symbolsHBox.getChildren().add(symbolButton);
         }
 
@@ -140,7 +151,8 @@ public class GameController extends BaseController implements Initializable {
                     }
 
                     if (currentlyBuildingGameMove.isMoveKind(MoveKind.Swap) ||
-                            currentlyBuildingGameMove.isMoveKind(MoveKind.Turn)) {
+                            currentlyBuildingGameMove.isMoveKind(MoveKind.Turn) ||
+                            currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge)) {
                         try {
                             currentlyBuildingGameMove.stone(currentStone);
                         } catch (IllegalMoveArgumentException e) {
