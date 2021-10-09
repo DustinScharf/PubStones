@@ -14,14 +14,18 @@ import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentExc
 
 public class ChallengeMove extends GameMove {
     private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
-    
+
     private Symbol symbol;
     private Stone stone;
     private GamePlayer targetPlayer;
     private GamePlayer challengerPlayer;
-    
+
     private boolean firstPlayer = true;
-    
+
+    public ChallengeMove() {
+        super(MoveKind.Challenge);
+    }
+
     public ChallengeMove(Symbol symbol, Stone stone, GamePlayer targetPlayer, GamePlayer challengerPlayer) {
         super(MoveKind.Challenge);
         this.symbol = symbol;
@@ -34,7 +38,7 @@ public class ChallengeMove extends GameMove {
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
         gameHandler.tryChallenge(this.symbol, this.stone, this.targetPlayer, this.challengerPlayer);
     }
-    
+
     /**
      * This move's symbol
      * @return
@@ -42,7 +46,7 @@ public class ChallengeMove extends GameMove {
     public Symbol getSymbol() {
         return this.symbol;
     }
-    
+
     /**
      * This move's stone
      * @return
@@ -50,7 +54,7 @@ public class ChallengeMove extends GameMove {
     public Stone getStone() {
         return this.stone;
     }
-    
+
     /**
      * This move's target game player
      * @return
@@ -58,7 +62,7 @@ public class ChallengeMove extends GameMove {
     public GamePlayer getTargetPlayer() {
         return this.targetPlayer;
     }
-    
+
     /**
      * This move's challenger game player
      * @return
@@ -66,7 +70,7 @@ public class ChallengeMove extends GameMove {
     public GamePlayer getChallengerPlayer() {
         return this.challengerPlayer;
     }
-    
+
     public static boolean[] getAllowedGamePlayerMoveStates() {
         return allowedGamePlayerMoveStates;
     }
@@ -109,11 +113,11 @@ public class ChallengeMove extends GameMove {
         this.firstPlayer = !this.firstPlayer;
         return this;
     }
-    
+
     @Override
     public GameMove symbol(Symbol symbol) throws IllegalMoveArgumentException {
         this.symbol = symbol;
         return this;
     }
-    
+
 }

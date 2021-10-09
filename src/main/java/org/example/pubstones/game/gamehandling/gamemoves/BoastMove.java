@@ -20,6 +20,10 @@ public class BoastMove extends GameMove {
     
     private ArrayList<Symbol> symbols;
     private GamePlayer gamePlayer;
+
+    public BoastMove() {
+        super(MoveKind.Boast);
+    }
     
     /**
      * Creates a new boast move
