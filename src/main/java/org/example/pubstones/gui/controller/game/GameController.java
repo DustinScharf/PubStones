@@ -221,6 +221,8 @@ public class GameController extends BaseController implements Initializable {
     public void fireButtonClicked(ActionEvent actionEvent) {
         try {
             this.gameHandler.receiveGameMove(this.currentlyBuildingGameMove);
+
+            this.currentlyBuildingGameMove = null;
         } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException |
                 StoneAlreadyContainedException e) {
             e.printStackTrace(); // TODO
