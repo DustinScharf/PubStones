@@ -68,23 +68,13 @@ public class GameController extends BaseController implements Initializable {
 
     private GameMove currentlyBuildingGameMove;
 
-    private MediaPlayer mediaPlayer;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.initNewGame();
 
-        String path = getClass().getResource("/music/game/2.mp3").toString();
-        Media media = new Media(path);
-        this.mediaPlayer = new MediaPlayer(media);
-
         // TODO restart after scene reload
-        this.mediaPlayer.setVolume(0);
-        this.mediaPlayer.play();
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(3),
-                        new KeyValue(this.mediaPlayer.volumeProperty(), 1)));
-        timeline.play();
+        super.musicManager.setMusic("/music/menu/2.mp3");
+        super.musicManager.playMusic(3);
     }
 
     private void initNewGame() {
@@ -266,7 +256,7 @@ public class GameController extends BaseController implements Initializable {
     @FXML
     public void backButtonClicked(ActionEvent actionEvent) {
         try {
-            this.mediaPlayer.stop();
+            super.musicManager.stopMusic(1);
             super.sceneManager.switchToPreviousScene();
         } catch (OutOfTimelineException e) {
             e.printStackTrace(); // TODO
