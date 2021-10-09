@@ -15,9 +15,7 @@
                   <Label text="stoneLineHBox" />
                   <HBox>
                      <children>
-                        <Button fx:id="placeLeftButton" mnemonicParsing="false" onAction="#placeLeftButtonClicked" text="Place Left" />
                         <HBox fx:id="stoneLineHBox" prefHeight="100.0" prefWidth="200.0" />
-                        <Button fx:id="placeRightButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#placeRightButtonClicked" text="Place Right" />
                      </children>
                   </HBox>
                   <Label layoutX="10.0" layoutY="10.0" text="symbolsHBox" />
