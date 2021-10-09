@@ -44,7 +44,7 @@ public class MusicManager {
         timeline.play();
     }
 
-    public void stopMusic(int fadeInSeconds) {
+    public void stopMusic(int fadeOutSeconds) {
         // TODO extract basic sleeper structure to other class
         Task<Void> sleeper = new Task<>() {
             @Override
@@ -60,7 +60,7 @@ public class MusicManager {
         new Thread(sleeper).start();
 
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(fadeInSeconds),
+                new KeyFrame(Duration.seconds(fadeOutSeconds),
                         new KeyValue(this.mediaPlayer.volumeProperty(), 0)));
         timeline.play();
     }
