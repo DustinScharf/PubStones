@@ -109,12 +109,11 @@ public abstract class GameMove {
     public abstract GameMove stone(Stone stone) throws IllegalMoveArgumentException;
 
     /**
-     * Sets a new index for this game move (exact function may vary in different move kinds)
-     * @param index
+     * Sets whether a button was clicked on it's left side
+     * @param left
      * @return
-     * @throws IllegalMoveArgumentException
      */
-    public abstract GameMove index(int index) throws IllegalMoveArgumentException;
+    public abstract GameMove left(boolean left);
 
     /**
      * Sets a new game player for this game move (exact function may vary in different move kinds)

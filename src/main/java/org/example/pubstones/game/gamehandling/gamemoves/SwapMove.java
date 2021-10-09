@@ -85,8 +85,8 @@ public class SwapMove extends GameMove {
     }
 
     @Override
-    public GameMove index(int index) throws IllegalMoveArgumentException {
-        throw new IllegalMoveArgumentException(Integer.class);
+    public GameMove left(boolean left) {
+        return this;
     }
 
     @Override
