@@ -1,8 +1,5 @@
 package org.example.pubstones.gui.controller.game;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,12 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.StonePile;
 import org.example.pubstones.game.boardpieces.Symbol;
@@ -73,7 +66,7 @@ public class GameController extends BaseController implements Initializable {
         this.initNewGame();
 
         // TODO restart after scene reload
-        super.musicManager.setMusic("/music/game/2.mp3");
+        super.musicManager.setMusic("/music/game/1.mp3");
         super.musicManager.playMusic(3);
     }
 
