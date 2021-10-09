@@ -73,7 +73,7 @@ public class GameController extends BaseController implements Initializable {
         this.initNewGame();
 
         // TODO restart after scene reload
-        super.musicManager.setMusic("/music/menu/2.mp3");
+        super.musicManager.setMusic("/music/game/2.mp3");
         super.musicManager.playMusic(3);
     }
 
