@@ -107,8 +107,9 @@ public class GameController extends BaseController implements Initializable {
         this.stoneLineHBox.getChildren().clear();
         int stoneLineSize = this.gameHandler.getCurrentState().getStoneLine().getStones().size();
         for (int i = 0; i < stoneLineSize; ++i) {
+            Stone currentStone = this.gameHandler.getCurrentState().getStoneLine().getStones().get(i);
             Button stoneLineButton = new Button(
-                    "" + this.gameHandler.getCurrentState().getStoneLine().getStones().get(i)
+                    "" + currentStone
             );
 
             int finalI = i;
@@ -133,10 +134,16 @@ public class GameController extends BaseController implements Initializable {
                             currentlyBuildingGameMove.index(finalI + 1);
                         }
                     } catch (IllegalMoveArgumentException e) {
-                        e.printStackTrace(); // TODO
+                        System.out.println("!!! ERROR REPLACER !!!");
+//                        e.printStackTrace(); // TODO
                     }
 
-//                    this.currentlyBuildingGameMove.stone() // TODO how to add 2 stones?
+                    try {
+                        currentlyBuildingGameMove.stone(currentStone);
+                    } catch (IllegalMoveArgumentException e) {
+                        System.out.println("!!! ERROR REPLACER !!!");
+//                        e.printStackTrace(); // TODO
+                    }
                 }
             });
 
