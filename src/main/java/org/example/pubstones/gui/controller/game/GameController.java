@@ -22,6 +22,7 @@ import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
+import org.example.pubstones.game.gamehandling.exceptions.MissingMoveArgumentException;
 import org.example.pubstones.gui.controller.BaseController;
 import org.example.pubstones.util.exception.OutOfTimelineException;
 
@@ -85,7 +86,7 @@ public class GameController extends BaseController implements Initializable {
                     "" + currentSymbol
             );
             symbolButton.setOnAction(clickEvent -> {
-                if (this.currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge) ||
+                if (this.currentlyBuildingGameMove.isMoveKind(MoveKind.PerformChallenge) ||
                         this.currentlyBuildingGameMove.isMoveKind(MoveKind.Boast)) {
                     try {
                         this.currentlyBuildingGameMove.symbol(currentSymbol);
@@ -106,14 +107,14 @@ public class GameController extends BaseController implements Initializable {
 
             GameMove gameMove = GameMove.getMove(MoveKind.Place).index(0).stone(stoneToPlace);
             this.gameHandler.receiveGameMove(gameMove);
-        } catch (IllegalMoveArgumentException | StonesEqualException | StoneLineFullException |
-                StoneNotFoundException | StoneAlreadyContainedException e) {
+        } catch (IllegalMoveArgumentException | StonesEqualException | StoneLineFullException | StoneNotFoundException
+                | StoneAlreadyContainedException | IllegalArgumentException | MissingMoveArgumentException e) {
             e.printStackTrace();
         }
 
         this.updateGuiToCurrentGameState();
     }
-
+    
     private void updateGuiToCurrentGameState() {
         //
         // Update the stone line display
@@ -155,7 +156,7 @@ public class GameController extends BaseController implements Initializable {
 
                     if (currentlyBuildingGameMove.isMoveKind(MoveKind.Swap) ||
                             currentlyBuildingGameMove.isMoveKind(MoveKind.Turn) ||
-                            currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge)) {
+                            currentlyBuildingGameMove.isMoveKind(MoveKind.PerformChallenge)) {
                         try {
                             currentlyBuildingGameMove.stone(currentStone);
                         } catch (IllegalMoveArgumentException e) {
@@ -239,7 +240,7 @@ public class GameController extends BaseController implements Initializable {
 
             this.currentlyBuildingGameMove = null;
         } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException |
-                StoneAlreadyContainedException e) {
+                StoneAlreadyContainedException | IllegalArgumentException | MissingMoveArgumentException e) {
             e.printStackTrace(); // TODO
         }
 

@@ -1,11 +1,8 @@
 package org.example.pubstones.game.gamehandling.gamemoves;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.example.pubstones.game.boardpieces.GameField;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
+import org.example.pubstones.game.boardpieces.exceptions.StoneAlreadyContainedException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
@@ -15,62 +12,29 @@ import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
-public class BoastMove extends GameMove {
-    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { true, true, false, true, true };
+public class DismissBoastMove extends GameMove {
 
-    private ArrayList<Symbol> symbols;
     private GamePlayer challengerPlayer;
-
-    public BoastMove() {
-        super(MoveKind.Boast);
-    }
     
-    /**
-     * Creates a new boast move
-     * @param moveKind
-     */
-    public BoastMove(ArrayList<Symbol> symbols, GamePlayer challengerPlayer) {
-        super(MoveKind.Boast);
-        this.symbols = symbols;
+    protected DismissBoastMove(GamePlayer challengerPlayer) {
+        super(MoveKind.DismissBoast);
         this.challengerPlayer = challengerPlayer;
     }
 
     @Override
-    public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
+    public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException,
+            StonesEqualException, StoneAlreadyContainedException {
+        this.challengerPlayer.setDismissedBoastOn(true);
+        this.senderPlayer.setChallenged(false);
         this.disableFirstPlayer();
-        boolean result = gameHandler.checkBoast(this.symbols);
-        if (result) {
-            for (int i = 0; i < GameHandler.WINNING_SCORE; i++){
-                this.senderPlayer.increaseScore();
-            }
-        } else {
-            for (int i = 0; i < GameHandler.WINNING_SCORE; i++) {
-                this.challengerPlayer.increaseScore();
-            }
-        }
-        this.senderPlayer.setChallengedBoast(false);
     }
-    
-    public ArrayList<Symbol> getSymbols() {
-        return this.symbols;
-    }
-    
+
     public GamePlayer getChallengerPlayer() {
         return this.challengerPlayer;
     }
     
-    public static boolean[] getAllowedGamePlayerMoveStates() {
-        return allowedGamePlayerMoveStates;
-    }
-
     @Override
     public boolean isInitialized() {
-        if (this.symbols == null) {
-            return false;
-        }
-        if (this.symbols.size() == 0) {
-            return false;
-        }
         if (this.challengerPlayer == null) {
             return false;
         }
@@ -92,11 +56,10 @@ public class BoastMove extends GameMove {
         this.challengerPlayer = gamePlayer;
         return this;
     }
-    
+
     @Override
     public GameMove symbol(Symbol symbol) throws IllegalMoveArgumentException {
-        this.symbols.add(symbol);
-        return this;
+        throw new IllegalMoveArgumentException(Symbol.class);
     }
     
 }

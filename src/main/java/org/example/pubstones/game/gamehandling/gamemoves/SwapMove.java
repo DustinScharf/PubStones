@@ -13,7 +13,7 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class SwapMove extends GameMove {
-    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
+    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, true, false, false, false };
 
     private Stone stone1;
     private Stone stone2;
@@ -39,6 +39,7 @@ public class SwapMove extends GameMove {
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
         gameHandler.getCurrentState().trySwapStones(this.stone1, this.stone2);
+        this.disableFirstPlayer();
     }
     
     /**

@@ -13,6 +13,7 @@ public abstract class GameMove {
     private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
     
     private MoveKind moveKind;
+    protected GamePlayer senderPlayer;
     
     /**
      * Creates a new game move with the given move kind 
@@ -53,8 +54,15 @@ public abstract class GameMove {
      * @param c
      * @return
      */
-    public boolean containsArgumentClass(Class<?> c){
+    public boolean containsArgumentClass(Class<?> c) {
         return this.moveKind.containsArgumentClass(c);
+    }
+    
+    /**
+     * Disables first player for the sender
+     */
+    protected void disableFirstPlayer() {
+        this.senderPlayer.setFirstPlayer(false);
     }
     
     /**
@@ -71,6 +79,24 @@ public abstract class GameMove {
      * @return
      */
     public abstract boolean isInitialized();
+    
+    /**
+     * Sets a new sender player
+     * @param senderPlayer
+     * @return
+     */
+    public GameMove sender(GamePlayer senderPlayer) {
+        this.senderPlayer = senderPlayer;
+        return this;
+    }
+    
+    /**
+     * This game move's sender player
+     * @return
+     */
+    public GamePlayer getSenderPlayer() {
+        return this.senderPlayer;
+    }
     
     /**
      * Sets a new stone for this game move (exact function may vary in different move kinds)

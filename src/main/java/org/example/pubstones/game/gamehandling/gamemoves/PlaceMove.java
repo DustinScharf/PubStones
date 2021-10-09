@@ -13,7 +13,7 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class PlaceMove extends GameMove {
-    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
+    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { true, true, false, false, false };
     
     private Stone stone = null;
     private Integer targetIndex = null;
@@ -39,6 +39,7 @@ public class PlaceMove extends GameMove {
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StoneAlreadyContainedException {
         gameHandler.getCurrentState().tryPlaceStone(this.stone, this.targetIndex);
+        this.disableFirstPlayer();
     }
     
     /**

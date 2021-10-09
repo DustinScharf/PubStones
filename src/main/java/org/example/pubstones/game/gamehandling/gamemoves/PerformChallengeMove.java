@@ -12,9 +12,9 @@ import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
-public class ChallengeMove extends GameMove {
-    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
-
+public class PerformChallengeMove extends GameMove {
+    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { true, true, true, false, false };
+    
     private Symbol symbol;
     private Stone stone;
     private GamePlayer targetPlayer;
@@ -22,12 +22,12 @@ public class ChallengeMove extends GameMove {
 
     private boolean firstPlayer = true;
 
-    public ChallengeMove() {
-        super(MoveKind.Challenge);
+    public PerformChallengeMove() {
+        super(MoveKind.PerformChallenge);
     }
 
-    public ChallengeMove(Symbol symbol, Stone stone, GamePlayer targetPlayer, GamePlayer challengerPlayer) {
-        super(MoveKind.Challenge);
+    public PerformChallengeMove(Symbol symbol, Stone stone, GamePlayer targetPlayer, GamePlayer challengerPlayer) {
+        super(MoveKind.PerformChallenge);
         this.symbol = symbol;
         this.stone = stone;
         this.targetPlayer = targetPlayer;
@@ -36,7 +36,14 @@ public class ChallengeMove extends GameMove {
 
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
-        gameHandler.tryChallenge(this.symbol, this.stone, this.targetPlayer, this.challengerPlayer);
+        this.disableFirstPlayer();
+        boolean result = gameHandler.checkChallenge(this.symbol, this.stone);
+        if (result) {
+            this.senderPlayer.increaseScore();
+        } else {
+            this.challengerPlayer.increaseScore();
+        }
+        this.senderPlayer.setChallenged(false);
     }
 
     /**
