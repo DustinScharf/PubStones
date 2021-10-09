@@ -122,9 +122,7 @@ public class GameController extends BaseController {
         int stoneLineSize = this.gameHandler.getCurrentState().getStoneLine().getStones().size();
         for (int i = 0; i < stoneLineSize; ++i) {
             Stone currentStone = this.gameHandler.getCurrentState().getStoneLine().getStones().get(i);
-            Button stoneLineButton = new Button(
-                    "" + currentStone
-            );
+            Button stoneLineButton = new Button("" + currentStone);
 
             int finalI = i;
             stoneLineButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
