@@ -30,7 +30,7 @@ public class StartMenuController extends BaseController implements Initializable
 
     @FXML
     public void exitButtonClicked(ActionEvent actionEvent) {
-        super.musicManager.stopMusic(1);
+        super.musicManager.stopMusic(0);
         super.sceneManager.getStage().close();
     }
 }
