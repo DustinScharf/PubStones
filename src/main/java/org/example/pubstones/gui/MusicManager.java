@@ -22,15 +22,16 @@ public class MusicManager {
     }
 
     public void setMusic(String mp3FilePath) {
-        Media musicMedia = this.music.computeIfAbsent(mp3FilePath, mp3FilePathTemp -> {
-            URL url = getClass().getResource(mp3FilePathTemp);
-            if (url == null) {
-                throw new NullPointerException(); // TODO write own exception
-            }
-
-            String path = url.toString();
-            return new Media(path);
-        });
+//        Media musicMedia = this.music.computeIfAbsent(mp3FilePath, mp3FilePathTemp -> {
+//            URL url = getClass().getResource(mp3FilePathTemp);
+//            if (url == null) {
+//                throw new NullPointerException(); // TODO write own exception
+//            }
+//
+//            String path = url.toString();
+//            return new Media(path);
+//        });
+        Media musicMedia = new Media(getClass().getResource(mp3FilePath).toString());
         this.mediaPlayer = new MediaPlayer(musicMedia);
     }
 
