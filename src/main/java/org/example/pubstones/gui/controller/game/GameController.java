@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.example.pubstones.game.boardpieces.Stone;
@@ -61,8 +61,26 @@ public class GameController extends BaseController {
 
     private GameMove currentlyBuildingGameMove;
 
+    private GameEventHandlerCollection gameEventHandlerCollection;
+
+    public GameMove getCurrentlyBuildingGameMove() {
+        return currentlyBuildingGameMove;
+    }
+
     @Override
     public void init() {
+        KeyCombination controlMKeyCombination = new KeyCodeCombination(KeyCode.M, KeyCodeCombination.CONTROL_DOWN);
+        super.sceneManager.getStage().getScene().addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+            if(controlMKeyCombination.match(event)){
+                if (super.musicManager.isMuted()) {
+                    super.musicManager.unMuteMusic(3);
+                } else {
+                    super.musicManager.muteMusic(1);
+                }
+            }
+            event.consume();
+        });
+
         this.initNewGame();
 
         super.musicManager.setMusic("/music/game/1.mp3");
@@ -74,6 +92,8 @@ public class GameController extends BaseController {
         this.gameHandler.addPlayer(new GamePlayer("Player 1"));
         this.gameHandler.addPlayer(new GamePlayer("Player 2"));
 
+        this.gameEventHandlerCollection = new GameEventHandlerCollection();
+
         //
         // Creates the buttons for the symbols
         //
@@ -84,16 +104,8 @@ public class GameController extends BaseController {
             Button symbolButton = new Button(
                     "" + currentSymbol
             );
-            symbolButton.setOnAction(clickEvent -> {
-                if (this.currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge) ||
-                        this.currentlyBuildingGameMove.isMoveKind(MoveKind.Boast)) {
-                    try {
-                        this.currentlyBuildingGameMove.symbol(currentSymbol);
-                    } catch (IllegalMoveArgumentException e) {
-                        e.printStackTrace(); // TODO
-                    }
-                }
-            });
+            symbolButton.setOnAction(clickEvent ->
+                    this.gameEventHandlerCollection.symbolClicked(this, currentSymbol));
             this.symbolsHBox.getChildren().add(symbolButton);
         }
 
