@@ -23,6 +23,7 @@ public class BoastMove extends GameMove {
 
     public BoastMove() {
         super(MoveKind.Boast);
+        this.symbols = new ArrayList<>();
     }
     
     /**
