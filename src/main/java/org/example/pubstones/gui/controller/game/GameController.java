@@ -203,15 +203,6 @@ public class GameController extends BaseController implements Initializable {
         } catch (IllegalMoveArgumentException e) {
             e.printStackTrace(); // TODO
         }
-
-        try {
-            this.gameHandler.receiveGameMove(this.currentlyBuildingGameMove);
-        } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException |
-                StoneAlreadyContainedException e) {
-            e.printStackTrace(); // TODO
-        }
-
-        this.updateGuiToCurrentGameState();
     }
 
     @FXML
@@ -221,7 +212,10 @@ public class GameController extends BaseController implements Initializable {
         } catch (IllegalMoveArgumentException e) {
             e.printStackTrace(); // TODO
         }
+    }
 
+    @FXML
+    public void fireButtonClicked(ActionEvent actionEvent) {
         try {
             this.gameHandler.receiveGameMove(this.currentlyBuildingGameMove);
         } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException |
@@ -237,9 +231,7 @@ public class GameController extends BaseController implements Initializable {
         try {
             super.sceneManager.switchToPreviousScene();
         } catch (OutOfTimelineException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO
         }
     }
-
-
 }
