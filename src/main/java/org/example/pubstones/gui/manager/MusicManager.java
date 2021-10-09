@@ -7,7 +7,9 @@ import javafx.concurrent.Task;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import org.example.pubstones.gui.util.DelayRunner;
 
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,19 +47,7 @@ public class MusicManager {
     }
 
     public void stopMusic(int fadeOutSeconds) {
-        // TODO extract basic sleeper structure to other class
-        Task<Void> sleeper = new Task<>() {
-            @Override
-            protected Void call() {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException ignored) {
-                }
-                return null;
-            }
-        };
-        sleeper.setOnSucceeded(event -> this.mediaPlayer.stop());
-        new Thread(sleeper).start();
+        DelayRunner.startSleeper(fadeOutSeconds).setOnSucceeded(event -> this.mediaPlayer.stop());
 
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(fadeOutSeconds),
