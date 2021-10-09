@@ -47,8 +47,8 @@ public class SceneManager {
             }
         });
         this.sceneHistoryList.append(controlledScene);
-        controlledScene.getBaseController().init();
         this.stage.setScene(controlledScene);
+        controlledScene.getBaseController().init();
     }
 
     public void switchToNextScene() throws OutOfTimelineException {
