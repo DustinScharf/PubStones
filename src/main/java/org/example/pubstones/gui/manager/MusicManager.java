@@ -1,4 +1,4 @@
-package org.example.pubstones.gui;
+package org.example.pubstones.gui.manager;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

@@ -1,7 +1,7 @@
 package org.example.pubstones.gui.controller;
 
-import org.example.pubstones.gui.MusicManager;
-import org.example.pubstones.gui.SceneManager;
+import org.example.pubstones.gui.manager.MusicManager;
+import org.example.pubstones.gui.manager.SceneManager;
 
 public class BaseController {
     protected SceneManager sceneManager;

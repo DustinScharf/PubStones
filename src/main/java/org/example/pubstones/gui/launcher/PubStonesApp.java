@@ -2,7 +2,7 @@ package org.example.pubstones.gui.launcher;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.example.pubstones.gui.SceneManager;
+import org.example.pubstones.gui.manager.SceneManager;
 
 public class PubStonesApp extends Application {
     public static void main(String[] args) {
