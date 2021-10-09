@@ -28,6 +28,7 @@
                   <HBox fx:id="stonePileHBox" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
                   <Label layoutX="10.0" layoutY="160.0" text="playerActionsHBox" />
                   <HBox fx:id="playerActionsHBox" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0" />
+                  <Button mnemonicParsing="false" onAction="#fireButtonClicked" text="Fire" />
                   <Label fx:id="currentPlayerLabel" text="Current Player" />
                   <Label fx:id="winnerLabel" layoutX="10.0" layoutY="193.0" text="Winner" />
                </children>
