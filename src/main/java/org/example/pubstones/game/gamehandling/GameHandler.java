@@ -70,13 +70,14 @@ public class GameHandler {
     
     public void receiveGameMove(GameMove gameMove) throws IllegalArgumentException, StoneLineFullException, StoneNotFoundException, StonesEqualException, StoneAlreadyContainedException {
         if (gameMove == null) {
-            throw new IllegalArgumentException("Stage stage can not be null");
+            throw new IllegalArgumentException("GameMove gameMove can not be null");
         }
         gameMove.applyMove(this);
         moveHistory.add(gameMove);
+        this.playerQueue.enqueue(this.playerQueue.dequeue());
     }
     
-    public GamePlayer nextPlayer() {
+    public GamePlayer getNextPlayer() {
         return this.playerQueue.second();
     }
     
@@ -110,7 +111,7 @@ public class GameHandler {
         } else {
             // TODO insert team
             for (int p = 0; p < WINNING_SCORE; p++) {
-                this.nextPlayer().increaseScore();
+                this.getNextPlayer().increaseScore();
             }
         }
     }
