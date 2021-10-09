@@ -193,8 +193,7 @@ public class GameController extends BaseController implements Initializable {
                 this.currentlyBuildingGameMove = GameMove.getMove(currentMoveKind);
                 try {
                     this.currentlyBuildingGameMove.player(this.gameHandler.getCurrentPlayer());
-                } catch (IllegalMoveArgumentException e) {
-                    e.printStackTrace(); // TODO
+                } catch (IllegalMoveArgumentException ignored) {
                 }
             });
             this.playerActionsHBox.getChildren().add(playerActionButton);
