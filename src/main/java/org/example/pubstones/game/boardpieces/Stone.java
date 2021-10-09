@@ -94,7 +94,7 @@ public class Stone {
 
     @Override
     public String toString() {
-        return symbol + " : " + (this.turned ? "not " : "") + "turned";
+        return symbol + " : " + (this.turned ? "IN-visible" : "visible");
     }
 
     private class StoneOffBoardException extends Exception {
