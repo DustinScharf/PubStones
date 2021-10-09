@@ -14,10 +14,9 @@ import org.example.pubstones.gui.controller.BaseController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StartMenuController extends BaseController implements Initializable {
+public class StartMenuController extends BaseController {
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO restart after scene reload
+    public void init() {
         super.musicManager.setMusic("/music/menu/1.mp3");
         super.musicManager.playMusic(3);
     }

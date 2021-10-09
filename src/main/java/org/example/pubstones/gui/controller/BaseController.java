@@ -3,7 +3,7 @@ package org.example.pubstones.gui.controller;
 import org.example.pubstones.gui.manager.MusicManager;
 import org.example.pubstones.gui.manager.SceneManager;
 
-public class BaseController {
+public abstract class BaseController {
     protected SceneManager sceneManager;
 
     protected MusicManager musicManager;
@@ -14,5 +14,9 @@ public class BaseController {
 
     public void setSceneManager(SceneManager sceneManager) {
         this.sceneManager = sceneManager;
+    }
+
+    public void init() {
+        // can be overwritten if needed
     }
 }

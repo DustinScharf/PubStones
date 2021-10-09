@@ -29,7 +29,7 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class GameController extends BaseController implements Initializable {
+public class GameController extends BaseController {
     @FXML
     private HBox stoneLineHBox;
 
@@ -62,10 +62,9 @@ public class GameController extends BaseController implements Initializable {
     private GameMove currentlyBuildingGameMove;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void init() {
         this.initNewGame();
 
-        // TODO restart after scene reload
         super.musicManager.setMusic("/music/game/1.mp3");
         super.musicManager.playMusic(3);
     }
