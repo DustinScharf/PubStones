@@ -125,44 +125,41 @@ public class GameController extends BaseController {
             Button stoneLineButton = new Button("" + currentStone);
 
             int finalI = i;
-            stoneLineButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    Node clickedNode = event.getPickResult().getIntersectedNode();
-                    Button clickedButton = null;
-                    do {
-                        try {
-                            clickedButton = (Button) clickedNode;
-                        } catch (ClassCastException e) {
-                            clickedNode = clickedNode.getParent();
-                        }
-                    } while (clickedButton == null);
-
-                    if (currentlyBuildingGameMove.isMoveKind(MoveKind.Place)) {
-                        boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
-                        try {
-                            if (clickedLeft) {
-                                currentlyBuildingGameMove.index(finalI);
-                            } else {
-                                currentlyBuildingGameMove.index(finalI + 1);
-                            }
-                        } catch (IllegalMoveArgumentException e) {
-                            e.printStackTrace(); // TODO
-                        }
+            stoneLineButton.setOnMouseClicked(event -> {
+                Node clickedNode = event.getPickResult().getIntersectedNode();
+                Button clickedButton = null;
+                do {
+                    try {
+                        clickedButton = (Button) clickedNode;
+                    } catch (ClassCastException e) {
+                        clickedNode = clickedNode.getParent();
                     }
+                } while (clickedButton == null);
 
-                    if (currentlyBuildingGameMove.isMoveKind(MoveKind.Swap) ||
-                            currentlyBuildingGameMove.isMoveKind(MoveKind.Turn) ||
-                            currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge)) {
-                        try {
-                            currentlyBuildingGameMove.stone(currentStone);
-                        } catch (IllegalMoveArgumentException e) {
-                            e.printStackTrace(); // TODO
+                if (currentlyBuildingGameMove.isMoveKind(MoveKind.Place)) {
+                    boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
+                    try {
+                        if (clickedLeft) {
+                            currentlyBuildingGameMove.index(finalI);
+                        } else {
+                            currentlyBuildingGameMove.index(finalI + 1);
                         }
+                    } catch (IllegalMoveArgumentException e) {
+                        e.printStackTrace(); // TODO
                     }
-
-
                 }
+
+                if (currentlyBuildingGameMove.isMoveKind(MoveKind.Swap) ||
+                        currentlyBuildingGameMove.isMoveKind(MoveKind.Turn) ||
+                        currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge)) {
+                    try {
+                        currentlyBuildingGameMove.stone(currentStone);
+                    } catch (IllegalMoveArgumentException e) {
+                        e.printStackTrace(); // TODO
+                    }
+                }
+
+
             });
 
             this.stoneLineHBox.getChildren().add(stoneLineButton);
