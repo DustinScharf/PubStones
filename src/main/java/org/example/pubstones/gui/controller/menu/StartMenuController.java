@@ -23,6 +23,7 @@ public class StartMenuController extends BaseController implements Initializable
         Media media = new Media(path);
         this.mediaPlayer = new MediaPlayer(media);
 
+        // TODO restart after scene reload
         this.mediaPlayer.setVolume(0);
         this.mediaPlayer.play();
         Timeline timeline = new Timeline(
