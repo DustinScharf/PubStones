@@ -49,6 +49,15 @@ public abstract class GameMove {
     }
     
     /**
+     * Checks whether the given class is an argument of this game move
+     * @param c
+     * @return
+     */
+    public boolean containsArgumentClass(Class<?> c){
+        return this.moveKind.containsArgumentClass(c);
+    }
+    
+    /**
      * Applies this move onto the given game handler
      * @param gameField
      * @throws StoneLineFullException

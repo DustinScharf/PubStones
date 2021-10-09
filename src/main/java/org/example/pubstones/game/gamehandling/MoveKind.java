@@ -43,8 +43,22 @@ public enum MoveKind {
         return this.moveClass;
     }
     
-    public Class[] getArgs() {
+    public Class<?>[] getArgs() {
         return this.args;
+    }
+    
+    /**
+     * Checks whether the given class is an argument of this move kind
+     * @param cls
+     * @return
+     */
+    public boolean containsArgumentClass(Class<?> cls){
+        for (Class<?> c : args) {
+            if (c.equals(cls)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     public boolean isPossible(boolean[] gamePlayerMoveStates) {
