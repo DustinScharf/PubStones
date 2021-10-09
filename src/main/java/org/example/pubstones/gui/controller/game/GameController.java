@@ -111,6 +111,7 @@ public class GameController extends BaseController implements Initializable {
                     "" + this.gameHandler.getCurrentState().getStoneLine().getStones().get(i)
             );
 
+            int finalI = i;
             stoneLineButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -125,7 +126,15 @@ public class GameController extends BaseController implements Initializable {
                     } while (clickedButton == null);
 
                     boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
-                    System.out.println("Clicked side: " + (clickedLeft ? "left" : "right"));
+                    try {
+                        if (clickedLeft) {
+                            currentlyBuildingGameMove.index(finalI);
+                        } else {
+                            currentlyBuildingGameMove.index(finalI + 1);
+                        }
+                    } catch (IllegalMoveArgumentException e) {
+                        e.printStackTrace(); // TODO
+                    }
 
 //                    this.currentlyBuildingGameMove.stone() // TODO how to add 2 stones?
                 }
