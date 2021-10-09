@@ -2,6 +2,8 @@ package org.example.pubstones.game.gamehandling;
 
 import java.util.ArrayList;
 
+import org.example.pubstones.game.boardpieces.Stone;
+
 public class GamePlayer {
     
     private String name;
@@ -11,7 +13,7 @@ public class GamePlayer {
     private boolean firstPlayer = false;
     
     private boolean current = false;
-    private boolean challenged = false;
+    private Stone challengedStone = null;
     
     private boolean challengedBoast = false;
     private boolean dismissedBoastOn = false;
@@ -96,11 +98,15 @@ public class GamePlayer {
     }
     
     public boolean isChallenged() {
-        return this.challenged;
+        return this.challengedStone != null;
     }
     
-    public void setChallenged(boolean challenged) {
-        this.challenged = challenged;
+    public void setChallenged(Stone challengedStone) {
+        this.challengedStone = challengedStone;
+    }
+    
+    public Stone getChallengedStone() {
+        return this.challengedStone;
     }
     
     public boolean isChallengedBoast() {
@@ -121,11 +127,11 @@ public class GamePlayer {
     
     private boolean[] getMoveStates() {
         return new boolean[] {
-                this.firstPlayer, 
-                this.current, 
-                this.challenged, 
-                this.challengedBoast,
-                this.dismissedBoastOn
+                this.isFirstPlayer(), 
+                this.isCurrent(), 
+                this.isChallenged(), 
+                this.isChallenged(),
+                this.isDismissedBoastOn()
             };
     }
     

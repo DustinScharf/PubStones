@@ -38,7 +38,6 @@ public class BoastMove extends GameMove {
 
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StonesEqualException {
-        this.disableFirstPlayer();
         boolean result = gameHandler.checkBoast(this.symbols);
         if (result) {
             for (int i = 0; i < GameHandler.WINNING_SCORE; i++){
@@ -50,6 +49,7 @@ public class BoastMove extends GameMove {
             }
         }
         this.senderPlayer.setChallengedBoast(false);
+        this.disableFirstPlayer();
     }
     
     public ArrayList<Symbol> getSymbols() {
