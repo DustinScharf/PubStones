@@ -98,20 +98,6 @@ public class GameController extends BaseController implements Initializable {
             this.symbolsHBox.getChildren().add(symbolButton);
         }
 
-        // TODO extract to game logic
-        // Sets a random stone into the stone line
-        try {
-            int stonePileSize = this.gameHandler.getCurrentState().getStonePile().getStones().size();
-            StonePile stonePile = this.gameHandler.getCurrentState().getStonePile();
-            Stone stoneToPlace = stonePile.getStones().get(new Random().nextInt(stonePileSize));
-
-            GameMove gameMove = GameMove.getMove(MoveKind.Place).index(0).stone(stoneToPlace);
-            this.gameHandler.receiveGameMove(gameMove);
-        } catch (IllegalMoveArgumentException | StonesEqualException | StoneLineFullException | StoneNotFoundException
-                | StoneAlreadyContainedException | IllegalArgumentException | MissingMoveArgumentException e) {
-            e.printStackTrace();
-        }
-
         this.updateGuiToCurrentGameState();
     }
     
@@ -236,6 +222,7 @@ public class GameController extends BaseController implements Initializable {
     @FXML
     public void fireButtonClicked(ActionEvent actionEvent) {
         try {
+            this.currentlyBuildingGameMove.sender(this.gameHandler.getCurrentPlayer());
             this.gameHandler.receiveGameMove(this.currentlyBuildingGameMove);
 
             this.currentlyBuildingGameMove = null;

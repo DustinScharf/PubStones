@@ -13,9 +13,13 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class ConsentBoastMove extends GameMove {
-    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false, true, false };
+    private static int[] allowedGamePlayerMoveStates = new int[] { 0, 1, -1, 1, -1 };
     
     private GamePlayer challengerPlayer;
+    
+    public ConsentBoastMove() {
+        super(MoveKind.ConsentBoast);
+    }
     
     protected ConsentBoastMove(GamePlayer challengerPlayer) {
         super(MoveKind.ConsentBoast);
@@ -32,6 +36,10 @@ public class ConsentBoastMove extends GameMove {
 
     public GamePlayer getChallengerPlayer() {
         return this.challengerPlayer;
+    }
+    
+    public static int[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
     }
     
     @Override

@@ -13,7 +13,7 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class SwapMove extends GameMove {
-    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, true, false, false, false };
+    private static int[] allowedGamePlayerMoveStates = new int[] { -1, 1, -1, -1, -1 };
 
     private Stone stone1;
     private Stone stone2;
@@ -58,6 +58,10 @@ public class SwapMove extends GameMove {
         return this.stone2;
     }
 
+    public static int[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
+    }
+    
     @Override
     public boolean isInitialized() {
         if (this.stone1 == null) {
@@ -94,9 +98,4 @@ public class SwapMove extends GameMove {
     public GameMove symbol(Symbol symbol) throws IllegalMoveArgumentException {
         throw new IllegalMoveArgumentException(Symbol.class);
     }
-    
-    public static boolean[] getAllowedGamePlayerMoveStates() {
-        return allowedGamePlayerMoveStates;
-    }
-    
 }

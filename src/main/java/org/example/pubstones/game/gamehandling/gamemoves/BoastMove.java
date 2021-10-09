@@ -16,7 +16,7 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class BoastMove extends GameMove {
-    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { true, true, false, true, true };
+    private static int[] allowedGamePlayerMoveStates = new int[] { 0, 1, -1, 1, 1 };
 
     private ArrayList<Symbol> symbols;
     private GamePlayer challengerPlayer;
@@ -59,7 +59,7 @@ public class BoastMove extends GameMove {
         return this.challengerPlayer;
     }
     
-    public static boolean[] getAllowedGamePlayerMoveStates() {
+    public static int[] getAllowedGamePlayerMoveStates() {
         return allowedGamePlayerMoveStates;
     }
 

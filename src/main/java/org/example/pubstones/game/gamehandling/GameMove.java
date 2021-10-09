@@ -10,7 +10,7 @@ import org.example.pubstones.game.boardpieces.exceptions.*;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public abstract class GameMove {
-    private static boolean[] allowedGamePlayerMoveStates = new boolean[] { false, false, false };
+    private static int[] allowedGamePlayerMoveStates = new int[] { 0, 0, 0, 0, 0 };
     
     private MoveKind moveKind;
     protected GamePlayer senderPlayer;
@@ -200,7 +200,7 @@ public abstract class GameMove {
      * Default allowed game player move stats (all false)
      * @return
      */
-    public static boolean[] getAllowedGamePlayerMoveStates() {
+    public static int[] getAllowedGamePlayerMoveStates() {
         return allowedGamePlayerMoveStates;
     }
     

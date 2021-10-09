@@ -36,8 +36,6 @@ public class GameHandler {
         } catch (StoneLineFullException | StoneNotFoundException | StoneAlreadyContainedException e) {
             e.printStackTrace();
         }
-        this.getCurrentPlayer().setFirstPlayer(true);
-        this.getCurrentPlayer().setCurrent(true);
     }
     
     public ArrayList<GamePlayer> getPlayers() {
@@ -45,6 +43,10 @@ public class GameHandler {
     }
 
     public void addPlayer(GamePlayer gamePlayer) {
+        if (this.players.isEmpty()) {
+            gamePlayer.setFirstPlayer(true);
+            gamePlayer.setCurrent(true);
+        }
         this.players.add(gamePlayer);
         this.playerQueue.enqueue(gamePlayer);
     }

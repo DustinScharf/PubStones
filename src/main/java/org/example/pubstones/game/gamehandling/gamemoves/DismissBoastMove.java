@@ -13,8 +13,13 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class DismissBoastMove extends GameMove {
+    private static int[] allowedGamePlayerMoveStates = new int[] { 0, 1, -1, 1, -1 };
 
     private GamePlayer challengerPlayer;
+    
+    public DismissBoastMove() {
+        super(MoveKind.DismissBoast);
+    }
     
     protected DismissBoastMove(GamePlayer challengerPlayer) {
         super(MoveKind.DismissBoast);
@@ -31,6 +36,10 @@ public class DismissBoastMove extends GameMove {
 
     public GamePlayer getChallengerPlayer() {
         return this.challengerPlayer;
+    }
+    
+    public static int[] getAllowedGamePlayerMoveStates() {
+        return allowedGamePlayerMoveStates;
     }
     
     @Override
