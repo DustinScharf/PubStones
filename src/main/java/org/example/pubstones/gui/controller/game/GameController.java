@@ -1,17 +1,13 @@
 package org.example.pubstones.gui.controller.game;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.example.pubstones.game.boardpieces.Stone;
-import org.example.pubstones.game.boardpieces.StonePile;
 import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.boardpieces.exceptions.StoneAlreadyContainedException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
@@ -25,10 +21,6 @@ import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentExc
 import org.example.pubstones.game.gamehandling.exceptions.MissingMoveArgumentException;
 import org.example.pubstones.gui.controller.BaseController;
 import org.example.pubstones.util.exception.OutOfTimelineException;
-
-import java.net.URL;
-import java.util.Random;
-import java.util.ResourceBundle;
 
 public class GameController extends BaseController {
     @FXML
@@ -70,23 +62,10 @@ public class GameController extends BaseController {
 
     @Override
     public void init() {
-        KeyCombination controlMKeyCombination = new KeyCodeCombination(KeyCode.M, KeyCodeCombination.CONTROL_DOWN);
-        super.getManager().getSceneManager().getStage().getScene().addEventFilter(
-                KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
-                    if (controlMKeyCombination.match(event)) {
-                        if (super.getManager().getMusicManager().isMuted()) {
-                            super.getManager().getMusicManager().unMuteMusic(3);
-                        } else {
-                            super.getManager().getMusicManager().muteMusic(1);
-                        }
-                    }
-                    event.consume();
-                });
-
         this.initNewGame();
 
         super.getManager().getMusicManager().setMusic("/music/game/1.mp3");
-        super.getManager().getMusicManager().playMusic(3);
+        super.getManager().getMusicManager().playMusic();
     }
 
     private void initNewGame() {
@@ -107,7 +86,7 @@ public class GameController extends BaseController {
                     "" + currentSymbol
             );
             symbolButton.setOnAction(clickEvent ->
-                    this.gameEventHandlerCollection.symbolClicked(this, currentSymbol));
+                    this.gameEventHandlerCollection.symbolLineButtonClicked(this, currentSymbol));
             this.symbolsHBox.getChildren().add(symbolButton);
         }
 
@@ -126,40 +105,24 @@ public class GameController extends BaseController {
 
             int finalI = i;
             stoneLineButton.setOnMouseClicked(event -> {
-                Node clickedNode = event.getPickResult().getIntersectedNode();
-                Button clickedButton = null;
-                do {
-                    try {
-                        clickedButton = (Button) clickedNode;
-                    } catch (ClassCastException e) {
-                        clickedNode = clickedNode.getParent();
-                    }
-                } while (clickedButton == null);
+                Button clickedButton = (Button) event.getSource();
 
-                if (currentlyBuildingGameMove.isMoveKind(MoveKind.Place)) {
-                    boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
-                    try {
-                        if (clickedLeft) {
-                            currentlyBuildingGameMove.index(finalI);
-                        } else {
-                            currentlyBuildingGameMove.index(finalI + 1);
-                        }
-                    } catch (IllegalMoveArgumentException e) {
-                        e.printStackTrace(); // TODO
+                boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
+                try {
+                    if (clickedLeft) {
+                        currentlyBuildingGameMove.index(finalI);
+                    } else {
+                        currentlyBuildingGameMove.index(finalI + 1);
                     }
+                } catch (IllegalMoveArgumentException e) {
+                    e.printStackTrace(); // TODO
                 }
 
-//                if (currentlyBuildingGameMove.isMoveKind(MoveKind.Swap) ||
-//                        currentlyBuildingGameMove.isMoveKind(MoveKind.Turn) ||
-//                        currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge)) {
-//                    try {
-//                        currentlyBuildingGameMove.stone(currentStone);
-//                    } catch (IllegalMoveArgumentException e) {
-//                        e.printStackTrace(); // TODO
-//                    }
-//                }
-
-
+                try {
+                    currentlyBuildingGameMove.stone(currentStone);
+                } catch (IllegalMoveArgumentException e) {
+                    e.printStackTrace(); // TODO
+                }
             });
 
             this.stoneLineHBox.getChildren().add(stoneLineButton);
@@ -188,6 +151,7 @@ public class GameController extends BaseController {
             );
             stonePileButton.setOnAction(clickEvent -> {
                 try {
+                    System.out.println("added stone " + currentStone);
                     this.currentlyBuildingGameMove.stone(currentStone);
                 } catch (IllegalMoveArgumentException e) {
                     e.printStackTrace(); // TODO
@@ -245,7 +209,7 @@ public class GameController extends BaseController {
     @FXML
     public void backButtonClicked(ActionEvent actionEvent) {
         try {
-            super.getManager().getMusicManager().stopMusic(0);
+            super.getManager().getMusicManager().stopMusic();
             super.getManager().getSceneManager().switchToPreviousScene();
         } catch (OutOfTimelineException e) {
             e.printStackTrace(); // TODO
