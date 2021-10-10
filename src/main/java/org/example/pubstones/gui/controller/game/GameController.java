@@ -86,9 +86,7 @@ public class GameController extends BaseController {
         int symbolsSize = Symbol.values().length;
         for (int i = 0; i < symbolsSize; ++i) {
             Symbol currentSymbol = Symbol.values()[i];
-            Button symbolButton = new Button(
-                    "" + currentSymbol
-            );
+            Button symbolButton = new Button("" + currentSymbol);
             symbolButton.setOnAction(clickEvent ->
                     this.gameEventHandlerCollection.symbolLineButtonClicked(this, currentSymbol));
             this.symbolsHBox.getChildren().add(symbolButton);
