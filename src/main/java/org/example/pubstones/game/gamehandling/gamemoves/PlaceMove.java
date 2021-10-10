@@ -48,6 +48,9 @@ public class PlaceMove extends GameMove {
             stoneToPlace = stone2;
             targetIndex = gameHandler.getCurrentState().getStoneLine().getIndex(stone1);
         }
+        if (!this.left) {
+            targetIndex++;
+        }
         gameHandler.getCurrentState().tryPlaceStone(stoneToPlace, targetIndex);
         this.disableFirstPlayer();
     }
