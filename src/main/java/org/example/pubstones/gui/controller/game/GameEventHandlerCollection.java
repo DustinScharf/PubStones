@@ -53,7 +53,17 @@ public class GameEventHandlerCollection {
         }
     }
 
-    public void fireButtonClicked(GameController gameController, Stone stone) {
-        // TODO
+    public void fireButtonClicked(GameController gameController) {
+        try {
+            gameController.getCurrentlyBuildingGameMove().sender(gameController.getGameHandler().getCurrentPlayer());
+            gameController.getGameHandler().receiveGameMove(gameController.getCurrentlyBuildingGameMove());
+
+            gameController.setCurrentlyBuildingGameMove(null);
+        } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException |
+                StoneAlreadyContainedException | IllegalArgumentException | MissingMoveArgumentException e) {
+            e.printStackTrace(); // TODO
+        }
+
+        gameController.updateGuiToCurrentGameState();
     }
 }
