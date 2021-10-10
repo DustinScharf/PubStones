@@ -18,7 +18,6 @@ public class StartMenuController extends BaseController {
 
         this.volumeSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double sliderValue = newValue.doubleValue();
-            System.out.println(sliderValue);
             getManager().getMusicManager().setVolume(sliderValue);
         });
 
