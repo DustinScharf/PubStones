@@ -15,10 +15,11 @@ import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentExc
 public class PlaceMove extends GameMove {
     private static int[] allowedGamePlayerMoveStates = new int[] { 0, 1, -1, -1, -1 };
     
-    private Stone stone = null;
-    private Integer targetIndex = null;
+    private Stone stone1 = null;
+    private Stone stone2 = null;
+    private boolean left = true;
     
-    private boolean indexSet = false;
+    private boolean firstStone = true;
     
     public PlaceMove() {
         super(MoveKind.Place);
@@ -30,31 +31,41 @@ public class PlaceMove extends GameMove {
      * @param index
      * @param number
      */
-    public PlaceMove(Stone stone, int index) {
+    public PlaceMove(Stone stone1, Stone stone2, boolean isLeft) {
         super(MoveKind.Place);
-        this.stone = stone;
-        this.targetIndex = index;
+        this.stone1 = stone1;
+        this.stone2 = stone2;
     }
     
     @Override
     public void applyMove(GameHandler gameHandler) throws StoneLineFullException, StoneNotFoundException, StoneAlreadyContainedException {
-        gameHandler.getCurrentState().tryPlaceStone(this.stone, this.targetIndex);
+        Stone stoneToPlace;
+        int targetIndex;
+        if (gameHandler.getCurrentState().getStonePile().contains(stone1)) {
+            stoneToPlace = stone1;
+            targetIndex = gameHandler.getCurrentState().getStoneLine().getIndex(stone2);
+        } else {
+            stoneToPlace = stone2;
+            targetIndex = gameHandler.getCurrentState().getStoneLine().getIndex(stone1);
+        }
+        gameHandler.getCurrentState().tryPlaceStone(stoneToPlace, targetIndex);
         this.disableFirstPlayer();
     }
     
     /**
-     * This move's stone
+     * This move's stone1
      * @return
      */
-    public Stone getStone() {
-        return this.stone;
+    public Stone getStone1() {
+        return this.stone1;
     }
     
     /**
-     * This move's target index
+     * This move's stone2
+     * @return
      */
-    public Integer getTargetIndex() {
-        return this.targetIndex;
+    public Stone getStone2() {
+        return this.stone2;
     }
 
     public static int[] getAllowedGamePlayerMoveStates() {
@@ -63,11 +74,10 @@ public class PlaceMove extends GameMove {
     
     @Override
     public boolean isInitialized() {
-        if (this.stone == null) {
+        if (this.stone1 == null) {
             return false;
         }
-        System.out.println("IndexSet: " + this.indexSet);
-        if (!this.indexSet) {
+        if (this.stone2 == null) {
             return false;
         }
         return true;
@@ -75,14 +85,18 @@ public class PlaceMove extends GameMove {
     
     @Override
     public GameMove stone(Stone stone) throws IllegalMoveArgumentException {
-        this.stone = stone;
+        if (firstStone) {
+            this.stone1 = stone;
+        } else {
+            this.stone2 = stone;
+        }
+        firstStone = !firstStone;
         return this;
     }
     
     @Override
-    public GameMove index(int index) throws IllegalMoveArgumentException {
-        this.targetIndex = index;
-        this.indexSet = true;
+    public GameMove left(boolean isLeft) {
+        this.left = isLeft;
         return this;
     }
     
