@@ -9,6 +9,7 @@ import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
 import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
 import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
 import org.example.pubstones.game.gamehandling.GameMove;
+import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 import org.example.pubstones.game.gamehandling.exceptions.MissingMoveArgumentException;
@@ -47,6 +48,14 @@ public class GameEventHandlerCollection {
     public void playerActionButtonClicked(GameController gameController, MoveKind moveKind) {
         gameController.setCurrentlyBuildingGameMove(GameMove.getMove(moveKind));
         gameController.getCurrentlyBuildingGameMove().sender(gameController.getGameHandler().getCurrentPlayer());
+    }
+
+    public void playerScoreButtonClicked(GameController gameController, GamePlayer gamePlayer) {
+        try {
+            gameController.getCurrentlyBuildingGameMove().player(gamePlayer);
+        } catch (IllegalMoveArgumentException e) {
+            e.printStackTrace(); // TODO
+        }
     }
 
     public void fireButtonClicked(GameController gameController) {

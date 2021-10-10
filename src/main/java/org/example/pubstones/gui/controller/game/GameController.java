@@ -113,6 +113,10 @@ public class GameController extends BaseController {
         for (int i = 0; i < playerCount; ++i) {
             GamePlayer currentPlayer = this.gameHandler.getPlayers().get(i);
             Button playerScoreButton = new Button(currentPlayer.getName() + " : " + currentPlayer.getScore());
+
+            playerScoreButton.setOnAction(actionEvent ->
+                    this.gameEventHandlerCollection.playerScoreButtonClicked(this, currentPlayer));
+
             this.scoresVBox.getChildren().add(playerScoreButton);
         }
     }
