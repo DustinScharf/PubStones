@@ -112,8 +112,8 @@ public class GameController extends BaseController {
         int playerCount = this.gameHandler.getPlayers().size();
         for (int i = 0; i < playerCount; ++i) {
             GamePlayer currentPlayer = this.gameHandler.getPlayers().get(i);
-            Label playerScoreLabel = new Label(currentPlayer.getName() + " : " + currentPlayer.getScore());
-            this.scoresVBox.getChildren().add(playerScoreLabel);
+            Button playerScoreButton = new Button(currentPlayer.getName() + " : " + currentPlayer.getScore());
+            this.scoresVBox.getChildren().add(playerScoreButton);
         }
     }
 
