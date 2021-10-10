@@ -16,9 +16,19 @@ import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 import org.example.pubstones.game.gamehandling.exceptions.MissingMoveArgumentException;
+import org.example.pubstones.gui.util.Alerter;
 
 public class GameEventHandlerCollection {
     public void stoneLineButtonClicked(GameController gameController, Stone stone, MouseEvent mouseEvent) {
+        if (gameController.getCurrentlyBuildingGameMove() == null) {
+            Alerter.buildInfoAlert(
+                            "No move set...",
+                            "Select a move first."
+                    )
+                    .showAndWait();
+            return;
+        }
+
         Button clickedButton = (Button) mouseEvent.getSource();
 
         boolean clickedLeft = mouseEvent.getX() <= (clickedButton.getWidth() / 2);
@@ -27,11 +37,25 @@ public class GameEventHandlerCollection {
         try {
             gameController.getCurrentlyBuildingGameMove().stone(stone);
         } catch (IllegalMoveArgumentException e) {
-            e.printStackTrace(); // TODO
+            Alerter.buildInfoAlert(
+                            "No stone needed...",
+                            "This move does not require a stone.\n" +
+                                    "You can simply close this window and choose the necessary components."
+                    )
+                    .showAndWait();
         }
     }
 
     public void symbolLineButtonClicked(GameController gameController, Symbol symbol) {
+        if (gameController.getCurrentlyBuildingGameMove() == null) {
+            Alerter.buildInfoAlert(
+                            "No move set...",
+                            "Select a move first."
+                    )
+                    .showAndWait();
+            return;
+        }
+
         GameMove currentlyBuildingGameMove = gameController.getCurrentlyBuildingGameMove();
         try {
             currentlyBuildingGameMove.symbol(symbol);
@@ -41,6 +65,15 @@ public class GameEventHandlerCollection {
     }
 
     public void stonePileButtonClicked(GameController gameController, Stone stone) {
+        if (gameController.getCurrentlyBuildingGameMove() == null) {
+            Alerter.buildInfoAlert(
+                            "No move set...",
+                            "Select a move first."
+                    )
+                    .showAndWait();
+            return;
+        }
+
         try {
             gameController.getCurrentlyBuildingGameMove().stone(stone);
         } catch (IllegalMoveArgumentException e) {
@@ -54,6 +87,15 @@ public class GameEventHandlerCollection {
     }
 
     public void playerScoreButtonClicked(GameController gameController, GamePlayer gamePlayer) {
+        if (gameController.getCurrentlyBuildingGameMove() == null) {
+            Alerter.buildInfoAlert(
+                            "No move set...",
+                            "Select a move first."
+                    )
+                    .showAndWait();
+            return;
+        }
+
         try {
             gameController.getCurrentlyBuildingGameMove().player(gamePlayer);
         } catch (IllegalMoveArgumentException e) {
@@ -62,11 +104,16 @@ public class GameEventHandlerCollection {
     }
 
     public void fireButtonClicked(GameController gameController, ActionEvent actionEvent) {
-        try {
-            if (gameController.getCurrentlyBuildingGameMove() == null) {
-                throw new MissingMoveArgumentException();
-            }
+        if (gameController.getCurrentlyBuildingGameMove() == null) {
+            Alerter.buildInfoAlert(
+                            "No move set...",
+                            "Select a move first."
+                    )
+                    .showAndWait();
+            return;
+        }
 
+        try {
             gameController.getCurrentlyBuildingGameMove().sender(gameController.getGameHandler().getCurrentPlayer());
             gameController.getGameHandler().receiveGameMove(gameController.getCurrentlyBuildingGameMove());
 
