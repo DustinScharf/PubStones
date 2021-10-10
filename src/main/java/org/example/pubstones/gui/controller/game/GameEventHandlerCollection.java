@@ -1,5 +1,8 @@
 package org.example.pubstones.gui.controller.game;
 
+import animatefx.animation.Bounce;
+import animatefx.animation.Tada;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import org.example.pubstones.game.boardpieces.Stone;
@@ -58,15 +61,21 @@ public class GameEventHandlerCollection {
         }
     }
 
-    public void fireButtonClicked(GameController gameController) {
+    public void fireButtonClicked(GameController gameController, ActionEvent actionEvent) {
         try {
+            if (gameController.getCurrentlyBuildingGameMove() == null) {
+                throw new MissingMoveArgumentException();
+            }
+
             gameController.getCurrentlyBuildingGameMove().sender(gameController.getGameHandler().getCurrentPlayer());
             gameController.getGameHandler().receiveGameMove(gameController.getCurrentlyBuildingGameMove());
 
             gameController.setCurrentlyBuildingGameMove(null);
+            new Bounce((Button) actionEvent.getSource()).play();
         } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException |
                 StoneAlreadyContainedException | IllegalArgumentException | MissingMoveArgumentException e) {
             e.printStackTrace(); // TODO
+            new Tada((Button) actionEvent.getSource()).play();
         }
 
         gameController.updateWholeGuiToCurrentGameState();

@@ -167,7 +167,7 @@ public class GameController extends BaseController {
 
     @FXML
     public void fireButtonClicked(ActionEvent actionEvent) {
-        this.gameEventHandlerCollection.fireButtonClicked(this);
+        this.gameEventHandlerCollection.fireButtonClicked(this, actionEvent);
     }
 
     @FXML
