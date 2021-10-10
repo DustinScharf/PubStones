@@ -13,11 +13,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="stoneLineHBox" />
-                  <HBox>
-                     <children>
-                        <HBox fx:id="stoneLineHBox" prefHeight="100.0" prefWidth="200.0" />
-                     </children>
-                  </HBox>
+                  <HBox fx:id="stoneLineHBox" prefHeight="100.0" prefWidth="200.0" />
                   <Label layoutX="10.0" layoutY="10.0" text="symbolsHBox" />
                   <HBox fx:id="symbolsHBox" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
                   <Label layoutX="10.0" layoutY="33.0" text="scoresVBox" />
