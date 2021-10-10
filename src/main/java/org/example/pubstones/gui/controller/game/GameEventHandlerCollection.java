@@ -46,11 +46,7 @@ public class GameEventHandlerCollection {
 
     public void playerActionButtonClicked(GameController gameController, MoveKind moveKind) {
         gameController.setCurrentlyBuildingGameMove(GameMove.getMove(moveKind));
-        try {
-            gameController.getCurrentlyBuildingGameMove().player(gameController.getGameHandler().getCurrentPlayer());
-        } catch (IllegalMoveArgumentException ignored) {
-            // TODO
-        }
+        gameController.getCurrentlyBuildingGameMove().sender(gameController.getGameHandler().getCurrentPlayer());
     }
 
     public void fireButtonClicked(GameController gameController) {
