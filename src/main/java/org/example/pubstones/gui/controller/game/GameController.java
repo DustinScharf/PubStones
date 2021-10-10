@@ -143,7 +143,6 @@ public class GameController extends BaseController {
             );
             stonePileButton.setOnAction(clickEvent -> {
                 try {
-                    System.out.println("added stone " + currentStone);
                     this.currentlyBuildingGameMove.stone(currentStone);
                 } catch (IllegalMoveArgumentException e) {
                     e.printStackTrace(); // TODO
