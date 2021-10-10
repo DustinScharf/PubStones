@@ -108,7 +108,6 @@ public class GameController extends BaseController {
 
                 boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
                 currentlyBuildingGameMove.left(clickedLeft);
-                System.out.println(clickedLeft);
 
                 try {
                     currentlyBuildingGameMove.stone(currentStone);
