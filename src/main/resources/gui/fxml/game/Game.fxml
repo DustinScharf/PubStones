@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchorPane" stylesheets="@../../css/base-style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pubstones.gui.controller.game.GameController">
    <children>
@@ -22,7 +23,10 @@
                   <HBox fx:id="stonePileHBox" alignment="TOP_CENTER" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
                   <Label layoutX="10.0" layoutY="160.0" text="playerActionsHBox" />
                   <HBox fx:id="playerActionsHBox" alignment="TOP_CENTER" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#fireButtonClicked" text="Fire" />
+                  <Button mnemonicParsing="false" onAction="#fireButtonClicked" text="Fire">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
                   <Label fx:id="currentPlayerLabel" text="Current Player" />
                   <Label fx:id="winnerLabel" layoutX="10.0" layoutY="193.0" text="Winner" />
                </children>
