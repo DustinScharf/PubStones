@@ -1,20 +1,34 @@
 package org.example.pubstones.gui.controller.game;
 
+import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class GameEventHandlerCollection {
-    public void symbolClicked(GameController gameController, Symbol symbol) {
-//        GameMove currentlyBuildingGameMove = gameController.getCurrentlyBuildingGameMove();
-//        if (currentlyBuildingGameMove.isMoveKind(MoveKind.Challenge) ||
-//                currentlyBuildingGameMove.isMoveKind(MoveKind.Boast)) {
-//            try {
-//                currentlyBuildingGameMove.symbol(symbol);
-//            } catch (IllegalMoveArgumentException e) {
-//                e.printStackTrace(); // TODO
-//            }
-//        }
+    public void stoneLineButtonClicked(GameController gameController, Stone stone) {
+        // TODO
+    }
+
+    public void symbolLineButtonClicked(GameController gameController, Symbol symbol) {
+        GameMove currentlyBuildingGameMove = gameController.getCurrentlyBuildingGameMove();
+        try {
+            currentlyBuildingGameMove.symbol(symbol);
+        } catch (IllegalMoveArgumentException e) {
+            e.printStackTrace(); // TODO
+        }
+    }
+
+    public void stonePileButtonClicked(GameController gameController, Stone stone) {
+        // TODO
+    }
+
+    public void playerActionButtonClicked(GameController gameController, Stone stone) {
+        // TODO
+    }
+
+    public void fireButtonClicked(GameController gameController, Stone stone) {
+        // TODO
     }
 }
