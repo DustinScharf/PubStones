@@ -103,20 +103,12 @@ public class GameController extends BaseController {
             Stone currentStone = this.gameHandler.getCurrentState().getStoneLine().getStones().get(i);
             Button stoneLineButton = new Button("" + currentStone);
 
-            int finalI = i;
             stoneLineButton.setOnMouseClicked(event -> {
                 Button clickedButton = (Button) event.getSource();
 
                 boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
-                try {
-                    if (clickedLeft) {
-                        currentlyBuildingGameMove.index(finalI);
-                    } else {
-                        currentlyBuildingGameMove.index(finalI + 1);
-                    }
-                } catch (IllegalMoveArgumentException e) {
-                    e.printStackTrace(); // TODO
-                }
+                currentlyBuildingGameMove.left(clickedLeft);
+                System.out.println(clickedLeft);
 
                 try {
                     currentlyBuildingGameMove.stone(currentStone);
