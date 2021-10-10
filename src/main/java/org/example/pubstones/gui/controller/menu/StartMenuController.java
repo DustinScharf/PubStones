@@ -1,28 +1,30 @@
 package org.example.pubstones.gui.controller.menu;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
+import javafx.scene.control.Slider;
 import org.example.pubstones.gui.controller.BaseController;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 public class StartMenuController extends BaseController {
+    @FXML
+    Slider volumeSlider;
+
     @Override
     public void init() {
         super.getManager().getMusicManager().setMusic("/music/menu/1.mp3");
-        super.getManager().getMusicManager().setVolume(0); // TODO change volume from gui
+        super.getManager().getMusicManager().setVolume(this.volumeSlider.getValue());
+
+        this.volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                double sliderValue = newValue.doubleValue();
+                System.out.println(sliderValue);
+                getManager().getMusicManager().setVolume(sliderValue);
+            }
+        });
+
         super.getManager().getMusicManager().playMusic();
     }
 
