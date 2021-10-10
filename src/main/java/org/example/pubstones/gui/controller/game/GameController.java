@@ -56,8 +56,16 @@ public class GameController extends BaseController {
 
     private GameEventHandlerCollection gameEventHandlerCollection;
 
+    public GameHandler getGameHandler() {
+        return gameHandler;
+    }
+
     public GameMove getCurrentlyBuildingGameMove() {
         return currentlyBuildingGameMove;
+    }
+
+    public void setCurrentlyBuildingGameMove(GameMove currentlyBuildingGameMove) {
+        this.currentlyBuildingGameMove = currentlyBuildingGameMove;
     }
 
     @Override
@@ -93,7 +101,7 @@ public class GameController extends BaseController {
         this.updateGuiToCurrentGameState();
     }
 
-    private void updateGuiToCurrentGameState() {
+    public void updateGuiToCurrentGameState() {
         //
         // Update the stone line display
         //
@@ -103,18 +111,8 @@ public class GameController extends BaseController {
             Stone currentStone = this.gameHandler.getCurrentState().getStoneLine().getStones().get(i);
             Button stoneLineButton = new Button("" + currentStone);
 
-            stoneLineButton.setOnMouseClicked(event -> {
-                Button clickedButton = (Button) event.getSource();
-
-                boolean clickedLeft = event.getX() <= (clickedButton.getWidth() / 2);
-                currentlyBuildingGameMove.left(clickedLeft);
-
-                try {
-                    currentlyBuildingGameMove.stone(currentStone);
-                } catch (IllegalMoveArgumentException e) {
-                    e.printStackTrace(); // TODO
-                }
-            });
+            stoneLineButton.setOnMouseClicked(event ->
+                    this.gameEventHandlerCollection.stoneLineButtonClicked(this, currentStone, event));
 
             this.stoneLineHBox.getChildren().add(stoneLineButton);
         }
@@ -140,13 +138,8 @@ public class GameController extends BaseController {
             Button stonePileButton = new Button(
                     "" + currentStone
             );
-            stonePileButton.setOnAction(clickEvent -> {
-                try {
-                    this.currentlyBuildingGameMove.stone(currentStone);
-                } catch (IllegalMoveArgumentException e) {
-                    e.printStackTrace(); // TODO
-                }
-            });
+            stonePileButton.setOnAction(clickEvent ->
+                    this.gameEventHandlerCollection.stonePileButtonClicked(this, currentStone));
             this.stonePileHBox.getChildren().add(stonePileButton);
         }
 
@@ -158,14 +151,8 @@ public class GameController extends BaseController {
         for (int i = 0; i < playerActionsCount; ++i) {
             MoveKind currentMoveKind = this.gameHandler.getCurrentPlayer().getPossibleMoves()[i];
             Button playerActionButton = new Button("" + currentMoveKind);
-            playerActionButton.setOnAction(clickEvent -> {
-                this.currentlyBuildingGameMove = GameMove.getMove(currentMoveKind);
-                try {
-                    this.currentlyBuildingGameMove.player(this.gameHandler.getCurrentPlayer());
-                } catch (IllegalMoveArgumentException ignored) {
-                    // TODO implemented from game logic side
-                }
-            });
+            playerActionButton.setOnAction(clickEvent ->
+                    this.gameEventHandlerCollection.playerActionButtonClicked(this, currentMoveKind));
             this.playerActionsHBox.getChildren().add(playerActionButton);
         }
 
@@ -183,17 +170,7 @@ public class GameController extends BaseController {
 
     @FXML
     public void fireButtonClicked(ActionEvent actionEvent) {
-        try {
-            this.currentlyBuildingGameMove.sender(this.gameHandler.getCurrentPlayer());
-            this.gameHandler.receiveGameMove(this.currentlyBuildingGameMove);
-
-            this.currentlyBuildingGameMove = null;
-        } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException |
-                StoneAlreadyContainedException | IllegalArgumentException | MissingMoveArgumentException e) {
-            e.printStackTrace(); // TODO
-        }
-
-        this.updateGuiToCurrentGameState();
+        this.gameEventHandlerCollection.fireButtonClicked(this);
     }
 
     @FXML
