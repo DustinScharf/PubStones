@@ -7,8 +7,17 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
 
 public class GameEventHandlerCollection {
-    public void stoneLineButtonClicked(GameController gameController, Stone stone) {
-        // TODO
+    public void stoneLineButtonClicked(GameController gameController, Stone stone, MouseEvent mouseEvent) {
+        Button clickedButton = (Button) mouseEvent.getSource();
+
+        boolean clickedLeft = mouseEvent.getX() <= (clickedButton.getWidth() / 2);
+        gameController.getCurrentlyBuildingGameMove().left(clickedLeft);
+
+        try {
+            gameController.getCurrentlyBuildingGameMove().stone(stone);
+        } catch (IllegalMoveArgumentException e) {
+            e.printStackTrace(); // TODO
+        }
     }
 
     public void symbolLineButtonClicked(GameController gameController, Symbol symbol) {
