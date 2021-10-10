@@ -64,6 +64,6 @@ public class GameEventHandlerCollection {
             e.printStackTrace(); // TODO
         }
 
-        gameController.updateGuiToCurrentGameState();
+        gameController.updateWholeGuiToCurrentGameState();
     }
 }

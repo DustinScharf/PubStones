@@ -91,10 +91,10 @@ public class GameController extends BaseController {
             this.symbolsHBox.getChildren().add(symbolButton);
         }
 
-        this.updateGuiToCurrentGameState();
+        this.updateWholeGuiToCurrentGameState();
     }
 
-    private void updateStoneLineDisplay() {
+    private void updateWholeStoneLineDisplay() {
         this.stoneLineHBox.getChildren().clear();
         int stoneLineSize = this.gameHandler.getCurrentState().getStoneLine().getStones().size();
         for (int i = 0; i < stoneLineSize; ++i) {
@@ -108,7 +108,7 @@ public class GameController extends BaseController {
         }
     }
 
-    private void updateScoreDisplay() {
+    private void updateWholeScoreDisplay() {
         this.scoresVBox.getChildren().clear();
         int playerCount = this.gameHandler.getPlayers().size();
         for (int i = 0; i < playerCount; ++i) {
@@ -118,7 +118,7 @@ public class GameController extends BaseController {
         }
     }
 
-    private void updateStonePileDisplay() {
+    private void updateWholeStonePileDisplay() {
         this.stonePileHBox.getChildren().clear();
         int stonePileSize = this.gameHandler.getCurrentState().getStonePile().getStones().size();
         for (int i = 0; i < stonePileSize; ++i) {
@@ -132,7 +132,7 @@ public class GameController extends BaseController {
         }
     }
 
-    private void updatePlayerActionDisplay() {
+    private void updateWholePlayerActionDisplay() {
         this.playerActionsHBox.getChildren().clear();
         int playerActionsCount = this.gameHandler.getCurrentPlayer().getPossibleMoves().length;
         for (int i = 0; i < playerActionsCount; ++i) {
@@ -144,27 +144,22 @@ public class GameController extends BaseController {
         }
     }
 
-    private void updateCurrentPlayerDisplay() {
+    private void updateWholeCurrentPlayerDisplay() {
         this.currentPlayerLabel.setText("Current Player: " + this.gameHandler.getCurrentPlayer().getName());
     }
 
-    private void updateWinnerDisplay() {
+    private void updateWholeWinnerDisplay() {
         String winnerInfo = this.gameHandler.isGameOver() ? this.gameHandler.getLeadingPlayer().getName() : "none";
         this.winnerLabel.setText("Winner: " + winnerInfo);
     }
 
-    public void updateGuiToCurrentGameState() {
-        this.updateStoneLineDisplay();
-
-        this.updateScoreDisplay();
-
-        this.updateStonePileDisplay();
-
-        this.updatePlayerActionDisplay();
-
-        this.updateCurrentPlayerDisplay();
-
-        this.updateWinnerDisplay();
+    public void updateWholeGuiToCurrentGameState() {
+        this.updateWholeStoneLineDisplay();
+        this.updateWholeScoreDisplay();
+        this.updateWholeStonePileDisplay();
+        this.updateWholePlayerActionDisplay();
+        this.updateWholeCurrentPlayerDisplay();
+        this.updateWholeWinnerDisplay();
     }
 
     @FXML
