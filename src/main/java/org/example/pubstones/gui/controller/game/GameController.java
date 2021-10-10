@@ -63,10 +63,10 @@ public class GameController extends BaseController {
 
     @Override
     public void init() {
-        this.initNewGame();
-
         super.getManager().getMusicManager().setMusic("/music/game/1.mp3");
         super.getManager().getMusicManager().playMusic();
+
+        this.initNewGame();
     }
 
     private void initNewGame() {
