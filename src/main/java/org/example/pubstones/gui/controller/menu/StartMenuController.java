@@ -16,13 +16,10 @@ public class StartMenuController extends BaseController {
         super.getManager().getMusicManager().setMusic("/music/menu/1.mp3");
         super.getManager().getMusicManager().setVolume(this.volumeSlider.getValue());
 
-        this.volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
-                double sliderValue = newValue.doubleValue();
-                System.out.println(sliderValue);
-                getManager().getMusicManager().setVolume(sliderValue);
-            }
+        this.volumeSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
+            double sliderValue = newValue.doubleValue();
+            System.out.println(sliderValue);
+            getManager().getMusicManager().setVolume(sliderValue);
         });
 
         super.getManager().getMusicManager().playMusic();
