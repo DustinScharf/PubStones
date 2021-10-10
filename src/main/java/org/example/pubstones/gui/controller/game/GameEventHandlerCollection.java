@@ -60,7 +60,12 @@ public class GameEventHandlerCollection {
         try {
             currentlyBuildingGameMove.symbol(symbol);
         } catch (IllegalMoveArgumentException e) {
-            e.printStackTrace(); // TODO
+            Alerter.buildInfoAlert(
+                            "No symbol needed...",
+                            "This move does not require a symbol.\n" +
+                                    "You can simply close this window and choose the necessary components."
+                    )
+                    .showAndWait();
         }
     }
 
@@ -77,7 +82,12 @@ public class GameEventHandlerCollection {
         try {
             gameController.getCurrentlyBuildingGameMove().stone(stone);
         } catch (IllegalMoveArgumentException e) {
-            e.printStackTrace(); // TODO
+            Alerter.buildInfoAlert(
+                            "No stone needed...",
+                            "This move does not require a stone.\n" +
+                                    "You can simply close this window and choose the necessary components."
+                    )
+                    .showAndWait();
         }
     }
 
@@ -99,12 +109,18 @@ public class GameEventHandlerCollection {
         try {
             gameController.getCurrentlyBuildingGameMove().player(gamePlayer);
         } catch (IllegalMoveArgumentException e) {
-            e.printStackTrace(); // TODO
+            Alerter.buildInfoAlert(
+                            "No player needed...",
+                            "This move does not require a player.\n" +
+                                    "You can simply close this window and choose the necessary components."
+                    )
+                    .showAndWait();
         }
     }
 
     public void fireButtonClicked(GameController gameController, ActionEvent actionEvent) {
         if (gameController.getCurrentlyBuildingGameMove() == null) {
+            new Tada((Button) actionEvent.getSource()).play();
             Alerter.buildInfoAlert(
                             "No move set...",
                             "Select a move first."
@@ -119,12 +135,16 @@ public class GameEventHandlerCollection {
 
             gameController.setCurrentlyBuildingGameMove(null);
             new Bounce((Button) actionEvent.getSource()).play();
+            gameController.updateWholeGuiToCurrentGameState();
         } catch (StoneLineFullException | StoneNotFoundException | StonesEqualException |
                 StoneAlreadyContainedException | IllegalArgumentException | MissingMoveArgumentException e) {
-            e.printStackTrace(); // TODO
             new Tada((Button) actionEvent.getSource()).play();
-        }
 
-        gameController.updateWholeGuiToCurrentGameState();
+            Alerter.buildInfoAlert(
+                            "Move not fully initialized...",
+                            "Choose all necessary components for this move first."
+                    )
+                    .showAndWait();
+        }
     }
 }
