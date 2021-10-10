@@ -76,9 +76,12 @@ public class GameController extends BaseController {
 
         this.gameEventHandlerCollection = new GameEventHandlerCollection();
 
-        //
-        // Creates the buttons for the symbols
-        //
+        this.createSymbolDisplay();
+
+        this.updateWholeGuiToCurrentGameState();
+    }
+
+    private void createSymbolDisplay() {
         this.symbolsHBox.getChildren().clear();
         int symbolsSize = Symbol.values().length;
         for (int i = 0; i < symbolsSize; ++i) {
@@ -90,8 +93,6 @@ public class GameController extends BaseController {
                     this.gameEventHandlerCollection.symbolLineButtonClicked(this, currentSymbol));
             this.symbolsHBox.getChildren().add(symbolButton);
         }
-
-        this.updateWholeGuiToCurrentGameState();
     }
 
     private void updateWholeStoneLineDisplay() {
