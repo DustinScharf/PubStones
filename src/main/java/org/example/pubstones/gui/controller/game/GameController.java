@@ -4,21 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
-import org.example.pubstones.game.boardpieces.exceptions.StoneAlreadyContainedException;
-import org.example.pubstones.game.boardpieces.exceptions.StoneLineFullException;
-import org.example.pubstones.game.boardpieces.exceptions.StoneNotFoundException;
-import org.example.pubstones.game.boardpieces.exceptions.StonesEqualException;
 import org.example.pubstones.game.gamehandling.GameHandler;
 import org.example.pubstones.game.gamehandling.GameMove;
 import org.example.pubstones.game.gamehandling.GamePlayer;
 import org.example.pubstones.game.gamehandling.MoveKind;
-import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentException;
-import org.example.pubstones.game.gamehandling.exceptions.MissingMoveArgumentException;
 import org.example.pubstones.gui.controller.BaseController;
 import org.example.pubstones.util.exception.OutOfTimelineException;
 
@@ -101,10 +94,7 @@ public class GameController extends BaseController {
         this.updateGuiToCurrentGameState();
     }
 
-    public void updateGuiToCurrentGameState() {
-        //
-        // Update the stone line display
-        //
+    private void updateStoneLineDisplay() {
         this.stoneLineHBox.getChildren().clear();
         int stoneLineSize = this.gameHandler.getCurrentState().getStoneLine().getStones().size();
         for (int i = 0; i < stoneLineSize; ++i) {
@@ -116,10 +106,9 @@ public class GameController extends BaseController {
 
             this.stoneLineHBox.getChildren().add(stoneLineButton);
         }
+    }
 
-        //
-        // Update the score display of all players
-        //
+    private void updateScoreDisplay() {
         this.scoresVBox.getChildren().clear();
         int playerCount = this.gameHandler.getPlayers().size();
         for (int i = 0; i < playerCount; ++i) {
@@ -127,10 +116,9 @@ public class GameController extends BaseController {
             Label playerScoreLabel = new Label(currentPlayer.getName() + " : " + currentPlayer.getScore());
             this.scoresVBox.getChildren().add(playerScoreLabel);
         }
+    }
 
-        //
-        // Updates the stone pile display
-        //
+    private void updateStonePileDisplay() {
         this.stonePileHBox.getChildren().clear();
         int stonePileSize = this.gameHandler.getCurrentState().getStonePile().getStones().size();
         for (int i = 0; i < stonePileSize; ++i) {
@@ -142,10 +130,9 @@ public class GameController extends BaseController {
                     this.gameEventHandlerCollection.stonePileButtonClicked(this, currentStone));
             this.stonePileHBox.getChildren().add(stonePileButton);
         }
+    }
 
-        //
-        // Updates the possible player actions display
-        //
+    private void updatePlayerActionDisplay() {
         this.playerActionsHBox.getChildren().clear();
         int playerActionsCount = this.gameHandler.getCurrentPlayer().getPossibleMoves().length;
         for (int i = 0; i < playerActionsCount; ++i) {
@@ -155,17 +142,29 @@ public class GameController extends BaseController {
                     this.gameEventHandlerCollection.playerActionButtonClicked(this, currentMoveKind));
             this.playerActionsHBox.getChildren().add(playerActionButton);
         }
+    }
 
-        //
-        // Updates the current player display
-        //
+    private void updateCurrentPlayerDisplay() {
         this.currentPlayerLabel.setText("Current Player: " + this.gameHandler.getCurrentPlayer().getName());
+    }
 
-        //
-        // Updates the winner display
-        //
+    private void updateWinnerDisplay() {
         String winnerInfo = this.gameHandler.isGameOver() ? this.gameHandler.getLeadingPlayer().getName() : "none";
         this.winnerLabel.setText("Winner: " + winnerInfo);
+    }
+
+    public void updateGuiToCurrentGameState() {
+        this.updateStoneLineDisplay();
+
+        this.updateScoreDisplay();
+
+        this.updateStonePileDisplay();
+
+        this.updatePlayerActionDisplay();
+
+        this.updateCurrentPlayerDisplay();
+
+        this.updateWinnerDisplay();
     }
 
     @FXML
