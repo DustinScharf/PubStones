@@ -21,31 +21,20 @@ import java.util.ResourceBundle;
 public class StartMenuController extends BaseController {
     @Override
     public void init() {
-        KeyCombination controlMKeyCombination = new KeyCodeCombination(KeyCode.M, KeyCodeCombination.CONTROL_DOWN);
-        super.getManager().getSceneManager().getStage().getScene().addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
-            if(controlMKeyCombination.match(event)){
-                if (super.getManager().getMusicManager().isMuted()) {
-                    super.getManager().getMusicManager().unMuteMusic(3);
-                } else {
-                    super.getManager().getMusicManager().muteMusic(1);
-                }
-            }
-            event.consume();
-        });
-
         super.getManager().getMusicManager().setMusic("/music/menu/1.mp3");
-        super.getManager().getMusicManager().playMusic(3);
+        super.getManager().getMusicManager().setVolume(0); // TODO change volume from gui
+        super.getManager().getMusicManager().playMusic();
     }
 
     @FXML
     public void playButtonClicked(ActionEvent actionEvent) {
-        super.getManager().getMusicManager().stopMusic(1);
+        super.getManager().getMusicManager().stopMusic();
         super.getManager().getSceneManager().switchScene("/gui/fxml/game/Game.fxml");
     }
 
     @FXML
     public void exitButtonClicked(ActionEvent actionEvent) {
-        super.getManager().getMusicManager().stopMusic(0);
+        super.getManager().getMusicManager().stopMusic();
         super.getManager().getSceneManager().getStage().close();
     }
 }
