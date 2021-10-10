@@ -19,86 +19,53 @@ public class MusicManager {
 
     private final Map<String, Media> music;
 
-    private double lastVolume = 1; // MAX VOLUME
-
-    private boolean isPlaying = false;
-    private boolean isMuted = false;
+    private double volume;
 
     public MusicManager() {
         this.music = new HashMap<>();
+        this.volume = 1;
     }
 
-    public boolean isPlaying() {
-        return isPlaying;
+    public double getVolume() {
+        return volume;
     }
 
-    public boolean isMuted() {
-        return isMuted;
+    public void setVolume(double volume) {
+        this.volume = volume;
+        this.mediaPlayer.setVolume(this.volume);
     }
 
     public void setMusic(String mp3FilePath) {
-//        Media musicMedia = this.music.computeIfAbsent(mp3FilePath, mp3FilePathTemp -> {
-//            URL url = getClass().getResource(mp3FilePathTemp);
-//            if (url == null) {
-//                throw new NullPointerException(); // TODO write own exception
-//            }
-//
-//            String path = url.toString();
-//            return new Media(path);
-//        });
-        Media musicMedia = new Media(getClass().getResource(mp3FilePath).toString());
+        Media musicMedia = this.music.computeIfAbsent(mp3FilePath, mp3FilePathTemp -> {
+            URL url = getClass().getResource(mp3FilePathTemp);
+            if (url == null) {
+                throw new NullPointerException(); // TODO write own exception
+            }
+
+            String path = url.toString();
+            return new Media(path);
+        });
         this.mediaPlayer = new MediaPlayer(musicMedia);
-        this.mediaPlayer.setVolume(this.isMuted ? 0 : this.lastVolume);
+        this.mediaPlayer.setVolume(this.volume);
         this.mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
     }
 
-    public void playMusic(int fadeInSeconds) {
-        if (fadeInSeconds > 0 && !this.isMuted) {
-            this.mediaPlayer.setVolume(0);
-            this.mediaPlayer.play();
-            Timeline timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(fadeInSeconds),
-                            new KeyValue(this.mediaPlayer.volumeProperty(), 1)));
-            timeline.play();
-        }
-        this.isPlaying = true;
+    public void playMusic() {
+        this.mediaPlayer.play();
+
+//        int fadeInSeconds = 3;
+//        if (fadeInSeconds > 0 && !this.isMuted) {
+//            this.mediaPlayer.setVolume(0);
+//            this.mediaPlayer.play();
+//            Timeline timeline = new Timeline(
+//                    new KeyFrame(Duration.seconds(fadeInSeconds),
+//                            new KeyValue(this.mediaPlayer.volumeProperty(), 1)));
+//            timeline.play();
+//        }
+//        this.isPlaying = true;
     }
 
-    public void stopMusic(int fadeOutSeconds) {
-        // TODO actually stop the music
-//        DelayRunner.startSleeper(fadeOutSeconds).setOnSucceeded(event -> this.mediaPlayer.stop());
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(fadeOutSeconds),
-                        new KeyValue(this.mediaPlayer.volumeProperty(), 0)));
-        timeline.play();
-    }
-
-    public void muteMusic(int fadeOutSeconds) {
-        if (this.isMuted) {
-            return;
-        }
-
-        this.lastVolume = this.mediaPlayer.getVolume();
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(fadeOutSeconds),
-                        new KeyValue(this.mediaPlayer.volumeProperty(), 0)));
-        timeline.play();
-
-        this.isMuted = true;
-    }
-
-    public void unMuteMusic(int fadeInSeconds) {
-        if (!this.isMuted) {
-            return;
-        }
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(fadeInSeconds),
-                        new KeyValue(this.mediaPlayer.volumeProperty(), this.lastVolume)));
-        timeline.play();
-
-        this.isMuted = false;
+    public void stopMusic() {
+        this.mediaPlayer.stop();
     }
 }
