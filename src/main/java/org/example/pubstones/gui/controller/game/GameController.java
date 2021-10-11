@@ -179,4 +179,29 @@ public class GameController extends BaseController {
             e.printStackTrace(); // TODO
         }
     }
+
+    // UTIL
+    public String neededComponentsForCurrentMoveKind() {
+        int neededComponentsForCurrentMoveKindAmount = 0;
+        StringBuilder stringBuilder = new StringBuilder();
+        if (this.currentlyBuildingGameMove.getMoveKind().containsArgumentClass(Stone.class)) {
+            stringBuilder.append("Stone, ");
+            ++neededComponentsForCurrentMoveKindAmount;
+        }
+        if (this.currentlyBuildingGameMove.getMoveKind().containsArgumentClass(Symbol.class)) {
+            stringBuilder.append("Symbol, ");
+            ++neededComponentsForCurrentMoveKindAmount;
+        }
+        if (this.currentlyBuildingGameMove.getMoveKind().containsArgumentClass(GamePlayer.class)) {
+            stringBuilder.append("GamePlayer, ");
+            ++neededComponentsForCurrentMoveKindAmount;
+        }
+
+        // delete "," at end
+        if (neededComponentsForCurrentMoveKindAmount >= 1) {
+            stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
+        }
+
+        return stringBuilder.toString();
+    }
 }

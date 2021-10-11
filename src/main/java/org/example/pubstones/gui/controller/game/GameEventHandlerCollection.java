@@ -18,6 +18,8 @@ import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentExc
 import org.example.pubstones.game.gamehandling.exceptions.MissingMoveArgumentException;
 import org.example.pubstones.gui.util.Alerter;
 
+import java.util.Arrays;
+
 public class GameEventHandlerCollection {
     public void stoneLineButtonClicked(GameController gameController, Stone stone, MouseEvent mouseEvent) {
         if (gameController.getCurrentlyBuildingGameMove() == null) {
@@ -37,10 +39,10 @@ public class GameEventHandlerCollection {
         try {
             gameController.getCurrentlyBuildingGameMove().stone(stone);
         } catch (IllegalMoveArgumentException e) {
+            System.out.println(gameController.getCurrentlyBuildingGameMove().getMoveKind().getName());
             Alerter.buildInfoAlert(
-                            "No stone needed...",
-                            "This move does not require a stone.\n" +
-                                    "You can simply close this window and choose the necessary components."
+                            "No stone needed for this move...",
+                            "Please select " + gameController.neededComponentsForCurrentMoveKind()
                     )
                     .showAndWait();
         }
@@ -61,9 +63,8 @@ public class GameEventHandlerCollection {
             currentlyBuildingGameMove.symbol(symbol);
         } catch (IllegalMoveArgumentException e) {
             Alerter.buildInfoAlert(
-                            "No symbol needed...",
-                            "This move does not require a symbol.\n" +
-                                    "You can simply close this window and choose the necessary components."
+                            "No symbol needed for this move...",
+                            "Please select " + gameController.neededComponentsForCurrentMoveKind()
                     )
                     .showAndWait();
         }
@@ -83,9 +84,8 @@ public class GameEventHandlerCollection {
             gameController.getCurrentlyBuildingGameMove().stone(stone);
         } catch (IllegalMoveArgumentException e) {
             Alerter.buildInfoAlert(
-                            "No stone needed...",
-                            "This move does not require a stone.\n" +
-                                    "You can simply close this window and choose the necessary components."
+                            "No stone needed for this move...",
+                            "Please select " + gameController.neededComponentsForCurrentMoveKind()
                     )
                     .showAndWait();
         }
@@ -110,9 +110,8 @@ public class GameEventHandlerCollection {
             gameController.getCurrentlyBuildingGameMove().player(gamePlayer);
         } catch (IllegalMoveArgumentException e) {
             Alerter.buildInfoAlert(
-                            "No player needed...",
-                            "This move does not require a player.\n" +
-                                    "You can simply close this window and choose the necessary components."
+                            "No player needed for this move...",
+                            "Please select " + gameController.neededComponentsForCurrentMoveKind()
                     )
                     .showAndWait();
         }
