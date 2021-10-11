@@ -196,6 +196,10 @@ public class GameController extends BaseController {
             stringBuilder.append("GamePlayer, ");
             ++neededComponentsForCurrentMoveKindAmount;
         }
+        if (this.currentlyBuildingGameMove.getMoveKind().containsArgumentClass(boolean.class)) {
+            stringBuilder.append("Place Side, ");
+            ++neededComponentsForCurrentMoveKindAmount;
+        }
 
         // delete "," at end
         if (neededComponentsForCurrentMoveKindAmount >= 1) {
