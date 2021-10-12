@@ -94,9 +94,10 @@ public class Stone {
 
     @Override
     public String toString() {
-        String symbol = this.symbol.toString();
-        String turned = this.turned ? "-" : "+";
-        return "{" + symbol+ "," + turned + "}";
+//        String symbol = this.symbol.toString();
+//        String turned = this.turned ? "-" : "+";
+//        return "{" + symbol+ "," + turned + "}";
+        return "< " + (this.turned ? "?" : this.symbol) + " >";
     }
     
 }
