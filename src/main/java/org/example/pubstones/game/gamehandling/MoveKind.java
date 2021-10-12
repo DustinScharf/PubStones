@@ -28,9 +28,7 @@ public enum MoveKind {
         this.moveClass = moveClass;
         this.args = new Class<?>[moveClass.getConstructors()[0].getParameterCount()];
         for (int i = 0; i < this.args.length; i++) {
-            System.out.println("dsfsd");
             this.args[i] = moveClass.getConstructors()[0].getParameters()[i].getType();
-            System.out.println(this.args[i]);
         }
         this.allowedGamePlayerMoveStates = allowedGamePlayerMoveStates;
     }
