@@ -18,8 +18,6 @@ import org.example.pubstones.game.gamehandling.exceptions.IllegalMoveArgumentExc
 import org.example.pubstones.game.gamehandling.exceptions.MissingMoveArgumentException;
 import org.example.pubstones.gui.util.Alerter;
 
-import java.util.Arrays;
-
 public class GameEventHandlerCollection {
     public void stoneLineButtonClicked(GameController gameController, Stone stone, MouseEvent mouseEvent) {
         if (gameController.getCurrentlyBuildingGameMove() == null) {
