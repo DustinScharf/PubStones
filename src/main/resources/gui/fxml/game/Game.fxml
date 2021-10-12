@@ -9,20 +9,20 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchorPane" stylesheets="@../../css/base-style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pubstones.gui.controller.game.GameController">
    <children>
-      <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                <children>
                   <Label text="Stone Line" />
-                  <HBox fx:id="stoneLineHBox" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox fx:id="stoneLineHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                   <Label layoutX="10.0" layoutY="10.0" text="Symbols" />
-                  <HBox fx:id="symbolsHBox" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox fx:id="symbolsHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
                   <Label layoutX="10.0" layoutY="33.0" text="Score" />
-                  <VBox fx:id="scoresVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" />
+                  <VBox fx:id="scoresVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
                   <Label layoutX="10.0" layoutY="50.0" text="Pool" />
-                  <HBox fx:id="stonePileHBox" alignment="TOP_CENTER" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox fx:id="stonePileHBox" alignment="CENTER" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
                   <Label layoutX="10.0" layoutY="160.0" text="Moves" />
-                  <HBox fx:id="playerActionsHBox" alignment="TOP_CENTER" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox fx:id="playerActionsHBox" alignment="CENTER" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0" />
                   <Button mnemonicParsing="false" onAction="#fireButtonClicked" text="Finish Move">
                      <font>
                         <Font name="System Bold" size="12.0" />
