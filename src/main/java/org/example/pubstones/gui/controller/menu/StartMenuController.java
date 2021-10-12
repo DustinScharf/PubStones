@@ -1,15 +1,10 @@
 package org.example.pubstones.gui.controller.menu;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
 import org.example.pubstones.gui.controller.BaseController;
-
-import java.net.URL;
 
 public class StartMenuController extends BaseController {
     @FXML
