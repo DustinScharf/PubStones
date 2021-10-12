@@ -13,17 +13,17 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                <children>
-                  <Label text="stoneLineHBox" />
+                  <Label text="Stone Line" />
                   <HBox fx:id="stoneLineHBox" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label layoutX="10.0" layoutY="10.0" text="symbolsHBox" />
+                  <Label layoutX="10.0" layoutY="10.0" text="Symbols" />
                   <HBox fx:id="symbolsHBox" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
-                  <Label layoutX="10.0" layoutY="33.0" text="scoresVBox" />
+                  <Label layoutX="10.0" layoutY="33.0" text="Score" />
                   <VBox fx:id="scoresVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" />
-                  <Label layoutX="10.0" layoutY="50.0" text="stonePileHBox" />
+                  <Label layoutX="10.0" layoutY="50.0" text="Pool" />
                   <HBox fx:id="stonePileHBox" alignment="TOP_CENTER" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
-                  <Label layoutX="10.0" layoutY="160.0" text="playerActionsHBox" />
+                  <Label layoutX="10.0" layoutY="160.0" text="Moves" />
                   <HBox fx:id="playerActionsHBox" alignment="TOP_CENTER" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#fireButtonClicked" text="Fire">
+                  <Button mnemonicParsing="false" onAction="#fireButtonClicked" text="Finish Move">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
