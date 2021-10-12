@@ -24,8 +24,8 @@ public class GameEventHandlerCollection {
     public void stoneLineButtonClicked(GameController gameController, Stone stone, MouseEvent mouseEvent) {
         if (gameController.getCurrentlyBuildingGameMove() == null) {
             Alerter.buildInfoAlert(
-                            "No move set...",
-                            "Select a move first."
+                            "No move selected...",
+                            "You need to select your move type first in the bottom of the window."
                     )
                     .showAndWait();
             return;
@@ -41,8 +41,8 @@ public class GameEventHandlerCollection {
         } catch (IllegalMoveArgumentException e) {
             System.out.println(gameController.getCurrentlyBuildingGameMove().getMoveKind().getName());
             Alerter.buildInfoAlert(
-                            "No stone needed for this move...",
-                            "Please select " + gameController.neededComponentsForCurrentMoveKind()
+                            "This move needs no stone...",
+                            "You need to select a " + gameController.neededComponentsForCurrentMoveKind()
                     )
                     .showAndWait();
         }
@@ -51,8 +51,8 @@ public class GameEventHandlerCollection {
     public void symbolLineButtonClicked(GameController gameController, Symbol symbol) {
         if (gameController.getCurrentlyBuildingGameMove() == null) {
             Alerter.buildInfoAlert(
-                            "No move set...",
-                            "Select a move first."
+                            "No move selected...",
+                            "You need to select your move type first in the bottom of the window."
                     )
                     .showAndWait();
             return;
@@ -63,8 +63,8 @@ public class GameEventHandlerCollection {
             currentlyBuildingGameMove.symbol(symbol);
         } catch (IllegalMoveArgumentException e) {
             Alerter.buildInfoAlert(
-                            "No symbol needed for this move...",
-                            "Please select " + gameController.neededComponentsForCurrentMoveKind()
+                            "This move needs no symbol...",
+                            "You need to select a " + gameController.neededComponentsForCurrentMoveKind()
                     )
                     .showAndWait();
         }
@@ -73,8 +73,8 @@ public class GameEventHandlerCollection {
     public void stonePileButtonClicked(GameController gameController, Stone stone) {
         if (gameController.getCurrentlyBuildingGameMove() == null) {
             Alerter.buildInfoAlert(
-                            "No move set...",
-                            "Select a move first."
+                            "No move selected...",
+                            "You need to select your move type first in the bottom of the window."
                     )
                     .showAndWait();
             return;
@@ -84,8 +84,8 @@ public class GameEventHandlerCollection {
             gameController.getCurrentlyBuildingGameMove().stone(stone);
         } catch (IllegalMoveArgumentException e) {
             Alerter.buildInfoAlert(
-                            "No stone needed for this move...",
-                            "Please select " + gameController.neededComponentsForCurrentMoveKind()
+                            "This move needs no stone...",
+                            "You need to select a " + gameController.neededComponentsForCurrentMoveKind()
                     )
                     .showAndWait();
         }
@@ -99,8 +99,8 @@ public class GameEventHandlerCollection {
     public void playerScoreButtonClicked(GameController gameController, GamePlayer gamePlayer) {
         if (gameController.getCurrentlyBuildingGameMove() == null) {
             Alerter.buildInfoAlert(
-                            "No move set...",
-                            "Select a move first."
+                            "No move selected...",
+                            "You need to select your move type first in the bottom of the window."
                     )
                     .showAndWait();
             return;
@@ -110,8 +110,8 @@ public class GameEventHandlerCollection {
             gameController.getCurrentlyBuildingGameMove().player(gamePlayer);
         } catch (IllegalMoveArgumentException e) {
             Alerter.buildInfoAlert(
-                            "No player needed for this move...",
-                            "Please select " + gameController.neededComponentsForCurrentMoveKind()
+                            "This move needs no target player...",
+                            "You need to select a " + gameController.neededComponentsForCurrentMoveKind()
                     )
                     .showAndWait();
         }
@@ -121,8 +121,8 @@ public class GameEventHandlerCollection {
         if (gameController.getCurrentlyBuildingGameMove() == null) {
             new Tada((Button) actionEvent.getSource()).play();
             Alerter.buildInfoAlert(
-                            "No move set...",
-                            "Select a move first."
+                            "No move selected...",
+                            "You need to select your move type first in the bottom of the window."
                     )
                     .showAndWait();
             return;
@@ -140,8 +140,9 @@ public class GameEventHandlerCollection {
             new Tada((Button) actionEvent.getSource()).play();
 
             Alerter.buildInfoAlert(
-                            "Move not fully initialized...",
-                            "Choose all necessary components for this move first."
+                            "Move not finished...",
+                            "You need to select a " + gameController.neededComponentsForCurrentMoveKind() +
+                                    "\nAfterwards you can finish the move"
                     )
                     .showAndWait();
         }
