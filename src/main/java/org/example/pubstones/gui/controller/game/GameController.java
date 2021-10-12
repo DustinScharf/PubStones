@@ -152,8 +152,8 @@ public class GameController extends BaseController {
     }
 
     private void updateWholeWinnerDisplay() {
-        String winnerInfo = this.gameHandler.isGameOver() ? this.gameHandler.getLeadingPlayer().getName() : "none";
-        this.winnerLabel.setText("Winner: " + winnerInfo);
+        String winner = this.gameHandler.getLeadingPlayer().getName();
+        this.winnerLabel.setText(this.gameHandler.isGameOver() ? "Winner: " + winner : "Game running...");
     }
 
     public void updateWholeGuiToCurrentGameState() {
