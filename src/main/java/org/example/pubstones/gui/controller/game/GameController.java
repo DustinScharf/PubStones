@@ -135,14 +135,18 @@ public class GameController extends BaseController {
         }
     }
 
-    private void updateWholePlayerActionDisplay() {
+    public void updateWholePlayerActionDisplay() {
         this.playerActionsHBox.getChildren().clear();
         int playerActionsCount = this.gameHandler.getCurrentPlayer().getPossibleMoves().length;
         for (int i = 0; i < playerActionsCount; ++i) {
             MoveKind currentMoveKind = this.gameHandler.getCurrentPlayer().getPossibleMoves()[i];
             Button playerActionButton = new Button("" + currentMoveKind);
             playerActionButton.setOnAction(clickEvent ->
-                    this.gameEventHandlerCollection.playerActionButtonClicked(this, currentMoveKind));
+                    this.gameEventHandlerCollection.playerActionButtonClicked(
+                            this,
+                            currentMoveKind,
+                            clickEvent
+                    ));
             this.playerActionsHBox.getChildren().add(playerActionButton);
         }
     }
