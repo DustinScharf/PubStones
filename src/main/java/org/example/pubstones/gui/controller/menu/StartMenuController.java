@@ -25,8 +25,7 @@ public class StartMenuController extends BaseController {
     public void init() {
         URL imageUrl = getClass().getResource("/gui/images/background/start_menu_night.jpg");
         Image image = new Image(imageUrl.toString());  // TODO null check
-        BackgroundFill backgroundFill = new BackgroundFill(new
-                ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY);
+        BackgroundFill backgroundFill = new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY);
         anchorPane.setBackground(new Background(backgroundFill));
 
         super.getManager().getMusicManager().setMusic("/music/menu/1.mp3");
