@@ -2,9 +2,17 @@ package org.example.pubstones.gui.controller.menu;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.ImagePattern;
 import org.example.pubstones.gui.controller.BaseController;
+
+import java.net.URL;
 
 public class StartMenuController extends BaseController {
     @FXML
@@ -15,7 +23,7 @@ public class StartMenuController extends BaseController {
 
     @Override
     public void init() {
-//        URL imageUrl = getClass().getResource("/gui/images/background/start_menu_night.jpg");
+        URL imageUrl = getClass().getResource("/gui/images/background/start_menu_night.jpg");
 //        Image image = new Image(imageUrl.toString(), 800, 600, false, true); // TODO null check
 //        BackgroundImage backgroundImage = new BackgroundImage(
 //                image,
@@ -25,6 +33,11 @@ public class StartMenuController extends BaseController {
 //                BackgroundSize.DEFAULT
 //        );
 //        anchorPane.setBackground(new Background(backgroundImage));
+
+        Image image = new Image(imageUrl.toString());
+        BackgroundFill backgroundFill = new BackgroundFill(new
+                ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY);
+        anchorPane.setBackground(new Background(backgroundFill));
 
         super.getManager().getMusicManager().setMusic("/music/menu/1.mp3");
         super.getManager().getMusicManager().setVolume(this.volumeSlider.getValue());
