@@ -12,6 +12,9 @@ public class PubStonesApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Manager manager = new Manager(primaryStage);
+
+//        manager.getSceneManager().getStage().setFullScreen(true);
+
         manager.getSceneManager().switchScene("/gui/fxml/menu/StartMenu.fxml");
 
         primaryStage.show();
