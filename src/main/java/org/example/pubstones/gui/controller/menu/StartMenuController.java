@@ -13,6 +13,10 @@ import javafx.scene.paint.ImagePattern;
 import org.example.pubstones.gui.controller.BaseController;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 public class StartMenuController extends BaseController {
     @FXML
@@ -23,7 +27,13 @@ public class StartMenuController extends BaseController {
 
     @Override
     public void init() {
-        URL imageUrl = getClass().getResource("/gui/images/background/start_menu_night.jpg");
+        URL imageUrl;
+        int current_day_hour = LocalDateTime.now().getHour();
+        if (current_day_hour >= 19 || current_day_hour < 7) {
+            imageUrl = getClass().getResource("/gui/images/background/start_menu_night.jpg");
+        } else {
+            imageUrl = getClass().getResource("/gui/images/background/start_menu_day.jpg");
+        }
         Image image = new Image(imageUrl.toString());  // TODO null check
         BackgroundFill backgroundFill = new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY);
         anchorPane.setBackground(new Background(backgroundFill));
