@@ -5,6 +5,7 @@ import animatefx.animation.Tada;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.boardpieces.exceptions.StoneAlreadyContainedException;
@@ -89,9 +90,10 @@ public class GameEventHandlerCollection {
         }
     }
 
-    public void playerActionButtonClicked(GameController gameController, MoveKind moveKind) {
+    public void playerActionButtonClicked(GameController gameController, MoveKind moveKind, ActionEvent actionEvent) {
         gameController.setCurrentlyBuildingGameMove(GameMove.getMove(moveKind));
         gameController.getCurrentlyBuildingGameMove().sender(gameController.getGameHandler().getCurrentPlayer());
+        ((Button) actionEvent.getSource()).setStyle("-fx-text-fill: green;"); // TODO reset after switch action without fire
     }
 
     public void playerScoreButtonClicked(GameController gameController, GamePlayer gamePlayer) {
