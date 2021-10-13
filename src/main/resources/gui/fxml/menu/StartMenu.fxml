@@ -12,11 +12,20 @@
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" styleClass="lightedContainer" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <Label text="PubStones">
-               <font>
-                  <Font name="Jokerman" size="72.0" />
-               </font>
-            </Label>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="PubStones">
+                     <font>
+                        <Font name="Jokerman" size="72.0" />
+                     </font>
+                  </Label>
+                  <Label text="The Online Pub Game">
+                     <font>
+                        <Font name="Jokerman" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
             <Button mnemonicParsing="false" onAction="#playButtonClicked" text="Play">
                <font>
                   <Font name="Jokerman" size="36.0" />
