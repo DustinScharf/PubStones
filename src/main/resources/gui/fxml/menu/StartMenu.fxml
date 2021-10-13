@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -10,32 +11,39 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="anchorPane" stylesheets="@../../css/base-style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pubstones.gui.controller.menu.StartMenuController">
    <children>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" styleClass="lightedContainer" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <VBox alignment="CENTER">
+            <VBox alignment="CENTER" maxHeight="450.0" maxWidth="500.0" minHeight="450.0" minWidth="500.0" spacing="25.0" styleClass="lightedContainer">
                <children>
-                  <Label text="PubStones">
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Label text="PubStones">
+                           <font>
+                              <Font name="Jokerman" size="72.0" />
+                           </font>
+                        </Label>
+                        <Label text="Bring The Pub Home">
+                           <font>
+                              <Font name="Jokerman" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" onAction="#playButtonClicked" text="Play">
                      <font>
-                        <Font name="Jokerman" size="72.0" />
+                        <Font name="Jokerman" size="36.0" />
                      </font>
-                  </Label>
-                  <Label text="Bring The Pub Home">
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#exitButtonClicked" text="Exit">
                      <font>
-                        <Font name="Jokerman" size="24.0" />
+                        <Font name="Jokerman" size="36.0" />
                      </font>
-                  </Label>
+                  </Button>
                </children>
+               <effect>
+                  <Bloom threshold="0.79" />
+               </effect>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#playButtonClicked" text="Play">
-               <font>
-                  <Font name="Jokerman" size="36.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#exitButtonClicked" text="Exit">
-               <font>
-                  <Font name="Jokerman" size="36.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
       <HBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
