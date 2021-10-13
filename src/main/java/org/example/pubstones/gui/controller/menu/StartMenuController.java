@@ -24,16 +24,6 @@ public class StartMenuController extends BaseController {
     @Override
     public void init() {
         URL imageUrl = getClass().getResource("/gui/images/background/start_menu_night.jpg");
-//        Image image = new Image(imageUrl.toString(), 800, 600, false, true); // TODO null check
-//        BackgroundImage backgroundImage = new BackgroundImage(
-//                image,
-//                BackgroundRepeat.NO_REPEAT,
-//                BackgroundRepeat.NO_REPEAT,
-//                BackgroundPosition.CENTER,
-//                BackgroundSize.DEFAULT
-//        );
-//        anchorPane.setBackground(new Background(backgroundImage));
-
         Image image = new Image(imageUrl.toString());  // TODO null check
         BackgroundFill backgroundFill = new BackgroundFill(new
                 ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY);
