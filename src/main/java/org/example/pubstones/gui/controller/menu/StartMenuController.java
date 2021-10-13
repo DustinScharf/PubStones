@@ -34,7 +34,7 @@ public class StartMenuController extends BaseController {
 //        );
 //        anchorPane.setBackground(new Background(backgroundImage));
 
-        Image image = new Image(imageUrl.toString());
+        Image image = new Image(imageUrl.toString());  // TODO null check
         BackgroundFill backgroundFill = new BackgroundFill(new
                 ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY);
         anchorPane.setBackground(new Background(backgroundFill));
