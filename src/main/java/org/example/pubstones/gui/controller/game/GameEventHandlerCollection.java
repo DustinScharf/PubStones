@@ -5,7 +5,6 @@ import animatefx.animation.Tada;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
 import org.example.pubstones.game.boardpieces.Stone;
 import org.example.pubstones.game.boardpieces.Symbol;
 import org.example.pubstones.game.boardpieces.exceptions.StoneAlreadyContainedException;
