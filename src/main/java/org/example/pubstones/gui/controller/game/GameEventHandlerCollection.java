@@ -93,7 +93,8 @@ public class GameEventHandlerCollection {
     public void playerActionButtonClicked(GameController gameController, MoveKind moveKind, ActionEvent actionEvent) {
         gameController.setCurrentlyBuildingGameMove(GameMove.getMove(moveKind));
         gameController.getCurrentlyBuildingGameMove().sender(gameController.getGameHandler().getCurrentPlayer());
-        ((Button) actionEvent.getSource()).setStyle("-fx-text-fill: green;"); // TODO reset after switch action without fire
+        // TODO reset after switch action without fire
+        ((Button) actionEvent.getSource()).setStyle("-fx-text-fill: green;");
     }
 
     public void playerScoreButtonClicked(GameController gameController, GamePlayer gamePlayer) {
