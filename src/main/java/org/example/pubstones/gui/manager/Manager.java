@@ -1,6 +1,7 @@
 package org.example.pubstones.gui.manager;
 
 import javafx.stage.Stage;
+import org.example.pubstones.gui.UserSettings;
 
 public class Manager {
     private final SceneManager sceneManager;
@@ -17,5 +18,9 @@ public class Manager {
 
     public MusicManager getMusicManager() {
         return musicManager;
+    }
+
+    public void applyUserSettings(UserSettings userSettings) {
+
     }
 }
