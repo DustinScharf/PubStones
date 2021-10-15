@@ -39,7 +39,6 @@ public class StartMenuController extends BaseController {
         anchorPane.setBackground(new Background(backgroundFill));
 
         super.getManager().getMusicManager().setMusic("/music/menu/1.mp3");
-//        super.getManager().getMusicManager().setVolume(this.volumeSlider.getValue());
         this.volumeSlider.setValue(super.getManager().getMusicManager().getVolume());
 
         this.volumeSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
