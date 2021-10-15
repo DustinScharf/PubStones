@@ -26,7 +26,9 @@ public class MusicManager {
 
     public void setVolume(double volume) {
         this.volume = volume;
-        this.mediaPlayer.setVolume(this.volume);
+        if (this.mediaPlayer != null) {
+            this.mediaPlayer.setVolume(this.volume);
+        }
     }
 
     public void setMusic(String mp3FilePath) {
