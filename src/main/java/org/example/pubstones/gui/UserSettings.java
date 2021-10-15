@@ -5,4 +5,8 @@ public class UserSettings {
 
     private String name;
     private double volume;
+
+    public UserSettings(String settingsName) {
+        this.settingsName = settingsName;
+    }
 }
