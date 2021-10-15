@@ -21,6 +21,6 @@ public class Manager {
     }
 
     public void applyUserSettings(UserSettings userSettings) {
-
+        // TODO name of user
     }
 }
