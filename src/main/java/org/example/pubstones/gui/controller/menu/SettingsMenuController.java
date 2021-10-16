@@ -10,9 +10,14 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.ImagePattern;
+import org.example.pubstones.gui.UserSettings;
 import org.example.pubstones.gui.controller.BaseController;
 import org.example.pubstones.util.exception.OutOfTimelineException;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDateTime;
 
@@ -46,6 +51,19 @@ public class SettingsMenuController extends BaseController {
 
     @FXML
     public void backButtonClicked(ActionEvent actionEvent) {
+        UserSettings userSettings = new UserSettings("default_settings");
+        userSettings.setName("TODO");
+        userSettings.setVolume(super.getManager().getMusicManager().getVolume());
+        // TODO write to file
+        try (ObjectOutputStream objectOutputStream =
+                     new ObjectOutputStream(new FileOutputStream("userdata/" + userSettings.getSettingsName()))) {
+            objectOutputStream.writeObject(userSettings);
+            objectOutputStream.flush();
+        } catch (IOException e) {
+            System.err.println("File not found");
+            e.printStackTrace(); // TODO
+        }
+
         try {
             super.getManager().getMusicManager().stopMusic();
             super.getManager().getSceneManager().switchToPreviousScene();
