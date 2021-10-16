@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.example.pubstones.gui.UserSettings;
 import org.example.pubstones.gui.manager.Manager;
+import org.example.pubstones.gui.util.Alerter;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
@@ -16,16 +18,20 @@ public class PubStonesApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Manager manager = new Manager(primaryStage);
+        primaryStage.setTitle("PubStones");
 
-//        manager.getSceneManager().getStage().setFullScreen(true);
+        Manager manager = new Manager(primaryStage);
 
         try (ObjectInputStream objectInputStream =
                      new ObjectInputStream(new FileInputStream("userdata/custom_settings"))) {
             UserSettings userSettings = (UserSettings) objectInputStream.readObject();
             manager.applyUserSettings(userSettings);
-        } catch (IOException ioException) {
-            ioException.printStackTrace(); // TODO
+        } catch (FileNotFoundException fileNotFoundException) {
+            Alerter.buildInfoAlert(
+                    "Welcome to PubStones!",
+                    "Seems like this is the first time you start PubStones!\n" +
+                            "We loaded the default settings for you, you can changed them in the settings menu later..."
+            ).showAndWait();
         }
 
         manager.getSceneManager().switchScene("/gui/fxml/menu/StartMenu.fxml");
