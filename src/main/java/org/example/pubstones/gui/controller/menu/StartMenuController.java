@@ -33,7 +33,7 @@ public class StartMenuController extends BaseController {
         }
         Image image = new Image(imageUrl.toString());  // TODO null check
         BackgroundFill backgroundFill = new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY);
-        anchorPane.setBackground(new Background(backgroundFill));
+        this.anchorPane.setBackground(new Background(backgroundFill));
 
         super.getManager().getMusicManager().setMusic("/music/menu/1.mp3");
 
