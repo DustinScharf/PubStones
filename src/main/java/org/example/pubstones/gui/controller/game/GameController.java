@@ -71,8 +71,8 @@ public class GameController extends BaseController {
 
     private void initNewGame() {
         this.gameHandler = new GameHandler();
-        this.gameHandler.addPlayer(new GamePlayer("Player 1"));
-        this.gameHandler.addPlayer(new GamePlayer("Player 2"));
+        this.gameHandler.addPlayer(new GamePlayer(super.getManager().getUserSettings().getName()));
+        this.gameHandler.addPlayer(new GamePlayer("Second Player"));
 
         this.gameEventHandlerCollection = new GameEventHandlerCollection();
 
