@@ -56,6 +56,11 @@ public class StartMenuController extends BaseController {
     }
 
     @FXML
+    public void settingsButtonClicked(ActionEvent actionEvent) {
+        super.getManager().getSceneManager().switchScene("/gui/fxml/menu/SettingsMenu.fxml");
+    }
+
+    @FXML
     public void exitButtonClicked(ActionEvent actionEvent) {
         super.getManager().getMusicManager().stopMusic();
         super.getManager().getSceneManager().getStage().close();
