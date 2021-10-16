@@ -5,6 +5,10 @@ import javafx.stage.Stage;
 import org.example.pubstones.gui.UserSettings;
 import org.example.pubstones.gui.manager.Manager;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 public class PubStonesApp extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -16,9 +20,13 @@ public class PubStonesApp extends Application {
 
 //        manager.getSceneManager().getStage().setFullScreen(true);
 
-        UserSettings userSettings = new UserSettings("settings1");
-        userSettings.setVolume(0.25);
-        manager.applyUserSettings(userSettings);
+        try (ObjectInputStream objectInputStream =
+                     new ObjectInputStream(new FileInputStream("userdata/default_settings"))) {
+            UserSettings userSettings = (UserSettings) objectInputStream.readObject();
+            manager.applyUserSettings(userSettings);
+        } catch (IOException ioException) {
+            ioException.printStackTrace(); // TODO
+        }
 
         manager.getSceneManager().switchScene("/gui/fxml/menu/StartMenu.fxml");
 
