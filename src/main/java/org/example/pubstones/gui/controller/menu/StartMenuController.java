@@ -22,9 +22,6 @@ public class StartMenuController extends BaseController {
     @FXML
     AnchorPane anchorPane;
 
-    @FXML
-    Slider volumeSlider;
-
     @Override
     public void init() {
         URL imageUrl;
@@ -39,12 +36,6 @@ public class StartMenuController extends BaseController {
         anchorPane.setBackground(new Background(backgroundFill));
 
         super.getManager().getMusicManager().setMusic("/music/menu/1.mp3");
-        this.volumeSlider.setValue(super.getManager().getMusicManager().getVolume());
-
-        this.volumeSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
-            double sliderValue = newValue.doubleValue();
-            getManager().getMusicManager().setVolume(sliderValue);
-        });
 
         super.getManager().getMusicManager().playMusic();
     }
