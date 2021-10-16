@@ -7,6 +7,8 @@ public class Manager {
     private final SceneManager sceneManager;
     private final MusicManager musicManager;
 
+    private UserSettings userSettings;
+
     public Manager(Stage stage) {
         this.sceneManager = new SceneManager(this, stage);
         this.musicManager = new MusicManager();
@@ -20,8 +22,13 @@ public class Manager {
         return musicManager;
     }
 
-    public void applyUserSettings(UserSettings userSettings) {
-        // TODO name of user
-        this.musicManager.setVolume(userSettings.getVolume());
+    public UserSettings getUserSettings() {
+        return userSettings;
+    }
+
+    public void setUserSettings(UserSettings userSettings) {
+        this.userSettings = userSettings;
+
+        this.musicManager.setVolume(this.userSettings.getVolume());
     }
 }
