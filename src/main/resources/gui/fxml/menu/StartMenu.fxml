@@ -34,7 +34,7 @@
                         <Font name="Jokerman" size="36.0" />
                      </font>
                   </Button>
-                  <Button layoutX="197.0" layoutY="231.0" minWidth="200.0" mnemonicParsing="false" onAction="#playButtonClicked" text="Settings">
+                  <Button layoutX="197.0" layoutY="231.0" minWidth="200.0" mnemonicParsing="false" onAction="#settingsButtonClicked" text="Settings">
                      <font>
                         <Font name="Jokerman" size="36.0" />
                      </font>
