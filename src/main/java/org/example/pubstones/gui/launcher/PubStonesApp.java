@@ -21,7 +21,7 @@ public class PubStonesApp extends Application {
 //        manager.getSceneManager().getStage().setFullScreen(true);
 
         try (ObjectInputStream objectInputStream =
-                     new ObjectInputStream(new FileInputStream("userdata/default_settings"))) {
+                     new ObjectInputStream(new FileInputStream("userdata/custom_settings"))) {
             UserSettings userSettings = (UserSettings) objectInputStream.readObject();
             manager.applyUserSettings(userSettings);
         } catch (IOException ioException) {

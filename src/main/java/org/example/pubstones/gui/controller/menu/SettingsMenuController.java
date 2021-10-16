@@ -51,7 +51,7 @@ public class SettingsMenuController extends BaseController {
 
     @FXML
     public void backButtonClicked(ActionEvent actionEvent) {
-        UserSettings userSettings = new UserSettings("default_settings");
+        UserSettings userSettings = new UserSettings("custom_settings");
         userSettings.setName("TODO");
         userSettings.setVolume(super.getManager().getMusicManager().getVolume());
         // TODO write to file
