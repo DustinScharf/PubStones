@@ -13,7 +13,7 @@
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <VBox alignment="CENTER" maxHeight="450.0" maxWidth="500.0" minHeight="450.0" minWidth="500.0" spacing="25.0" styleClass="lightedContainer">
+            <VBox alignment="CENTER" maxHeight="550.0" maxWidth="500.0" minHeight="550.0" minWidth="500.0" spacing="25.0" styleClass="lightedContainer">
                <children>
                   <VBox alignment="CENTER">
                      <children>
@@ -29,12 +29,17 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Button mnemonicParsing="false" onAction="#playButtonClicked" text="Play">
+                  <Button minWidth="200.0" mnemonicParsing="false" onAction="#playButtonClicked" text="Play">
                      <font>
                         <Font name="Jokerman" size="36.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#exitButtonClicked" text="Exit">
+                  <Button layoutX="197.0" layoutY="231.0" minWidth="200.0" mnemonicParsing="false" onAction="#playButtonClicked" text="Settings">
+                     <font>
+                        <Font name="Jokerman" size="36.0" />
+                     </font>
+                  </Button>
+                  <Button minWidth="200.0" mnemonicParsing="false" onAction="#exitButtonClicked" text="Exit">
                      <font>
                         <Font name="Jokerman" size="36.0" />
                      </font>
