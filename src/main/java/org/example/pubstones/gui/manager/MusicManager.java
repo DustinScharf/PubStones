@@ -41,12 +41,20 @@ public class MusicManager {
             String path = url.toString();
             return new Media(path);
         });
+        if (this.mediaPlayer != null && this.mediaPlayer.getMedia().equals(musicMedia)) {
+            return;
+        }
+
         this.mediaPlayer = new MediaPlayer(musicMedia);
         this.mediaPlayer.setVolume(this.volume);
         this.mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
     }
 
     public void playMusic() {
+        if (this.mediaPlayer.getStatus().equals(MediaPlayer.Status.PLAYING)) {
+            return;
+        }
+
         this.mediaPlayer.play();
 
 //        int fadeInSeconds = 3;
