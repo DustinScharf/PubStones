@@ -1,5 +1,6 @@
 package org.example.pubstones.gui.controller.menu;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Slider;
@@ -10,6 +11,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.ImagePattern;
 import org.example.pubstones.gui.controller.BaseController;
+import org.example.pubstones.util.exception.OutOfTimelineException;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -40,5 +42,15 @@ public class SettingsMenuController extends BaseController {
             double sliderValue = newValue.doubleValue();
             getManager().getMusicManager().setVolume(sliderValue);
         });
+    }
+
+    @FXML
+    public void backButtonClicked(ActionEvent actionEvent) {
+        try {
+            super.getManager().getMusicManager().stopMusic();
+            super.getManager().getSceneManager().switchToPreviousScene();
+        } catch (OutOfTimelineException e) {
+            e.printStackTrace(); // TODO
+        }
     }
 }
