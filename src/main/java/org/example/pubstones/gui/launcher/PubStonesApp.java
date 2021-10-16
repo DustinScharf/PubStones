@@ -1,6 +1,7 @@
 package org.example.pubstones.gui.launcher;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.example.pubstones.gui.UserSettings;
 import org.example.pubstones.gui.manager.Manager;
@@ -8,7 +9,6 @@ import org.example.pubstones.gui.util.Alerter;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class PubStonesApp extends Application {
@@ -19,6 +19,8 @@ public class PubStonesApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("PubStones");
+        // TODO null check
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/gui/icons/main_icon.png")));
 
         Manager manager = new Manager(primaryStage);
 
