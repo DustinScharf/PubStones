@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -26,6 +27,9 @@ public class SettingsMenuController extends BaseController {
     AnchorPane anchorPane;
 
     @FXML
+    public TextField nameTextField;
+
+    @FXML
     Slider volumeSlider;
 
     @Override
@@ -41,6 +45,8 @@ public class SettingsMenuController extends BaseController {
         BackgroundFill backgroundFill = new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY);
         this.anchorPane.setBackground(new Background(backgroundFill));
 
+        this.nameTextField.setText(super.getManager().getUserSettings().getName());
+
         this.volumeSlider.setValue(super.getManager().getMusicManager().getVolume());
 
         this.volumeSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
@@ -51,9 +57,10 @@ public class SettingsMenuController extends BaseController {
 
     @FXML
     public void backButtonClicked(ActionEvent actionEvent) {
-        UserSettings userSettings = new UserSettings("custom_settings");
-        userSettings.setName("TODO");
+        UserSettings userSettings = new UserSettings("default_settings");
+        userSettings.setName(this.nameTextField.getText());
         userSettings.setVolume(super.getManager().getMusicManager().getVolume());
+        super.getManager().setUserSettings(userSettings);
         // TODO write to file
         try (ObjectOutputStream objectOutputStream =
                      new ObjectOutputStream(new FileOutputStream("userdata/" + userSettings.getSettingsName()))) {
@@ -65,7 +72,6 @@ public class SettingsMenuController extends BaseController {
         }
 
         try {
-            super.getManager().getMusicManager().stopMusic();
             super.getManager().getSceneManager().switchToPreviousScene();
         } catch (OutOfTimelineException e) {
             e.printStackTrace(); // TODO
