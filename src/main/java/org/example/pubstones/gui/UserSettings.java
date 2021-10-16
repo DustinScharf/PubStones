@@ -1,6 +1,8 @@
 package org.example.pubstones.gui;
 
-public class UserSettings {
+import java.io.Serializable;
+
+public class UserSettings implements Serializable {
     private final String settingsName;
 
     private String name;
