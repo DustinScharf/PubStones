@@ -17,7 +17,7 @@ public class MusicManager {
 
     public MusicManager() {
         this.music = new HashMap<>();
-        this.volume = 1;
+        this.volume = 0;
     }
 
     public double getVolume() {
