@@ -5,11 +5,11 @@ import javafx.scene.control.Alert;
 public class Alerter {
     public static final String TITLE = "PubStones";
 
-    public static Alert buildInfoAlert(String errorTitle, String errorMessage) {
+    public static Alert buildInfoAlert(String infoTitle, String infoMessage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(TITLE);
-        alert.setHeaderText(errorTitle);
-        alert.setContentText(errorMessage);
+        alert.setHeaderText(infoTitle);
+        alert.setContentText(infoMessage);
 
         return alert;
     }
