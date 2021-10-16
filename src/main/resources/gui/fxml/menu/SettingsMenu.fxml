@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -20,6 +21,20 @@
                         <Font name="Jokerman" size="72.0" />
                      </font>
                   </Label>
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Label text="Your Name">
+                           <font>
+                              <Font name="Jokerman" size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nameTextField" focusTraversable="false" maxWidth="200.0" promptText="Your Name">
+                           <font>
+                              <Font name="Jokerman" size="24.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
                         <Label text="Volume">
@@ -30,7 +45,7 @@
                         <Slider fx:id="volumeSlider" blockIncrement="0.1" majorTickUnit="0.25" max="1.0" />
                      </children>
                   </HBox>
-                  <Button minWidth="200.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Back">
+                  <Button cancelButton="true" defaultButton="true" minWidth="200.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Back">
                      <font>
                         <Font name="Jokerman" size="36.0" />
                      </font>
