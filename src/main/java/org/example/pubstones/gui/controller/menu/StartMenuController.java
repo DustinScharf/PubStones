@@ -3,7 +3,6 @@ package org.example.pubstones.gui.controller.menu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -14,9 +13,6 @@ import org.example.pubstones.gui.controller.BaseController;
 
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
 
 public class StartMenuController extends BaseController {
     @FXML
