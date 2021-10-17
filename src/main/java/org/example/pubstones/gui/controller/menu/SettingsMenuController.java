@@ -61,7 +61,6 @@ public class SettingsMenuController extends BaseController {
         userSettings.setName(this.nameTextField.getText());
         userSettings.setVolume(super.getManager().getMusicManager().getVolume());
         super.getManager().setUserSettings(userSettings);
-        // TODO write to file
         try (ObjectOutputStream objectOutputStream =
                      new ObjectOutputStream(new FileOutputStream("userdata/" + userSettings.getSettingsName()))) {
             objectOutputStream.writeObject(userSettings);
