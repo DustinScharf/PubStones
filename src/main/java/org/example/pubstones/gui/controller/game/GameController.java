@@ -20,12 +20,6 @@ public class GameController extends BaseController {
     private HBox stoneLineHBox;
 
     @FXML
-    private Button placeLeftButton;
-
-    @FXML
-    private Button placeRightButton;
-
-    @FXML
     private HBox symbolsHBox;
 
     @FXML
