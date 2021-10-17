@@ -15,6 +15,9 @@ import org.example.pubstones.game.gamehandling.MoveKind;
 import org.example.pubstones.gui.controller.BaseController;
 import org.example.pubstones.util.exception.OutOfTimelineException;
 
+/**
+ * Controller for the Game Gui (it connects game logic with gui)
+ */
 public class GameController extends BaseController {
     @FXML
     private HBox stoneLineHBox;
