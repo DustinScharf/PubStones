@@ -8,7 +8,11 @@ import org.example.pubstones.gui.UserSettings;
 import org.example.pubstones.gui.manager.Manager;
 import org.example.pubstones.gui.util.Alerter;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 public class PubStonesApp extends Application {
     public static void main(String[] args) {
