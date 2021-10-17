@@ -14,6 +14,9 @@ import org.example.pubstones.gui.controller.BaseController;
 import java.net.URL;
 import java.time.LocalDateTime;
 
+/**
+ * Controller for the StartMenu
+ */
 public class StartMenuController extends BaseController {
     @FXML
     AnchorPane anchorPane;
@@ -22,6 +25,7 @@ public class StartMenuController extends BaseController {
     public void init() {
         URL imageUrl;
         int current_day_hour = LocalDateTime.now().getHour();
+        // Decide background by daytime
         if (current_day_hour >= 19 || current_day_hour < 7) {
             imageUrl = getClass().getResource("/gui/images/background/start_menu_night.jpg");
         } else {
