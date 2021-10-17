@@ -21,6 +21,9 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDateTime;
 
+/**
+ * Controller for the SettingsMenu
+ */
 public class SettingsMenuController extends BaseController {
     @FXML
     AnchorPane anchorPane;
