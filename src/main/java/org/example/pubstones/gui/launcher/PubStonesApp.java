@@ -14,6 +14,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+/**
+ * This class launches the whole program
+ */
 public class PubStonesApp extends Application {
     public static void main(String[] args) {
         launch(args);
