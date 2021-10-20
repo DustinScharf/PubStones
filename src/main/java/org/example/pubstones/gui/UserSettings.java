@@ -2,6 +2,9 @@ package org.example.pubstones.gui;
 
 import java.io.Serializable;
 
+/**
+ * This class hol
+ */
 public class UserSettings implements Serializable {
     private final String settingsName;
 
