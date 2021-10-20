@@ -3,7 +3,7 @@ package org.example.pubstones.gui;
 import java.io.Serializable;
 
 /**
- * This class hol
+ * This class holds the UserSettings (mainly for safe reasons)
  */
 public class UserSettings implements Serializable {
     private final String settingsName;
