@@ -3,6 +3,9 @@ package org.example.pubstones.gui.manager;
 import javafx.stage.Stage;
 import org.example.pubstones.gui.UserSettings;
 
+/**
+ * This class contains other (sub-)managers
+ */
 public class Manager {
     private final SceneManager sceneManager;
     private final MusicManager musicManager;
