@@ -2,6 +2,9 @@ package org.example.pubstones.gui.util;
 
 import javafx.scene.control.Alert;
 
+/**
+ * This class can create alerts
+ */
 public class Alerter {
     public static final String TITLE = "PubStones";
 
