@@ -8,6 +8,10 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class manages all the music of the app
+ * (Music does not mean sounds effects)
+ */
 public class MusicManager {
     private MediaPlayer mediaPlayer;
 
