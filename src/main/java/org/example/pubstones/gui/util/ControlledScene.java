@@ -8,6 +8,9 @@ import org.example.pubstones.gui.controller.BaseController;
  * This calls connects the basic JavaFX scene with our base ("parent") controller
  */
 public class ControlledScene extends Scene {
+    /**
+     * Simply the base ("parent") controller connected to the scene for access
+     */
     private BaseController baseController;
 
     public ControlledScene(Parent parent, BaseController baseController) {
