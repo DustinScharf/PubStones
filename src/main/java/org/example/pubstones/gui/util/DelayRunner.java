@@ -16,7 +16,7 @@ public class DelayRunner {
                 try {
                     Thread.sleep(seconds * 1000L);
                 } catch (InterruptedException ignored) {
-                    // todo handle
+                    // todo handle exception
                 }
                 return null;
             }
