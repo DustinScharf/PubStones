@@ -14,7 +14,7 @@ public class ControlledScene extends Scene {
     private BaseController baseController;
 
     public ControlledScene(Parent parent, BaseController baseController) {
-        super(parent);
+        super(parent); // this creates a "normal" java fx scene
         this.baseController = baseController;
     }
 
