@@ -2,6 +2,11 @@ package org.example.pubstones.gui.util;
 
 import javafx.concurrent.Task;
 
+/**
+ * This class can create a sleeper(-task)
+ * and this sleeper can run a methode,
+ * when the sleep time is finished
+ */
 @Deprecated
 public class DelayRunner {
     public static Task<Void> startSleeper(int seconds) {
