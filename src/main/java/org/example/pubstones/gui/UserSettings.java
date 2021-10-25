@@ -6,9 +6,13 @@ import java.io.Serializable;
  * This class holds the UserSettings (mainly for safe reasons)
  */
 public class UserSettings implements Serializable {
+    /**
+     * Unique name for the settings
+     */
     private final String settingsName;
 
     private String name;
+
     private double volume;
 
     /**
