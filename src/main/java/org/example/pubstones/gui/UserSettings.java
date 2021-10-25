@@ -11,6 +11,11 @@ public class UserSettings implements Serializable {
     private String name;
     private double volume;
 
+    /**
+     * Creates settings with a unique name
+     *
+     * @param settingsName a unique name for the settings
+     */
     public UserSettings(String settingsName) {
         this.settingsName = settingsName;
     }
