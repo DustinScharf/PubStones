@@ -16,6 +16,9 @@ public class UserSettings implements Serializable {
      */
     private String name;
 
+    /**
+     * Volume for the music
+     */
     private double volume;
 
     /**
