@@ -11,6 +11,9 @@ public class UserSettings implements Serializable {
      */
     private final String settingsName;
 
+    /**
+     * Name of the user
+     */
     private String name;
 
     private double volume;
