@@ -52,6 +52,11 @@ public class UserSettings implements Serializable {
         this.name = name;
     }
 
+    /**
+     * Gives the music volume
+     *
+     * @return music volume
+     */
     public double getVolume() {
         return volume;
     }
