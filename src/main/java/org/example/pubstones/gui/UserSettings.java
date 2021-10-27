@@ -39,6 +39,11 @@ public class UserSettings implements Serializable {
         return settingsName;
     }
 
+    /**
+     * Gives the name of the user
+     *
+     * @return name of the user
+     */
     public String getName() {
         return name;
     }
