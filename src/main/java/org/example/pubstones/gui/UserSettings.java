@@ -30,6 +30,11 @@ public class UserSettings implements Serializable {
         this.settingsName = settingsName;
     }
 
+    /**
+     * Gives the name of this settings
+     *
+     * @return name of this settings
+     */
     public String getSettingsName() {
         return settingsName;
     }
