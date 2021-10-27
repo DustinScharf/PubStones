@@ -66,6 +66,11 @@ public class UserSettings implements Serializable {
         return volume;
     }
 
+    /**
+     * Sets the music volume
+     *
+     * @param volume music volume
+     */
     public void setVolume(double volume) {
         this.volume = volume;
     }
