@@ -48,6 +48,11 @@ public class UserSettings implements Serializable {
         return name;
     }
 
+    /**
+     * Sets the name of the user
+     *
+     * @param name name of the user
+     */
     public void setName(String name) {
         this.name = name;
     }
