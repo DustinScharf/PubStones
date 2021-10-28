@@ -6,6 +6,9 @@ import javafx.scene.control.Alert;
  * This class can create alerts
  */
 public class Alerter {
+    /**
+     * Default title for all alerts matching the app name
+     */
     public static final String TITLE = "PubStones";
 
     /**
