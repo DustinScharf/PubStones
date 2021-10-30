@@ -18,6 +18,11 @@ import java.io.ObjectInputStream;
  * This class launches the whole program
  */
 public class PubStonesApp extends Application {
+    /**
+     * Entry point for gui
+     *
+     * @param args ignored
+     */
     public static void main(String[] args) {
         launch(args);
     }
