@@ -48,6 +48,7 @@ public class PubStonesApp extends Application {
             this.loadDefaultSettings(manager);
         }
 
+        // switches immediately to start menu on start
         manager.getSceneManager().switchScene("/gui/fxml/menu/StartMenu.fxml");
 
         primaryStage.show();
