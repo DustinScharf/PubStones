@@ -53,6 +53,11 @@ public class PubStonesApp extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Loads the default settings
+     *
+     * @param manager manager to load to settings to
+     */
     private void loadDefaultSettings(Manager manager) {
         UserSettings defaultUserSettings = null;
         try (ObjectInputStream objectInputStream =
@@ -69,6 +74,7 @@ public class PubStonesApp extends Application {
         System.out.println(source);
         File destination = new File("userdata/" + defaultUserSettings.getSettingsName());
         try {
+            // copies the default settings file to the user settings directory (if the user has no settings)
             FileUtils.copyFile(source, destination);
         } catch (IOException e) {
             e.printStackTrace();
