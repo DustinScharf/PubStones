@@ -51,6 +51,7 @@ public class PubStonesApp extends Application {
         // switches immediately to start menu on start
         manager.getSceneManager().switchScene("/gui/fxml/menu/StartMenu.fxml");
 
+        // shows the window after everything is donw
         primaryStage.show();
     }
 
