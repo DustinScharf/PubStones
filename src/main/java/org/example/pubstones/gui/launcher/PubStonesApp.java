@@ -34,7 +34,7 @@ public class PubStonesApp extends Application {
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/gui/icons/main_icon.png")));
 
         Manager manager = new Manager(primaryStage);
-
+        // TODO put file path into own final static variable
         try (ObjectInputStream objectInputStream =
                      new ObjectInputStream(new FileInputStream("userdata/default_settings"))) {
             UserSettings userSettings = (UserSettings) objectInputStream.readObject();
