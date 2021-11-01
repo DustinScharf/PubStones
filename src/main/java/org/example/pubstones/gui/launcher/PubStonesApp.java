@@ -67,6 +67,7 @@ public class PubStonesApp extends Application {
             defaultUserSettings = (UserSettings) objectInputStream.readObject();
             manager.setUserSettings(defaultUserSettings);
         } catch (Exception ignored) {
+            // should be downloaded or stuff
             System.err.println("INTERN ERROR: THERE ARE NO DEFAULT SETTINGS");
             System.exit(1);
         }
