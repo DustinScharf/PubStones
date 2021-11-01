@@ -79,8 +79,8 @@ public class PubStonesApp extends Application {
         try {
             // copies the default settings file to the user settings directory (if the user has no settings)
             FileUtils.copyFile(source, destination);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
     }
 }
