@@ -38,7 +38,7 @@ public class StartMenuController extends BaseController {
 
         super.getManager().getMusicManager().setMusic("/music/menu/1.mp3"); // todo better music queueing
 
-        super.getManager().getMusicManager().playMusic();
+        super.getManager().getMusicManager().playMusic(); // start the music in an infinit loop
     }
 
     @FXML
