@@ -32,6 +32,7 @@ public class StartMenuController extends BaseController {
             imageUrl = getClass().getResource("/gui/images/background/start_menu_day.jpg");
         }
         Image image = new Image(imageUrl.toString());  // TODO null check
+        // the background fill is the background image
         BackgroundFill backgroundFill = new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY);
         this.anchorPane.setBackground(new Background(backgroundFill));
 
