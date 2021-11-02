@@ -36,7 +36,7 @@ public class StartMenuController extends BaseController {
         BackgroundFill backgroundFill = new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY);
         this.anchorPane.setBackground(new Background(backgroundFill));
 
-        super.getManager().getMusicManager().setMusic("/music/menu/1.mp3");
+        super.getManager().getMusicManager().setMusic("/music/menu/1.mp3"); // todo better music queueing
 
         super.getManager().getMusicManager().playMusic();
     }
