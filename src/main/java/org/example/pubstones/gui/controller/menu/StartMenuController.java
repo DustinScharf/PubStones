@@ -49,6 +49,8 @@ public class StartMenuController extends BaseController {
 
     @FXML
     public void settingsButtonClicked(ActionEvent actionEvent) {
+        // music is not stopped here because the settings don't have extra music
+        // to let the user configure a good volume for the normal music
         super.getManager().getSceneManager().switchScene("/gui/fxml/menu/SettingsMenu.fxml");
     }
 
