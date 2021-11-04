@@ -56,6 +56,7 @@ public class StartMenuController extends BaseController {
 
     @FXML
     public void exitButtonClicked(ActionEvent actionEvent) {
+        // stops the music before the program exits
         super.getManager().getMusicManager().stopMusic();
         super.getManager().getSceneManager().getStage().close();
     }
