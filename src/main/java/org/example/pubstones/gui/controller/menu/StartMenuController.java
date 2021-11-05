@@ -43,6 +43,7 @@ public class StartMenuController extends BaseController {
 
     @FXML
     public void playButtonClicked(ActionEvent actionEvent) {
+        // stop the music because the next scene plays other music
         super.getManager().getMusicManager().stopMusic();
         super.getManager().getSceneManager().switchScene("/gui/fxml/game/Game.fxml");
     }
