@@ -35,6 +35,7 @@ public class PubStonesApp extends Application {
 
         Manager manager = new Manager(primaryStage);
         // TODO put file path into own final static variable
+        // checks if there are settings
         try (ObjectInputStream objectInputStream =
                      new ObjectInputStream(new FileInputStream("userdata/default_settings"))) {
             UserSettings userSettings = (UserSettings) objectInputStream.readObject();
