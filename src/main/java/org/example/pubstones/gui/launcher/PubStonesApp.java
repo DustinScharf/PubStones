@@ -41,6 +41,7 @@ public class PubStonesApp extends Application {
             UserSettings userSettings = (UserSettings) objectInputStream.readObject();
             manager.setUserSettings(userSettings);
         } catch (FileNotFoundException fileNotFoundException) {
+            // if no settings are found, the game copies the default settings and sets them as the user settings
             Alerter.buildInfoAlert(
                     "Welcome to PubStones!",
                     "Seems like this is the first time you start PubStones!\n" +
