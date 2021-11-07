@@ -29,6 +29,7 @@ public class PubStonesApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // sets the title of the window
         primaryStage.setTitle("PubStones");
         // TODO null check
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/gui/icons/main_icon.png")));
