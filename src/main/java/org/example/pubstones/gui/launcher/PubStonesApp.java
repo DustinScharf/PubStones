@@ -24,6 +24,7 @@ public class PubStonesApp extends Application {
      * @param args ignored
      */
     public static void main(String[] args) {
+        // the launch basically calls the start method of this class
         launch(args);
     }
 
