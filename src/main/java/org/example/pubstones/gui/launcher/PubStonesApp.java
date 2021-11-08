@@ -25,6 +25,7 @@ public class PubStonesApp extends Application {
      */
     public static void main(String[] args) {
         // the launch basically calls the start method of this class
+        // (the args are just forwarded in case they are needed somewhere else)
         launch(args);
     }
 
